@@ -3,36 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rainbow's End</title>
+  <meta name="description" content="Rainbow's End — the anchor and rode calculator that knows your boat. Scope from the bow roller down, tackle picked from your own locker, honest warnings. Entirely offline." />
+  <title>Rainbow's End — Anchor &amp; Rode Calculator</title>
   <style>
-    :root { --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; }
+    :root { --paper: #F6F8FA; --card: #FFFFFF; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --sea1: #12557F; --sea2: #062232; --rule: #D8E0E7; }
     @media (prefers-color-scheme: dark) {
-      :root { --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
+      :root { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
     }
-    body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; padding: 0 20px 80px; }
-    main { max-width: 40rem; margin: 0 auto; }
-    h1 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 2rem; margin: 64px 0 4px; letter-spacing: -0.01em; }
-    .tagline { color: var(--navy); font-style: italic; margin: 0 0 6px; }
-    p { color: var(--muted); max-width: 60ch; }
-    ul { list-style: none; padding: 0; margin: 28px 0; }
-    li { border-top: 1px solid var(--rule); }
-    li:last-child { border-bottom: 1px solid var(--rule); }
-    a.card { display: block; padding: 14px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
-    a.card:hover { color: var(--navy); }
-    a.card span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+    * { box-sizing: border-box; }
+    body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; }
+    .hero {
+      background: linear-gradient(180deg, var(--sea1), var(--sea2));
+      color: #F4F8FA; padding: 56px 20px 44px;
+    }
+    .hero-inner, main { max-width: 46rem; margin: 0 auto; }
+    h1 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+    .tagline { font-style: italic; color: #9CCDE8; margin: 0 0 14px; font-size: 1.05rem; }
+    .sub { color: #C9DCE9; max-width: 58ch; margin: 0; }
+    .badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid #9CCDE8; border-radius: 10px; color: #F4F8FA; font-weight: 650; font-size: 0.95rem; }
+    main { padding: 8px 20px 80px; }
+    h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+    .features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+    .features strong { display: block; margin-bottom: 3px; }
+    .features span { color: var(--muted); font-size: 0.94rem; }
+    .honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+    .links { list-style: none; padding: 0; margin: 16px 0 0; }
+    .links li { border-top: 1px solid var(--rule); }
+    .links li:last-child { border-bottom: 1px solid var(--rule); }
+    .links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+    .links a:hover { color: var(--navy); }
+    .links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+    .foot { color: var(--muted); font-size: 0.9rem; margin-top: 40px; }
+    a { color: var(--navy); }
   </style>
 </head>
 <body>
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Rainbow&rsquo;s End</h1>
+      <p class="tagline">May you find a rainbow&rsquo;s end wherever you sail or set your anchor.</p>
+      <p class="sub">The anchor &amp; rode calculator that knows your boat. It works out how much
+      rode to pay out for the conditions you&rsquo;re in, recommends tackle from the gear you
+      actually carry, and says plainly what to watch.</p>
+      <span class="badge">Coming to the App Store for iPhone</span>
+    </div>
+  </div>
   <main>
-    <h1>Rainbow&rsquo;s End</h1>
-    <p class="tagline">May you find a rainbow&rsquo;s end wherever you sail or set your anchor.</p>
-    <p>An anchor &amp; rode calculator for iPhone. It works out how much rode to pay out for the
-    conditions you are in, recommends tackle from the gear you actually carry, and says plainly
-    what to watch.</p>
-    <ul>
-      <li><a class="card" href="support.html">Support &amp; FAQ<span>Setup, how the numbers work, and how to report one that looks wrong.</span></a></li>
-      <li><a class="card" href="privacy.html">Privacy Policy<span>Short, because the app collects nothing.</span></a></li>
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><strong>Scope from the bow roller down</strong><span>The old ratios forget where the rode
+        begins. Rainbow&rsquo;s End measures from your bow roller to the seabed at the worst point
+        of the night — tide and surge included.</span></li>
+      <li><strong>Recommends from your own locker</strong><span>Every anchor and rode you carry,
+        scored for tonight&rsquo;s bottom and wind. When the plan needs gear you don&rsquo;t have,
+        it says so instead of pretending.</span></li>
+      <li><strong>Four ways of anchoring, plus storm</strong><span>Regular, Bahamian moor, Med
+        mooring, and lines ashore — each with its own geometry — and a storm mode with a
+        two-anchor plan.</span></li>
+      <li><strong>Honest chain physics</strong><span>Know the wind at which your chain pulls
+        bar-taut, the angle at the anchor, and what a few more feet would buy you.</span></li>
+      <li><strong>Warnings that name the problem</strong><span>Thin margin, wrong anchor for the
+        ground, not enough water at low tide — in words, not just numbers.</span></li>
+      <li><strong>Entirely offline</strong><span>No account, no signal needed, and nothing you
+        enter ever leaves your phone. Built for anchorages, which rarely come with bars.</span></li>
+      <li><strong>Every boat you step aboard</strong><span>Keep your own boat, a charter, and the
+        dinghy as separate profiles, each with its own tackle — in your own words, down to naming
+        the lunch hook.</span></li>
+      <li><strong>Your units</strong><span>Feet, meters, fathoms, shots, or your own rode marks.
+        Depth in what the instrument reads, answers in what the windlass counts.</span></li>
     </ul>
+
+    <p class="honest">Rainbow&rsquo;s End is an aid to judgement, not a substitute for it. Its
+    holding figures are estimates drawn from independent testing, presented as estimates — and if
+    an answer ever disagrees with your seamanship, trust your seamanship.</p>
+
+    <h2>More</h2>
+    <ul class="links">
+      <li><a href="support.html">Support &amp; FAQ<span>Setup, how the numbers work, and how to report one that looks wrong.</span></a></li>
+      <li><a href="privacy.html">Privacy Policy<span>Short, because the app collects nothing.</span></a></li>
+    </ul>
+
+    <p class="foot">&copy; 2026 Jerry Simoneaux · <a href="mailto:jwsimoneaux@gmail.com">jwsimoneaux@gmail.com</a></p>
   </main>
 </body>
 </html>
