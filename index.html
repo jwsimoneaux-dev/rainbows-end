@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End</title>
+  <style>
+    :root { --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
+    }
+    body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; padding: 0 20px 80px; }
+    main { max-width: 40rem; margin: 0 auto; }
+    h1 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 2rem; margin: 64px 0 4px; letter-spacing: -0.01em; }
+    .tagline { color: var(--navy); font-style: italic; margin: 0 0 6px; }
+    p { color: var(--muted); max-width: 60ch; }
+    ul { list-style: none; padding: 0; margin: 28px 0; }
+    li { border-top: 1px solid var(--rule); }
+    li:last-child { border-bottom: 1px solid var(--rule); }
+    a.card { display: block; padding: 14px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+    a.card:hover { color: var(--navy); }
+    a.card span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Rainbow&rsquo;s End</h1>
+    <p class="tagline">May you find a rainbow&rsquo;s end wherever you sail or set your anchor.</p>
+    <p>An anchor &amp; rode calculator for iPhone. It works out how much rode to pay out for the
+    conditions you are in, recommends tackle from the gear you actually carry, and says plainly
+    what to watch.</p>
+    <ul>
+      <li><a class="card" href="support.html">Support &amp; FAQ<span>Setup, how the numbers work, and how to report one that looks wrong.</span></a></li>
+      <li><a class="card" href="privacy.html">Privacy Policy<span>Short, because the app collects nothing.</span></a></li>
+    </ul>
+  </main>
+</body>
+</html>

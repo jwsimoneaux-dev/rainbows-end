@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End Support</title>
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  h2 {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 40px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  details {
+    border-bottom: 1px dotted var(--rule);
+    padding: 4px 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 650; font-size: 1.02rem;
+    padding: 10px 0; list-style-position: outside;
+  }
+  summary:hover { color: var(--navy); }
+  details p { color: var(--muted); max-width: 64ch; margin: 4px 0 14px; }
+  details strong { color: var(--ink); }
+  a { color: var(--navy); }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; max-width: 64ch; }
+</style>
+<main>
+  <h1>Rainbow's End — Support</h1>
+  <p class="meta">Answers to the questions that come up, in the order they usually come up.
+  Anything not covered here: <a href="mailto:jwsimoneaux@gmail.com">jwsimoneaux@gmail.com</a>.</p>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does Rainbow's End actually do?</summary>
+    <p>It works out how much anchor rode to pay out for the conditions you're in, picks the best
+    anchor-and-rode combination from the gear you actually carry, and tells you plainly what to
+    watch — thin holding, a bottom your anchor won't set in, not enough water under the keel at
+    low tide. It covers regular anchoring, Bahamian moors, Med mooring, and lines ashore, plus a
+    storm mode. It runs entirely offline.</p>
+  </details>
+
+  <details>
+    <summary>What do I need to set up before the numbers mean anything?</summary>
+    <p>Your boat, on the Boat tab: length, beam, draft, displacement, <strong>the height of your
+    bow roller above the water</strong>, how your depth sounder is calibrated, and the ground
+    tackle you carry — each anchor with its weight and model, each rode segment by segment. Ten
+    minutes once, and every answer afterward is about <em>your</em> boat rather than a generic one.</p>
+  </details>
+
+  <details>
+    <summary>Why does the app ask how my depth sounder is calibrated?</summary>
+    <p>Because it's the most common source of anchoring error. A sounder can read from the
+    waterline, from the transducer, or as water under the keel — three different numbers for the
+    same anchorage. Tell the app which one yours shows and you can always type exactly what the
+    display says; the app corrects it to true depth.</p>
+  </details>
+
+  <h2>The numbers</h2>
+
+  <details>
+    <summary>The app tells me to pay out more rode than the old rule of thumb. Why?</summary>
+    <p>The classic ratios multiply the <em>water depth</em>. But your rode doesn't start at the
+    waterline — it starts at the bow roller, several feet up, and the tide may rise after you set.
+    The app multiplies the full distance from bow roller to seabed at the worst point of the
+    night. In shallow water the difference is dramatic: 8 ft of water under a 6 ft bow roller
+    needs scope on 14 ft, nearly double what the sounder alone suggests. The old rule isn't wrong;
+    it just forgets where the rode begins.</p>
+  </details>
+
+  <details>
+    <summary>What does the colored margin figure (like “5.9× margin”) mean?</summary>
+    <p>It's the estimated holding power of the recommended anchor in tonight's bottom, divided by
+    the estimated pull on it from wind, waves, and the boat's yawing. Green means the margin meets
+    what your kind of stop demands (a lunch stop needs less than leaving the boat unattended);
+    amber means it's thin — anchor with care and set a watch. Both sides of that ratio are
+    estimates, which is exactly why the app insists on a margin instead of calling 1.1× good.</p>
+  </details>
+
+  <details>
+    <summary>Why did it recommend against one of my anchors?</summary>
+    <p>Setting and holding are different failures. A fluke anchor has enormous holding power in
+    sand — and skates uselessly across a weed mat, because it never gets to use it. The app scores
+    every anchor you carry on both questions for the bottom you chose, and when the ground is
+    wrong for the anchor it says so instead of quietly suggesting more rode. More scope does not
+    fix the wrong anchor.</p>
+  </details>
+
+  <details>
+    <summary>What is the “chain pulls straight at N knots” note?</summary>
+    <p>Chain helps you by sagging: its weight keeps the pull at the anchor horizontal, which is
+    the direction an anchor holds best. The app computes the exact wind at which tonight's chain
+    is pulled bar-taut and the sag is gone. Beyond that point the chain's weight has stopped
+    absorbing anything — which is not an emergency, it's the moment your snubber becomes the only
+    shock absorber, and the app tells you the pull angle so you know how much that matters.</p>
+  </details>
+
+  <details>
+    <summary>I entered gusts and the rode figure grew. Is that right?</summary>
+    <p>Yes. The surge back on a gust is the moment a short rode lifts the anchor's shank, so
+    gusts raise the scope — the app sizes it on a figure between the sustained wind and the gusts.
+    Peak loads (what actually parts gear) are computed at the full gust figure.</p>
+  </details>
+
+  <h2>Boats and gear</h2>
+
+  <details>
+    <summary>Can I keep more than one boat?</summary>
+    <p>Yes — as many as you like, each with its own tackle, on the Boat tab under Saved boats.
+    Add a charter boat for the week and delete it when you fly home; keep the dinghy as its own
+    entry. The Anchor screen always names the boat it's calculating for, right at the top.</p>
+  </details>
+
+  <details>
+    <summary>Can I name my anchors and rodes what I actually call them?</summary>
+    <p>Yes. Rodes and anchors both take names — “Storm rode,” “Lunch hook,” “Big Mantus” — and
+    the app uses your words everywhere it refers to them. The weight-and-model details stay
+    visible in the boat profile, so naming loses nothing.</p>
+  </details>
+
+  <details>
+    <summary>Can I overrule the recommendation and use different gear?</summary>
+    <p>Always. Open “Why this anchor” and tap any combination aboard — the entire plan recalculates
+    for what you're actually putting down, including the warnings. The app never blocks your
+    choice; it just refuses to pretend a poor one is a good one, and it will tell you what it
+    would have picked instead.</p>
+  </details>
+
+  <details>
+    <summary>What units can it work in?</summary>
+    <p>Depths in feet, meters, or fathoms; rode answers in any of those plus shots (shackles) or
+    your own rode markings at whatever interval you've marked. Input and output units are set
+    separately, because you read depth off an instrument but pay out rode by your marks.</p>
+  </details>
+
+  <h2>The fine print</h2>
+
+  <details>
+    <summary>Does it need internet or my location?</summary>
+    <p>Neither. Rainbow's End works entirely offline and never asks for your location. Nothing
+    you enter leaves your device — see the <a href="privacy.html">privacy policy</a>, which is
+    short because there's nothing to disclose.</p>
+  </details>
+
+  <details>
+    <summary>Are the numbers guaranteed?</summary>
+    <p>No, and be wary of any anchoring tool that claims otherwise. Holding power varies between
+    anchorages and between one set and the next in the same spot; the coefficients in the app are
+    estimates drawn from independent testing, not manufacturer claims. The app is an aid to
+    judgement — if its answer disagrees with your seamanship, trust your seamanship.</p>
+  </details>
+
+  <details>
+    <summary>I found a number that looks wrong.</summary>
+    <p>Please tell me — seriously. Every calculation in this app got better because a sailor said
+    “that doesn't look right” and included their inputs. Email the numbers you entered, what the
+    app said, and what you expected, and I'll trace it through the math and either fix the app or
+    show the working.</p>
+  </details>
+
+  <details>
+    <summary>How do refunds work?</summary>
+    <p>Purchases are handled by Apple and Google, so refunds are too — through
+    <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> for the App Store, or
+    your order history on Google Play. I never see your payment details and can't issue refunds
+    directly.</p>
+  </details>
+
+  <div class="contact">
+    <p><strong>Still stuck, or have an idea?</strong> Email
+    <a href="mailto:jwsimoneaux@gmail.com">jwsimoneaux@gmail.com</a> with what you saw and what
+    you expected. Feature suggestions from people who actually anchor are how this app was built.</p>
+  </div>
+</main>
+</body>
+</html>
