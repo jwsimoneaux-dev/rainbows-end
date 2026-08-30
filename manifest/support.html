@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End Manifest Support</title>
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  h2 {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 40px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  details {
+    border-bottom: 1px dotted var(--rule);
+    padding: 4px 0;
+  }
+  summary {
+    cursor: pointer; font-weight: 650; font-size: 1.02rem;
+    padding: 10px 0; list-style-position: outside;
+  }
+  summary:hover { color: var(--navy); }
+  details p { color: var(--muted); max-width: 64ch; margin: 4px 0 14px; }
+  details strong { color: var(--ink); }
+  a { color: var(--navy); }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; max-width: 64ch; }
+</style>
+<main>
+  <h1>Rainbow's End Manifest — Support</h1>
+  <p class="meta">Answers to the questions that come up, in the order they usually come up.
+  Anything not covered here: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does Rainbow's End Manifest actually do?</summary>
+    <p>It keeps the whole book of your boat in one place. From your vessel's particulars it derives
+    the U.S. Coast Guard safety-equipment checklist for <strong>your</strong> boat — the right
+    items, current terminology, correct citations — and lets you record where each piece is
+    stowed. From that, it generates a passenger safety briefing for your boat, not a generic one.
+    It carries a daily cruising log with voyages, engine hours, and fuel and water estimates, and
+    a maintenance schedule filtered to the systems you actually have. It runs entirely offline.</p>
+  </details>
+
+  <details>
+    <summary>What should I set up first?</summary>
+    <p>The Boat tab, top to bottom: her name and papers, dimensions (LOA drives the equipment
+    class), propulsion and fuel, heads, generator and A/C, tanks with capacities, and burn rates.
+    Ten minutes once, and every other tab reshapes itself around your answers — change LOA or add
+    a gasoline generator and watch the Gear list redraw.</p>
+  </details>
+
+  <h2>The checklist</h2>
+
+  <details>
+    <summary>Is the Gear list the law?</summary>
+    <p>The federal items are the federal <strong>minimums</strong> — 33 CFR and 46 CFR carriage
+    requirements for recreational vessels, each with its citation. Two honest caveats, stated in
+    the app as well: <strong>state law can add requirements</strong> on its own waters, and a
+    checklist is preparation for — never a substitute for — the free Coast Guard Auxiliary
+    Vessel Safety Check. Pass one and she wears the decal.</p>
+  </details>
+
+  <details>
+    <summary>Why does the app say "wearable life jacket" and "5-B" instead of "Type II" and "B-I"?</summary>
+    <p>Because the regulations changed. Since 2014 the rules classify PFDs as wearable or
+    throwable, and new labels use performance levels (Level 70 is the everyday jacket). Since
+    April 2022 extinguishers count by UL rating — 5-B and 20-B — and disposable bottles expire
+    12 years from their stamped manufacture date. Old gear with old labels stays legal while
+    serviceable; the app teaches the current words.</p>
+  </details>
+
+  <details>
+    <summary>Why did an item appear or disappear from my list?</summary>
+    <p>The list is derived, not fixed. Length class, propulsion, fuel, coastal versus inland
+    waters, heads, a fixed fire system, even a gasoline generator on a diesel boat — each changes
+    what the law requires. If something moved, something on your Boat tab changed.</p>
+  </details>
+
+  <h2>The briefing</h2>
+
+  <details>
+    <summary>Why does the briefing show "location not recorded"?</summary>
+    <p>The briefing reads from the Gear tab. Check an item aboard and enter where it's stowed —
+    "port cockpit locker" — and the briefing's "Where things live" section says exactly that to
+    your guests. The MAYDAY card fills in your boat's name, call sign, and MMSI from the
+    Boat tab.</p>
+  </details>
+
+  <h2>The log</h2>
+
+  <details>
+    <summary>What's a voyage? What's a lay day?</summary>
+    <p>Start a voyage, name it, and every entry — under-way legs and lay days alike — collects
+    under it until you end it. A <strong>lay day</strong> is a day aboard without getting under
+    way (at anchor, in a marina away from home): it keeps the water estimate honest and can log
+    generator hours. Past voyages sit collapsed with their totals — days, legs, miles, engine and
+    sail hours — and expand for review.</p>
+  </details>
+
+  <details>
+    <summary>How does the fuel estimate work — and how much should I trust it?</summary>
+    <p>It's arithmetic, and it says so. Your burn rate times logged engine hours draws each tank
+    down; fills add; a fill marked <strong>topped off</strong> — or a measured amount entered from
+    the dipstick or gauge — calibrates the estimate, and the math continues from there. Until a
+    tank has been topped off or measured once, the app says "unknown" rather than guessing.
+    <strong>The gauge always outranks the arithmetic.</strong> Fresh water works the same way,
+    boat-wide, drawn down per logged day at your per-person rate unless an entry records its own
+    figure.</p>
+  </details>
+
+  <h2>Maintenance</h2>
+
+  <details>
+    <summary>Where do the intervals come from?</summary>
+    <p>The mainstream conventions — engine-manufacturer schedules, marine-industry practice, and
+    the verified document cycles (USCG documentation renewal, FCC ship station license, NOAA
+    EPIRB registration, flare and extinguisher expirations). Items marked <strong>Hard date</strong>
+    are legal or safety expirations; past the date, the gear doesn't count. Everything else is a
+    service interval, and <strong>your owner's manuals always win</strong>.</p>
+  </details>
+
+  <details>
+    <summary>Why does my boat's maintenance list differ from my friend's?</summary>
+    <p>Same reason as the Gear list: it's derived. Twin engines get port and starboard lines; each
+    Racor-type separator gets its own line; a generator, air conditioning, a sea chest, a
+    composting head each bring their own items; sailboats get the rig category and powerboats
+    don't.</p>
+  </details>
+
+  <h2>Housekeeping</h2>
+
+  <details>
+    <summary>Where is my data? Is there an account?</summary>
+    <p>No account, no server, no sync. Everything lives on your device and nothing is ever
+    transmitted — see the <a href="privacy.html">privacy policy</a>, which is short because there
+    is nothing to disclose. Deleting the app deletes your data.</p>
+  </details>
+
+  <details>
+    <summary>Does it work with Rainbow's End Anchoring?</summary>
+    <p>They're siblings from the same shop and share the family look, but each stands alone.
+    Anchoring sizes and manages your ground tackle; Manifest keeps the book of the boat. The
+    Gear tab will happily remind you that an anchor is not federally required equipment — and
+    that prudence disagrees.</p>
+  </details>
+
+  <div class="contact">
+    <p><strong>Still stuck, or found a number that doesn't look right?</strong> Write to
+    <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a> with what you saw and what
+    you expected — that's exactly the kind of report that makes the app better.</p>
+  </div>
+</main>
+</body>
+</html>

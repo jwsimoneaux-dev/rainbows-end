@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End Manifest</title>
+  <meta name="description" content="The book of your boat: USCG safety checklist, stowage map, passenger briefing, cruising log, and maintenance schedule — derived from your vessel, fully offline." />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --brass: #8A6A3C;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  .brand { color: var(--brass); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; margin: 56px 0 0; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 2.3rem; margin: 6px 0 8px; }
+  .tag { color: var(--muted); font-size: 1.1rem; max-width: 56ch; }
+  h2 { font-size: 1.2rem; margin: 36px 0 6px; }
+  p { max-width: 64ch; margin: 10px 0; }
+  ul { max-width: 64ch; padding-left: 22px; }
+  li { margin: 8px 0; }
+  li strong { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .note {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 28px 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 40px 0 0; }
+  .foot { color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--navy); }
+</style>
+<main>
+  <p class="brand">RAINBOW'S END MARINE</p>
+  <h1>Rainbow's End Manifest</h1>
+  <p class="tag">The book of your boat: what the Coast Guard requires aboard, where it's stowed,
+  the briefing your guests hear, the log of where she's been, and the schedule that keeps her
+  fit. All of it derived from <em>your</em> vessel. All of it on your device.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li><strong>Boat</strong> — her manifest: papers, dimensions, engines, tanks, heads, systems.
+    Every other page derives from this one.</li>
+    <li><strong>Gear</strong> — the federal safety-equipment checklist for your boat's length,
+    propulsion, fuel, and waters, in current terminology with citations — plus what prudence adds.
+    Check each item aboard and record where it lives.</li>
+    <li><strong>Briefing</strong> — a passenger safety walkthrough generated from your gear map:
+    where things live, a MAYDAY card with your boat's name and MMSI filled in, and the
+    crew-overboard drill — shout, point, throw, press.</li>
+    <li><strong>Log</strong> — the daily cruising log: legs and lay days, voyages with totals,
+    engine and sail hours, and honest fuel and water estimates that ask to be calibrated before
+    they claim anything.</li>
+    <li><strong>Maintenance</strong> — seeded intervals filtered to your systems, hard document
+    expirations (documentation, EPIRB registration, flares), and the fueling record.</li>
+  </ul>
+
+  <p class="note">Manifest checks against the <strong>federal minimums</strong>; state law can
+  add to them. It prepares you for — and is no substitute for — the free Coast Guard Auxiliary
+  Vessel Safety Check.</p>
+
+  <h2>Now in beta</h2>
+  <p>Rainbow's End Manifest is on TestFlight, headed for the App Store. It's fully offline —
+  no account, no server, nothing leaves your device.</p>
+
+  <h2>Pages</h2>
+  <p><a href="support.html">Support</a> · <a href="privacy.html">Privacy policy</a> ·
+  Sibling app: <a href="../index.html">Rainbow's End Anchoring</a></p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+
+  <hr />
+  <p class="foot">May you find a rainbow's end and treasure found wherever you sail or set your
+  anchor.</p>
+</main>
+</body>
+</html>
