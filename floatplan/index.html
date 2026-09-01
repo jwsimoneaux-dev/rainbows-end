@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End Float Plan</title>
+  <meta name="description" content="Fill out a USCG-style float plan in minutes and email the PDF to someone reliable ashore — the app remembers your boat, so each trip is just the itinerary. Fully offline." />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --brass: #8A6A3C;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  .brand { color: var(--brass); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; margin: 56px 0 0; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 2.3rem; margin: 6px 0 8px; }
+  .tag { color: var(--muted); font-size: 1.1rem; max-width: 56ch; }
+  h2 { font-size: 1.2rem; margin: 36px 0 6px; }
+  p { max-width: 64ch; margin: 10px 0; }
+  ul { max-width: 64ch; padding-left: 22px; }
+  li { margin: 8px 0; }
+  li strong { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .note {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 28px 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 40px 0 0; }
+  .foot { color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--navy); }
+</style>
+<main>
+  <p class="brand">RAINBOW'S END MARINE</p>
+  <h1>Rainbow's End Float Plan</h1>
+  <p class="tag">Leave word ashore before you leave the dock. A float plan tells someone
+  reliable exactly what to say to rescuers if you don't come home. This app fills one out
+  with you and hands you a PDF made to be emailed.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li><strong>Grouped the way a sailor thinks</strong> — vessel, communication, safety
+    &amp; survival, the people aboard, the itinerary, and your shore contacts, each section
+    with a line on why searchers want it.</li>
+    <li><strong>Remembers your boat</strong> — fill her particulars once; next trip you
+    change only the itinerary. "New trip" keeps the boat, gear, people, and contacts and
+    clears the voyage.</li>
+    <li><strong>A PDF made to be emailed</strong> — one tap builds the plan and opens the
+    share sheet; Mail is two taps from a filled plan.</li>
+    <li><strong>A guide for the holder</strong> — the PDF opens with "If we are overdue":
+    whom to call, in what order, with your actual contacts, phone numbers, and check-in
+    deadline already filled in. The person holding your plan never has to hunt.</li>
+    <li><strong>The whole inventory</strong> — modeled on the official USCG/CGAUX float
+    plan, from hull colors and MMSI to EPIRB and PLB numbers, tow vehicle, and the reason
+    for every stop.</li>
+  </ul>
+
+  <p class="note">A float plan is never filed with the Coast Guard — it goes to
+  <strong>someone reliable ashore</strong>. Tell them if plans change, and close the plan
+  when everyone is home safe.</p>
+
+  <h2>Now in beta</h2>
+  <p>Rainbow's End Float Plan is on TestFlight, headed for the App Store. It's fully
+  offline — no account, no server; the plan leaves your device only when you send it.</p>
+
+  <h2>Pages</h2>
+  <p><a href="support.html">Support</a> · <a href="privacy.html">Privacy policy</a> ·
+  Sibling apps: <a href="../index.html">Rainbow's End Anchoring</a> ·
+  <a href="../manifest/index.html">Rainbow's End Manifest</a></p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+
+  <hr />
+  <p class="foot">May you find a rainbow's end and treasure found wherever you sail or set
+  your anchor.</p>
+</main>
+</body>
+</html>
