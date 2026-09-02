@@ -163,13 +163,62 @@
     separately, because you read depth off an instrument but pay out rode by your marks.</p>
   </details>
 
+  <h2>The anchor watch</h2>
+
+  <details>
+    <summary>How does the anchor watch work?</summary>
+    <p>Mark the drop on the Watch tab and the app draws a fence from tonight's plan — the swing
+    circle plus a margin for GPS scatter when you lie to one anchor, the corridor between two
+    anchors for a Bahamian moor, and a tight ring around a boat held by a quay or by lines ashore.
+    It then reads the GPS and plots the boat north-up against the fence, with the trail of
+    everywhere she has ranged. You can mark from the bow, midships, or the stern; point the phone
+    toward the bow and the app places the anchor where it actually went down. Keep the phone
+    plugged in with the app open on the Watch tab — the screen stays awake by itself.</p>
+  </details>
+
+  <details>
+    <summary>The boat crossed the fence and the alarm didn't sound right away. Why?</summary>
+    <p>By design. GPS scatters, and one wandering fix at three in the morning is not a drag. The
+    alarm needs several consecutive fixes clearly outside the fence, beyond the fix's own reported
+    accuracy, so it takes a few seconds to be sure. An alarm that cries wolf gets disarmed for
+    good, which is worse than one that takes a breath. If the GPS goes quiet or the app is closed,
+    the screen says the watch has stopped rather than pretending to guard you.</p>
+  </details>
+
+  <details>
+    <summary>Can I watch the boat from ashore?</summary>
+    <p>Yes, from version 1.3.0, using a second device on the same Apple ID. Aboard, arm the watch
+    and switch on <strong>Share to my other devices</strong>. Ashore, open the Watch tab and tap
+    <strong>Look for a shared watch</strong>; the shore device shows the same fence, boat, and
+    trail, and sounds its own alarm if she breaks out. The boat's reports travel through your own
+    iCloud and nowhere else, so both devices need to be signed into the same Apple ID with iCloud
+    Drive on, and the boat needs a signal. Keep the app open on the shore device too — it checks
+    for a fresh report every half minute. Only the boat can disarm the watch; silencing the alarm
+    ashore silences it ashore only.</p>
+  </details>
+
+  <details>
+    <summary>The shore device says the boat has gone quiet. Is she dragging?</summary>
+    <p>Not necessarily — but the app refuses to guess. If no report has arrived for a minute and a
+    half the screen says the link is stale; after three minutes of silence the monitor sounds an
+    alarm, because a dead link must never look like a safe boat. Silence usually means the boat
+    lost her signal, the phone aboard died or went to sleep, or the app was closed. The watch aboard
+    may well still be running; the alarm is telling you to find out, not that she has dragged. The
+    one silence that is expected is a watch the boat disarmed itself, which the shore device reports
+    in those words and then goes quiet without alarming.</p>
+  </details>
+
   <h2>The fine print</h2>
 
   <details>
     <summary>Does it need internet or my location?</summary>
-    <p>Neither. Rainbow's End works entirely offline and never asks for your location. Nothing
-    you enter leaves your device — see the <a href="privacy.html">privacy policy</a>, which is
-    short because there's nothing to disclose.</p>
+    <p>Not for the calculator: Rainbow's End works entirely offline and nothing you enter leaves
+    your device. The anchor watch asks for location permission, "while using the app" only, and
+    reads the GPS — which is satellites, not internet — on the device alone. The remote watch is
+    the one feature that needs a connection: switch on "Share to my other devices" and the watch,
+    and only the watch, is copied to your own iCloud so your other devices can monitor it. Off by
+    default, readable by nobody but you. See the <a href="privacy.html">privacy policy</a>, which
+    is still short because there is still little to disclose.</p>
   </details>
 
   <details>
