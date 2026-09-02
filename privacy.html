@@ -44,12 +44,13 @@
 </style>
 <main>
   <h1>Privacy Policy</h1>
-  <p class="meta">Rainbow's End — Anchor &amp; Rode Calculator · Effective September 2, 2026</p>
+  <p class="meta">Rainbow's End — Anchor &amp; Rode Calculator · Effective September 3, 2026</p>
 
   <p class="lead"><strong>The short version: Rainbow's End sends nothing anywhere. Everything you
-  enter — and, if you use the anchor watch, your GPS position — stays on your device. The one
-  exception is yours to switch on: the remote watch, which copies the watch to your own iCloud so
-  your other devices can monitor it, and to nobody else.</strong></p>
+  enter — and, if you use the anchor watch, your GPS position — stays on your device. The
+  exceptions are yours to switch on: the remote watch, which copies the watch to your own iCloud
+  so your other devices can monitor it, and sharing with crew, which publishes the watch encrypted
+  under a code you hand out, readable by nobody without it.</strong></p>
 
   <h2>What the app stores, and where</h2>
   <p>Everything you put into Rainbow's End — boat particulars, anchors and rodes, saved boats,
@@ -96,6 +97,23 @@
   replaces it; you can also remove it yourself, with any other app data, from your device's iCloud
   storage settings. If you never turn sharing on, the app never touches iCloud.</p>
 
+  <h2>Sharing with crew — the code</h2>
+  <p>Since version 1.5.0 an armed watch can also be shared with people who do not share your
+  Apple ID: crew, guests, family ashore. This is off unless you turn on "Share with crew" on the
+  Watch tab. When it is on, the boat device writes the same watch record, plus the boat's name and
+  hull color, to the app's public iCloud database — a store Apple hosts for the app rather than
+  for any one account — encrypted with a key derived from an eight-character code the app shows
+  you. Anyone you give the code to can read the watch and find the boat in the free companion
+  app, Rainbow's End Monitor. Anyone without it sees only ciphertext, filed under a name that is a
+  hash of the code. Apple holds the ciphertext; the app has no server; we cannot read the record.
+  The code never leaves your device except as you choose to share it.</p>
+  <p>The code stays the same on that device until you choose "New code", so a crew who joined at
+  the dock still find the boat the next day. Turning "Share with crew" off, or disarming the
+  watch, deletes the record, and only the boat device can change or delete it. If the boat has no
+  signal at that moment the record stays until the next shared watch replaces it, and the Monitor
+  app treats a record older than a day as a watch that ended. The Monitor app never learns where
+  crew are: their own position is used on their own phone, for the arrow, and goes nowhere.</p>
+
   <h2>What the app does not do</h2>
   <p>Rainbow's End contains no analytics, no advertising, no tracking of any kind, and no
   third-party data-collection software. It does not read your contacts, photos, or anything else
@@ -121,6 +139,10 @@
   in version 1.3.0. It is the app's first and only network feature, it is opt-in, and what it
   shares goes to your own iCloud account and nowhere else. The short version at the top, the
   Location section, and "What the app does not do" were reworded to say so. Nothing else
+  changed.</p>
+  <p><strong>September 3, 2026:</strong> added "Sharing with crew — the code" for version 1.5.0:
+  the same watch, encrypted under a code, readable by anyone you give the code to in the free
+  Rainbow's End Monitor app. The short version at the top was reworded to say so. Nothing else
   changed.</p>
 
   <h2>Contact</h2>
