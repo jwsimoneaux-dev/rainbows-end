@@ -69,7 +69,8 @@
     stowed. From that, it generates a passenger safety briefing for your boat, not a generic one.
     It carries a daily cruising log with voyages, running engine-hour totals, the miles under her
     keel, and fuel and water estimates, a maintenance schedule filtered to the systems you
-    actually have, and a declarable Inventory for clearing in abroad. It works offline, with
+    actually have — due by the calendar or the engine-hour meter, whichever comes first — and
+    a declarable Inventory for clearing in abroad. It works offline, with
     optional sync through your own iCloud.</p>
   </details>
 
@@ -253,8 +254,24 @@
     <summary>What is "Needs the skipper's attention"?</summary>
     <p>The 60-day lookahead: every dated item that's expired, overdue, or falls due within the
     next 60 days, sorted soonest first, each row saying how many days out or past it stands.
-    It reads from the same dates as the schedule below it, so entering a date once does both
-    jobs. Undated items don't alarm — the schedule rows themselves show "Not recorded."</p>
+    Engine and generator items on a tracked meter can also raise the alarm by hours — a row
+    that reads "30 hrs past" got there by the meter, not the calendar. It reads from the same
+    records as the schedule below it, so entering a date once does both jobs. Unrecorded items
+    don't alarm — the schedule rows themselves show "Not recorded."</p>
+  </details>
+
+  <details>
+    <summary>Does the schedule track engine hours, or just dates?</summary>
+    <p>Both, once the app knows your meters. Engine and generator service items that carry an
+    hour interval — oil at 100 hrs, fuel filters at 250, and so on — watch the running
+    engine-hour totals kept by the log. Record a service date and the app stamps the meter
+    reading beside it (correct it if the work happened at a different reading); from then on
+    the item comes due at <strong>whichever arrives first</strong>, the months or the hours —
+    exactly what "100 hrs or annually" has always meant. A boat that sat all winter gets the
+    calendar nag; a boat that crossed the Gulf in May gets the hour nag. If you haven't set
+    the meter readings on the Editor's Boat page, nothing changes — the schedule runs on the
+    calendar alone, as before. Shared items like the Racor separators score against the
+    hardest-working engine's meter.</p>
   </details>
 
   <details>
