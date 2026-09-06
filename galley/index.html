@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow's End Galley</title>
+  <meta name="description" content="Provisioning for sailors: plan every meal of the voyage on a calendar, mark what's eaten ashore, and the calendar becomes the grocery list — fully offline, arithmetic you can check." />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --brass: #8A6A3C;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  .brand { color: var(--brass); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; margin: 56px 0 0; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 2.3rem; margin: 6px 0 8px; }
+  .tag { color: var(--muted); font-size: 1.1rem; max-width: 56ch; }
+  h2 { font-size: 1.2rem; margin: 36px 0 6px; }
+  p { max-width: 64ch; margin: 10px 0; }
+  ul { max-width: 64ch; padding-left: 22px; }
+  li { margin: 8px 0; }
+  li strong { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  .note {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 28px 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 40px 0 0; }
+  .foot { color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--navy); }
+</style>
+<main>
+  <p class="brand">RAINBOW'S END MARINE</p>
+  <h1>Rainbow's End Galley</h1>
+  <p class="tag">Provisioning for sailors, from a day sail to an ocean passage: plan every meal
+  of the voyage on a calendar, mark what's eaten ashore, and the calendar becomes the grocery
+  list. All of it arithmetic you can check. All of it on your device.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li><strong>Voyage</strong> — dates, crew, and the charter industry's own provisioning
+    patterns: full provisioning (every meal aboard) or split (breakfasts and lunches aboard,
+    most dinners ashore — the way charter weeks actually run). Say who drinks what — some want
+    beer, some wine, some neither — which food allergies are aboard, and whether the ship's
+    tanks are drinking water or only showers and dishes. Voyages save forever; last year's
+    charter duplicates into next year's starting point.</li>
+    <li><strong>Calendar</strong> — every day carries breakfast, lunch, dinner, and snacks, and
+    each meal says whether it's eaten at anchor or underway. Tap a meal to plan it: choose from
+    the galley, take a suggestion, send dinner ashore with a note, or trim a travel day.
+    Suggestions are honest arithmetic, not a server: fresh meals land early in the voyage, cans
+    and dry goods late, and a meal underway leans to one pot a cook can manage in a seaway. A
+    meal that won't keep to its day, or that contains a crew allergy, is flagged — with who
+    can't eat it and an alternative, never struck from the menu.</li>
+    <li><strong>Galley</strong> — a library of forty meals, each carrying per-person
+    quantities, stowage, and how long its freshest ingredient keeps; your own meals join it
+    permanently with the same math. What's already aboard lives here too — the spice rack, the
+    cans in the bilge — and the beverage rates, per drinker per day, with spirits by a
+    cruiser's rule of thumb.</li>
+    <li><strong>List</strong> — the whole voyage becomes one grocery list: every meal's
+    ingredients times the crew aboard that day, merged across meals, minus what's already
+    aboard, rounded up to real packs (you can't buy 13 eggs, so it buys 18). Sorted by aisle,
+    with the invisible half of provisioning appended — cooking oil, paper towels, the propane
+    check. Adjust any quantity, strike a line, add what the meals never knew about; tap items
+    into the cart as you shop; print the list and the calendar as PDFs for the crew, or export
+    them as spreadsheets.</li>
+    <li><strong>Entirely offline</strong> — no account, no server of ours, no signal needed.
+    Nothing you enter ever leaves your device unless you print or export it yourself, through
+    the share sheet.</li>
+  </ul>
+
+  <p class="note">Keeping windows and water rates are <strong>estimates from cruising
+  practice</strong>, labeled as estimates. An aid to the galley, not a substitute for the
+  skipper's judgment.</p>
+
+  <h2>Now in beta</h2>
+  <p>Rainbow's End Galley is on TestFlight, headed for the App Store. It works fully offline —
+  no account, no server of ours; nothing leaves your device unless you print or export it
+  yourself.</p>
+
+  <h2>Pages</h2>
+  <p><a href="support.html">Support</a> · <a href="privacy.html">Privacy policy</a> ·
+  Sibling apps: <a href="../index.html">Rainbow's End Anchoring</a> ·
+  <a href="../manifest/index.html">Rainbow's End Manifest</a></p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+
+  <hr />
+  <p class="foot">Designed by Rainbow's End Marine. May you find a rainbow's end and treasure found
+  wherever you sail or set your anchor.</p>
+</main>
+</body>
+</html>
