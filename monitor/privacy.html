@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Privacy policy for Rainbow's End Monitor, the free crew companion to Rainbow's End Anchoring. The app collects nothing; your position stays on your phone." />
+<title>Rainbow's End Monitor — Privacy Policy</title>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 42rem; margin: 0 auto; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  h2 { font-size: 1.15rem; margin: 34px 0 6px; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin: 0 0 8px; }
+  .lead {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 24px 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+    font-size: 1.05rem;
+  }
+  p { max-width: 64ch; margin: 10px 0; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 36px 0 0; }
+  .foot { color: var(--muted); font-size: 0.9rem; }
+  a { color: var(--navy); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Rainbow's End Monitor — the free crew companion to Rainbow's End Anchoring · Effective September 6, 2026</p>
+
+  <p class="lead"><strong>The short version: Rainbow's End Monitor collects nothing. It reads a
+  boat's anchor watch that the boat's owner chose to share with you, using a code the owner gave
+  you; your own position is used on your phone to point the arrow at the boat and goes nowhere.
+  There is no account, no server of ours, and nothing to sign into.</strong></p>
+
+  <h2>What the app is</h2>
+  <p>A boat running Rainbow's End Anchoring can share her anchor watch with crew by an
+  eight-character crew code. Enter the code in this app and you see the watch — the fence around
+  the anchor, where the boat lies, the trail of where she has swung, and an alarm on your phone if
+  she breaks out of the fence or falls silent — and you can find your way back to her behind an
+  arrow that shows her bearing and distance. Without a code, the app can show you only its built-in
+  demo.</p>
+
+  <h2>What the app reads, and from where</h2>
+  <p>The boat's owner publishes one small record to Apple's iCloud, in the public part of the app's
+  own storage, under a name computed from the code and encrypted with a key made from the code.
+  When you enter the code, this app computes the same name, fetches the record from Apple, and
+  decrypts it on your phone. The record holds the fence, the boat's position and GPS accuracy, how
+  far she has ranged, whether she is inside or outside the fence, a short recent trail, the time of
+  the report, the boat's name and hull color, the version of the boat's app, and — if the owner
+  added one — a photo of the boat, also encrypted. Nobody without the code can read any of it,
+  including us. Reading needs no iCloud account on your phone.</p>
+  <p>This app never writes to iCloud. It cannot change or delete the boat's record, disarm the
+  watch, or affect the boat in any way; only the boat's own device can do those things. The record
+  belongs to the boat's owner and is governed by Rainbow's End Anchoring's privacy policy and
+  Apple's iCloud terms.</p>
+
+  <h2>Your location</h2>
+  <p>"Find the boat" and the optional map layer use your phone's GPS and compass to point at the
+  boat and tell you how far away she is. The app asks for location permission only when you open
+  "Find the boat" or switch the map on, and only "while using the app". Your position is used on
+  your phone and is never transmitted, stored by us, or shared with the boat: the boat's owner
+  never learns where you are. The blue dot on the map is drawn by Apple Maps on your phone from the
+  same permission. If you never open "Find the boat" or the map, the app never asks for your
+  location.</p>
+
+  <h2>What stays on your phone</h2>
+  <p>So that tomorrow's dinghy run needs no retyping, and so the arrow still works on a dock with no
+  signal, the app keeps a few things in its own storage on your phone: the codes you have joined
+  with the boat's name and hull color, and for each code the boat's last known position and
+  anchor, the time of that report, and the decrypted photo if there was one. It also remembers your
+  choice of feet or meters and whether the map is on. None of this leaves the phone. "Leave this
+  watch" or "Forget this boat" removes a code and what was kept under it; deleting the app removes
+  everything.</p>
+
+  <h2>What the app does not do</h2>
+  <p>Rainbow's End Monitor contains no analytics, no advertising, no tracking of any kind, and no
+  third-party data-collection software. It has no account system and no server. It does not read
+  your contacts, photos, or anything else on your device. The map tiles come from Apple Maps under
+  Apple's terms; the app sends Apple only what any map view sends to draw the area on screen. The
+  demo watch under the code DEMO-DEMO is built into the app and touches no network at all.</p>
+
+  <h2>Purchases</h2>
+  <p>The app is free and contains no purchases.</p>
+
+  <h2>Children</h2>
+  <p>The app collects no data from anyone, children included.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If a future version of the app ever changes any of the above — for example, by adding
+  notifications delivered through Apple's servers — this policy will be updated first, with the
+  effective date above revised, and the change described plainly rather than buried.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <hr />
+  <p class="foot">Rainbow's End Monitor is an aid to judgement, not a substitute for it: it reports
+  what the boat last said, and only the boat can act. Designed by Rainbow's End Marine. May you
+  find a rainbow's end and treasure found wherever you sail or set your anchor.</p>
+</main>
+</body>
+</html>

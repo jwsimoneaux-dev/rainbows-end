@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Support for Rainbow's End Monitor, the free crew companion to Rainbow's End Anchoring: joining by code, the alarms, finding the boat, and what to do with no signal." />
+<title>Rainbow's End Monitor — Support</title>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  h2 {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 40px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  details { border-bottom: 1px dotted var(--rule); padding: 4px 0; }
+  summary { cursor: pointer; font-weight: 650; font-size: 1.02rem; padding: 10px 0; list-style-position: outside; }
+  summary:hover { color: var(--navy); }
+  details p { color: var(--muted); max-width: 64ch; margin: 4px 0 14px; }
+  details strong { color: var(--ink); }
+  a { color: var(--navy); }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; max-width: 64ch; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Rainbow's End Monitor — Support</h1>
+  <p class="meta">The free crew companion to Rainbow's End Anchoring. Answers in the order the
+  questions come up. Anything not covered: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does the Monitor do, and what do I need?</summary>
+    <p>It lets crew watch a boat's anchor watch and find their way back to her. The boat runs
+    <strong>Rainbow's End Anchoring</strong> (the paid app); when the owner arms the anchor watch and
+    switches on <strong>Share with crew</strong>, the boat shows an eight-character crew code. Type
+    that code into the Monitor and you see what the boat sees — the fence, the boat, her trail — with
+    an alarm on your phone if she breaks out or falls silent, and an arrow that points at her. You
+    need an iPhone or iPad and the code. No Apple ID, account, or sign-in is needed on your phone.
+    Without a code, the app can show you only its demo.</p>
+  </details>
+
+  <details>
+    <summary>Can I try it without a boat?</summary>
+    <p>Yes. Tap <strong>Open the demo watch</strong> on the first screen, or type the code
+    <strong>DEMO-DEMO</strong>. It is a boat called Rainbow lying to her anchor, built into the app
+    with no network needed. "Find the boat" in the demo places her 600 ft northeast of wherever you
+    are standing, so the arrow has somewhere real to point and the figures change as you walk.</p>
+  </details>
+
+  <details>
+    <summary>Do I need to be on the same Apple ID as the boat?</summary>
+    <p>No. That is the whole point of the code. The boat publishes one small record, encrypted with a
+    key made from the code, to the public part of the app's own iCloud storage; your phone computes
+    the same key and opens it. Anyone with the code can read the watch; nobody without it can, and
+    nobody but the boat can change or delete it.</p>
+  </details>
+
+  <h2>Joining</h2>
+
+  <details>
+    <summary>It says "No watch under that code."</summary>
+    <p>Either the boat is not sharing right now — the watch was disarmed, or "Share with crew" is off
+    — or a character is wrong. Codes are two groups of four from an alphabet with no O, I, 0 or 1,
+    so an O is always a zero-shaped letter that does not exist: try 0 instead of O and 1 instead of
+    I. Ask the boat to read it out again if in doubt.</p>
+  </details>
+
+  <details>
+    <summary>It says "That watch ended."</summary>
+    <p>The boat's last report is more than a day old. That usually means a phone aboard died with
+    sharing on, or nobody took the watch down. The app treats a record older than a day as a watch
+    that ended rather than as a boat sitting quietly in her fence. Ask the boat to arm again.</p>
+  </details>
+
+  <details>
+    <summary>Do I have to type the code every day?</summary>
+    <p>No. Boats this phone has joined are listed on the first screen; tap one to look for her
+    again. The boat's code stays the same until the owner chooses a new one, so a crew who joined at
+    the dock on Monday still find her on Friday. "Forget this boat" removes an entry.</p>
+  </details>
+
+  <h2>The watch</h2>
+
+  <details>
+    <summary>What do the alarms mean?</summary>
+    <p>There are two. <strong>A breach:</strong> the boat reports she is outside her fence; your phone
+    sounds within seconds of the boat's report. <strong>Silence:</strong> the boat reports about every
+    20 seconds; if nothing arrives for a minute and a half the screen says the link is going stale,
+    and after three minutes your phone sounds, because a dead link must never look like a safe boat.
+    Silence usually means the boat lost her signal or the phone aboard slept; it is telling you to
+    find out, not that she has dragged. Every age is measured by iCloud's clock, never the boat's.</p>
+  </details>
+
+  <details>
+    <summary>Can I silence or stop the alarm on the boat from here?</summary>
+    <p>No. <strong>Silence here</strong> quiets your phone only; the boat keeps its own watch and
+    only the boat can disarm it. Crew can watch and find; they cannot change anything aboard. That is
+    deliberate: a lost phone ashore must never become an unwatched boat.</p>
+  </details>
+
+  <details>
+    <summary>The screen says "The boat took the watch down."</summary>
+    <p>The owner disarmed the watch or switched sharing off, and the record was deleted. Nothing is
+    being reported now. If the boat arms again with the same code, look for her from the first
+    screen. "Find the boat" still works from her last known position.</p>
+  </details>
+
+  <h2>Finding the boat</h2>
+
+  <details>
+    <summary>How does the arrow work?</summary>
+    <p>It uses your phone's GPS and compass and the boat's last position. Hold the phone flat, top
+    edge forward, and turn until the arrow points up; the line beneath reads the bearing and the
+    distance, in feet or meters close in and nautical miles farther out. While the boat's reports
+    are live the arrow follows her latest fix. If the boat reports an alarm it keeps following her
+    latest fix, because a dragging boat is not at her anchor. If the reports have gone stale with no
+    alarm, it points at the anchor — the one thing that does not move.</p>
+  </details>
+
+  <details>
+    <summary>The arrow is grey, or says to move the phone in a figure eight.</summary>
+    <p>The compass is not yet trusted. Move the phone in a figure eight for a few seconds, away from
+    steel and magnets — a winch, a stanchion, a phone case with a magnet. The bearing and distance
+    figures still print while the arrow is grey, because they need no compass.</p>
+  </details>
+
+  <details>
+    <summary>It says "You're alongside — look up."</summary>
+    <p>You are within about fifty feet. GPS error is larger than the distance by then, and a spinning
+    arrow at the boarding ladder would be worse than none. Look up.</p>
+  </details>
+
+  <details>
+    <summary>I have no signal on the dock. Does anything work?</summary>
+    <p>Yes. The phone keeps the boat's last known position under each code. With no signal the arrow
+    points at where she was and says how long ago; the first screen offers <strong>Find her from her
+    last known position</strong> even after the app has been closed. A boat at anchor does not move,
+    so this is the ordinary state on most dinghy docks, not an error.</p>
+  </details>
+
+  <details>
+    <summary>What does the Map toggle do?</summary>
+    <p>It draws the same fence, boat, anchor and trail on Apple Maps, with you on it if location is
+    allowed. It is off by default because the plot and the arrow need no signal and the map's tiles
+    do; with no signal you still see the dots on a blank grid. It is a picture, not a chart — no
+    depths, no moorings.</p>
+  </details>
+
+  <h2>The fine print</h2>
+
+  <details>
+    <summary>Does it need my location, and where does it go?</summary>
+    <p>Location is asked for only when you open "Find the boat" or switch the map on, and only while
+    the app is in use. It is used on your phone to point the arrow and draw your dot, and it goes
+    nowhere: the boat never learns where you are, and we never see it. The app collects nothing and
+    never writes to iCloud. See the <a href="privacy.html">privacy policy</a>.</p>
+  </details>
+
+  <details>
+    <summary>Is it free? Are there purchases?</summary>
+    <p>Free, no purchases, no accounts. The boat side — the anchor watch itself — is part of Rainbow's
+    End Anchoring, which the boat's owner buys once.</p>
+  </details>
+
+  <details>
+    <summary>Something looks wrong.</summary>
+    <p>Please tell me: what you saw, what you expected, and the code if it is a real watch. Every
+    screen in this app got better because a sailor said "that doesn't look right."</p>
+  </details>
+
+  <div class="contact">
+    <p><strong>Still stuck, or have an idea?</strong> Email
+    <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a> with what you saw and what
+    you expected. Designed by Rainbow's End Marine.</p>
+  </div>
+</main>
+</body>
+</html>
