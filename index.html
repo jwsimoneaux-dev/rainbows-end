@@ -10,8 +10,9 @@
   <style>
     :root { --paper: #F6F8FA; --card: #FFFFFF; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --sea1: #12557F; --sea2: #062232; --rule: #D8E0E7; }
     @media (prefers-color-scheme: dark) {
-      :root { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
+      :root:not([data-theme="light"]) { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
     }
+    :root[data-theme="dark"] { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; }
     * { box-sizing: border-box; }
     body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; }
     .hero {

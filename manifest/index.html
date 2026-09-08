@@ -3,119 +3,126 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rainbow's End Manifest</title>
+  <title>Rainbow&rsquo;s End Manifest</title>
   <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
   <meta name="description" content="The book of your boat: USCG safety checklist, stowage map, passenger briefing, cruising log, and maintenance schedule — derived from your vessel, fully offline, with optional sync through your own iCloud." />
+  <style>
+    :root { --paper: #F6F8FA; --card: #FFFFFF; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --sea1: #12557F; --sea2: #062232; --rule: #D8E0E7; --gold: #8A6A1F; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C; }
+    }
+    :root[data-theme="dark"] { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C; }
+    * { box-sizing: border-box; }
+    body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; }
+    .hero {
+      background: linear-gradient(180deg, var(--sea1), var(--sea2));
+      color: #F4F8FA; padding: 56px 20px 44px;
+    }
+    .hero-inner, main { max-width: 46rem; margin: 0 auto; }
+    .seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+    .brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: #9CCDE8; margin: 0 0 6px; }
+    h1 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+    .tagline { font-style: italic; color: #9CCDE8; margin: 0 0 14px; font-size: 1.05rem; }
+    .sub { color: #C9DCE9; max-width: 58ch; margin: 0; }
+    .badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid #9CCDE8; border-radius: 10px; color: #F4F8FA; font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+    a.badge:hover { background: #9CCDE8; color: var(--sea2); }
+    .lede { max-width: 62ch; margin: 0 0 16px; }
+    .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+    main { padding: 8px 20px 80px; }
+    h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+    .features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+    .features strong { display: block; margin-bottom: 3px; }
+    .features span { color: var(--muted); font-size: 0.94rem; }
+    .honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+    .warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+    .links { list-style: none; padding: 0; margin: 16px 0 0; }
+    .links li { border-top: 1px solid var(--rule); }
+    .links li:last-child { border-bottom: 1px solid var(--rule); }
+    .links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+    .links a:hover { color: var(--navy); }
+    .links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+    .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+    .foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+    a { color: var(--navy); }
+  </style>
 </head>
 <body>
-<style>
-  :root {
-    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --brass: #8A6A3C;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --brass: #C9A97A;
-  }
-  body {
-    background: var(--paper); color: var(--ink);
-    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
-    margin: 0; padding: 0 20px 80px;
-  }
-  main { max-width: 42rem; margin: 0 auto; }
-  .seal { width: 96px; height: 96px; border-radius: 50%; display: block; margin: 56px 0 0; box-shadow: 0 4px 16px rgba(0,0,0,0.25); }
-  .brand { color: var(--brass); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; margin: 16px 0 0; }
-  h1, h2 {
-    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    text-wrap: balance; letter-spacing: -0.01em;
-  }
-  h1 { font-size: 2.3rem; margin: 6px 0 8px; }
-  .tag { color: var(--muted); font-size: 1.1rem; max-width: 56ch; }
-  h2 { font-size: 1.2rem; margin: 36px 0 6px; }
-  p { max-width: 64ch; margin: 10px 0; }
-  ul { max-width: 64ch; padding-left: 22px; }
-  li { margin: 8px 0; }
-  li strong { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
-  .note {
-    border-left: 4px solid var(--navy); border-radius: 4px;
-    padding: 10px 16px; margin: 28px 0;
-    background: color-mix(in srgb, var(--navy) 7%, transparent);
-  }
-  hr { border: none; border-top: 1px solid var(--rule); margin: 40px 0 0; }
-  .foot { color: var(--muted); font-size: 0.9rem; }
-  a { color: var(--navy); }
-</style>
-<main>
-  <img class="seal" src="../brand/mark-512.png" width="96" height="96" alt="" />
-  <p class="brand">RAINBOW'S END MARINE, LLC</p>
-  <h1>Rainbow's End Manifest</h1>
-  <p class="tag">The book of your boat: what the Coast Guard requires aboard, where it's stowed,
-  the briefing your guests hear, the log of where she's been, and the schedule that keeps her
-  fit. All of it derived from <em>your</em> vessel. All of it on your device.</p>
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="seal" src="../brand/mark-512.png" width="132" height="132" alt="" />
+      <p class="brand">RAINBOW&rsquo;S END MARINE, LLC</p>
+      <h1>Rainbow&rsquo;s End Manifest</h1>
+      <p class="tagline">The book of your boat.</p>
+      <p class="sub">The book of your boat: what the Coast Guard requires aboard, where it's stowed,
+      the briefing your guests hear, the log of where she's been, and the schedule that keeps her
+      fit. All of it derived from <em>your</em> vessel. All of it on your device.</p>
+      <span class="badge">In beta on TestFlight &middot; headed for the App Store</span>
+    </div>
+  </div>
+  <main>
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><strong>The book</strong><span>she reads like a leather-bound ship's book: a cover with her
+        name, paper pages that turn, leather tabs on a wide screen and a contents page in the hand,
+        and the day's quick entries one tap from where it opens. The Editor holds every full form;
+        The Book always brings you home.</span></li>
+      <li><strong>Her papers</strong><span>the manifest everything derives from, across six book
+        pages: papers, owners and USCG licenses, dimensions, engines with their hour-meter readings and
+        running hour totals, systems from the water maker to the propane locker, power from shore
+        cord to solar, tanks, batteries — and the miles under her keel, kept for life. The whole
+        fleet, each boat her own complete book, exported to a file you control.</span></li>
+      <li><strong>Before you go</strong><span>a predeparture checklist drawn from her manifest, with
+        the fuel and water estimates and the flare dates printed on the lines: the blower on a
+        gasoline inboard, the rig on a sailboat, the paddler's short list on a canoe. Checks reset
+        with the date; the log notes the tally.</span></li>
+      <li><strong>Gear</strong><span>the federal safety-equipment checklist for your boat's length,
+        propulsion, fuel, and waters, in current terminology with the citation printed under every
+        item — plus what prudence adds, from the ditch bag to the propane shutoff and CO &amp; smoke
+        detectors. And a declarable Inventory for clearing in abroad — firearms, serials, stores,
+        foodstuffs, animals — shared with an official as plain text.</span></li>
+      <li><strong>Briefing</strong><span>a passenger safety walkthrough generated from your gear map:
+        where things live, a MAYDAY card with your boat's name and MMSI filled in, the
+        crew-overboard drill — shout, point, throw, press — and the house rules, from water
+        discipline to life jackets, tethers, and jacklines at night, offshore, and in heavy
+        weather.</span></li>
+      <li><strong>Log</strong><span>the daily cruising log: legs and lay days, the persons actually
+        aboard, voyages started and ended right on the paper with their nautical miles and engine
+        hours totaled, a search that finds any day by place, journal, or date, and honest fuel and
+        water estimates that ask to be calibrated before they claim anything — a powerboat prices
+        her day by hours at trawl, fast cruise, and wide open, against her own three rates.</span></li>
+      <li><strong>Maintenance</strong><span>seeded intervals filtered to your systems, hard document
+        expirations, and a 60-day lookahead of what needs the skipper's attention. Engine and
+        generator items watch the running hour meters too: oil due at whichever comes first, the
+        months or the hours. Three ledgers — Fuel, Work, and Ownership — tally what she costs by
+        month, year, and category.</span></li>
+      <li><strong>iCloud sync</strong><span>optional, off until you say so: one switch keeps the whole
+        fleet the same on every device signed into your Apple&nbsp;ID, through your own private
+        iCloud. No account with us, no server of ours, unreadable by anyone but you.</span></li>
+    </ul>
 
-  <h2>What it does</h2>
-  <ul>
-    <li><strong>The book</strong> — she reads like a leather-bound ship's book: a cover with her
-    name, paper pages that turn, leather tabs on a wide screen and a contents page in the hand,
-    and the day's quick entries one tap from where it opens. The Editor holds every full form;
-    The Book always brings you home.</li>
-    <li><strong>Her papers</strong> — the manifest everything derives from, across six book
-    pages: papers, owners and USCG licenses, dimensions, engines with their hour-meter readings and
-    running hour totals, systems from the water maker to the propane locker, power from shore
-    cord to solar, tanks, batteries — and the miles under her keel, kept for life. The whole
-    fleet, each boat her own complete book, exported to a file you control.</li>
-    <li><strong>Before you go</strong> — a predeparture checklist drawn from her manifest, with
-    the fuel and water estimates and the flare dates printed on the lines: the blower on a
-    gasoline inboard, the rig on a sailboat, the paddler's short list on a canoe. Checks reset
-    with the date; the log notes the tally.</li>
-    <li><strong>Gear</strong> — the federal safety-equipment checklist for your boat's length,
-    propulsion, fuel, and waters, in current terminology with the citation printed under every
-    item — plus what prudence adds, from the ditch bag to the propane shutoff and CO &amp; smoke
-    detectors. And a declarable Inventory for clearing in abroad — firearms, serials, stores,
-    foodstuffs, animals — shared with an official as plain text.</li>
-    <li><strong>Briefing</strong> — a passenger safety walkthrough generated from your gear map:
-    where things live, a MAYDAY card with your boat's name and MMSI filled in, the
-    crew-overboard drill — shout, point, throw, press — and the house rules, from water
-    discipline to life jackets, tethers, and jacklines at night, offshore, and in heavy
-    weather.</li>
-    <li><strong>Log</strong> — the daily cruising log: legs and lay days, the persons actually
-    aboard, voyages started and ended right on the paper with their nautical miles and engine
-    hours totaled, a search that finds any day by place, journal, or date, and honest fuel and
-    water estimates that ask to be calibrated before they claim anything — a powerboat prices
-    her day by hours at trawl, fast cruise, and wide open, against her own three rates.</li>
-    <li><strong>Maintenance</strong> — seeded intervals filtered to your systems, hard document
-    expirations, and a 60-day lookahead of what needs the skipper's attention. Engine and
-    generator items watch the running hour meters too: oil due at whichever comes first, the
-    months or the hours. Three ledgers — Fuel, Work, and Ownership — tally what she costs by
-    month, year, and category.</li>
-    <li><strong>iCloud sync</strong> — optional, off until you say so: one switch keeps the whole
-    fleet the same on every device signed into your Apple&nbsp;ID, through your own private
-    iCloud. No account with us, no server of ours, unreadable by anyone but you.</li>
-  </ul>
+    <p class="honest">Manifest checks against the <strong>federal minimums</strong>; state law can
+      add to them. It prepares you for — and is no substitute for — the free Coast Guard Auxiliary
+      Vessel Safety Check.</p>
 
-  <p class="note">Manifest checks against the <strong>federal minimums</strong>; state law can
-  add to them. It prepares you for — and is no substitute for — the free Coast Guard Auxiliary
-  Vessel Safety Check.</p>
+    <h2>Now in beta</h2>
+    <p class="lede">Rainbow's End Manifest is on TestFlight, headed for the App Store. It works fully offline —
+      no account, no server of ours; nothing leaves your device unless you switch on iCloud sync,
+      and then it travels only through your own iCloud.</p>
 
-  <h2>Now in beta</h2>
-  <p>Rainbow's End Manifest is on TestFlight, headed for the App Store. It works fully offline —
-  no account, no server of ours; nothing leaves your device unless you switch on iCloud sync,
-  and then it travels only through your own iCloud.</p>
+    <h2>More</h2>
+    <ul class="links">
+      <li><a href="support.html">Support &amp; FAQ<span>The book, the Editor, gear, briefing, log, maintenance, and iCloud sync.</span></a></li>
+      <li><a href="privacy.html">Privacy Policy<span>Collects nothing; sync, if you switch it on, travels only through your own iCloud.</span></a></li>
+      <li><a href="../index.html">Rainbow&rsquo;s End Anchoring<span>The anchor &amp; rode calculator that knows your boat.</span></a></li>
+      <li><a href="../floatplan/index.html">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="../galley/index.html">Rainbow&rsquo;s End Galley<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+    </ul>
 
-  <h2>Pages</h2>
-  <p><a href="support.html">Support</a> · <a href="privacy.html">Privacy policy</a> ·
-  Sibling app: <a href="../index.html">Rainbow's End Anchoring</a></p>
-
-  <h2>Contact</h2>
-  <p><a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
-
-  <hr />
-  <p class="foot">Designed by Rainbow's End Marine. Apps for sailors, by sailors. May you find a rainbow's end and treasure found
-  wherever you sail or set your anchor.</p>
-</main>
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </main>
 </body>
 </html>
