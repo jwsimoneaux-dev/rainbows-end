@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rainbow's End Support</title>
+  <title>Rainbow&rsquo;s End Support</title>
   <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 </head>
@@ -55,19 +55,23 @@
     background: color-mix(in srgb, var(--navy) 7%, transparent);
   }
   .contact p { margin: 6px 0; max-width: 64ch; }
+  /* The family footer (brand standards, section 7): the Designed-by line, the wish, then the copyright. */
+  .brand-foot .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 28px 0 0; }
+  .brand-foot .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; max-width: 58ch; margin: 40px 0 0; }
+  .brand-foot .foot { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
 </style>
 <main>
-  <h1>Rainbow's End — Support</h1>
+  <h1>Rainbow&rsquo;s End — Support</h1>
   <p class="meta">Answers to the questions that come up, in the order they usually come up.
   Anything not covered here: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
 
   <h2>Getting started</h2>
 
   <details>
-    <summary>What does Rainbow's End actually do?</summary>
-    <p>It works out how much anchor rode to pay out for the conditions you're in, picks the best
+    <summary>What does Rainbow&rsquo;s End actually do?</summary>
+    <p>It works out how much anchor rode to pay out for the conditions you&rsquo;re in, picks the best
     anchor-and-rode combination from the gear you actually carry, and tells you plainly what to
-    watch — thin holding, a bottom your anchor won't set in, not enough water under the keel at
+    watch — thin holding, a bottom your anchor won&rsquo;t set in, not enough water under the keel at
     low tide. It covers regular anchoring, mooring balls, Med mooring, lines ashore, and Bahamian
     moors, plus a storm mode. It runs entirely offline.</p>
   </details>
@@ -82,7 +86,7 @@
 
   <details>
     <summary>Why does the app ask how my depth sounder is calibrated?</summary>
-    <p>Because it's the most common source of anchoring error. A sounder can read from the
+    <p>Because it&rsquo;s the most common source of anchoring error. A sounder can read from the
     waterline, from the transducer, or as water under the keel — three different numbers for the
     same anchorage. Tell the app which one yours shows and you can always type exactly what the
     display says; the app corrects it to true depth.</p>
@@ -92,20 +96,20 @@
 
   <details>
     <summary>The app tells me to pay out more rode than the old rule of thumb. Why?</summary>
-    <p>The classic ratios multiply the <em>water depth</em>. But your rode doesn't start at the
+    <p>The classic ratios multiply the <em>water depth</em>. But your rode doesn&rsquo;t start at the
     waterline — it starts at the bow roller, several feet up, and the tide may rise after you set.
     The app multiplies the full distance from bow roller to seabed at the worst point of the
     night. In shallow water the difference is dramatic: 8 ft of water under a 6 ft bow roller
-    needs scope on 14 ft, nearly double what the sounder alone suggests. The old rule isn't wrong;
+    needs scope on 14 ft, nearly double what the sounder alone suggests. The old rule isn&rsquo;t wrong;
     it just forgets where the rode begins.</p>
   </details>
 
   <details>
     <summary>What does the colored margin figure (like “5.9× margin”) mean?</summary>
-    <p>It's the estimated holding power of the recommended anchor in tonight's bottom, divided by
-    the estimated pull on it from wind, waves, and the boat's yawing. Green means the margin meets
+    <p>It&rsquo;s the estimated holding power of the recommended anchor in tonight&rsquo;s bottom, divided by
+    the estimated pull on it from wind, waves, and the boat&rsquo;s yawing. Green means the margin meets
     what your kind of stop demands (a lunch stop needs less than leaving the boat unattended);
-    amber means it's thin — anchor with care and set a watch. Both sides of that ratio are
+    amber means it&rsquo;s thin — anchor with care and set a watch. Both sides of that ratio are
     estimates, which is exactly why the app insists on a margin instead of calling 1.1× good.</p>
   </details>
 
@@ -121,15 +125,15 @@
   <details>
     <summary>What is the “chain pulls straight at N knots” note?</summary>
     <p>Chain helps you by sagging: its weight keeps the pull at the anchor horizontal, which is
-    the direction an anchor holds best. The app computes the exact wind at which tonight's chain
-    is pulled bar-taut and the sag is gone. Beyond that point the chain's weight has stopped
-    absorbing anything — which is not an emergency, it's the moment your snubber becomes the only
+    the direction an anchor holds best. The app computes the exact wind at which tonight&rsquo;s chain
+    is pulled bar-taut and the sag is gone. Beyond that point the chain&rsquo;s weight has stopped
+    absorbing anything — which is not an emergency, it&rsquo;s the moment your snubber becomes the only
     shock absorber, and the app tells you the pull angle so you know how much that matters.</p>
   </details>
 
   <details>
     <summary>I entered gusts and the rode figure grew. Is that right?</summary>
-    <p>Yes. The surge back on a gust is the moment a short rode lifts the anchor's shank, so
+    <p>Yes. The surge back on a gust is the moment a short rode lifts the anchor&rsquo;s shank, so
     gusts raise the scope — the app sizes it on a figure between the sustained wind and the gusts.
     Peak loads (what actually parts gear) are computed at the full gust figure.</p>
   </details>
@@ -137,8 +141,8 @@
   <details>
     <summary>What does it do on a mooring ball?</summary>
     <p>It stops recommending anchors — none of yours is in the water — and answers what is
-    left. Your swing circle, which is smaller than at anchor because a mooring's riser is short:
-    about 1.5:1 for a helix ball like the BVI's, 3:1 for chain to a block, against the 4:1 to
+    left. Your swing circle, which is smaller than at anchor because a mooring&rsquo;s riser is short:
+    about 1.5:1 for a helix ball like the BVI&rsquo;s, 3:1 for chain to a block, against the 4:1 to
     7:1 your own rode goes out at from the bow roller. The circle is the ball ranging on its
     riser at low water, plus your pennant, plus the boat. It also gives a pennant length for your
     bow (two and a half times its height above the water) and the pull your boat puts on the
@@ -152,7 +156,7 @@
     <summary>Can I keep more than one boat?</summary>
     <p>Yes — as many as you like, each with its own tackle, on the Boat tab under Saved boats.
     Add a charter boat for the week and delete it when you fly home; keep the dinghy as its own
-    entry. The Anchor screen always names the boat it's calculating for, right at the top.</p>
+    entry. The Anchor screen always names the boat it&rsquo;s calculating for, right at the top.</p>
   </details>
 
   <details>
@@ -165,7 +169,7 @@
   <details>
     <summary>Can I overrule the recommendation and use different gear?</summary>
     <p>Always. Open “Why this anchor” and tap any combination aboard — the entire plan recalculates
-    for what you're actually putting down, including the warnings. The app never blocks your
+    for what you&rsquo;re actually putting down, including the warnings. The app never blocks your
     choice; it just refuses to pretend a poor one is a good one, and it will tell you what it
     would have picked instead.</p>
   </details>
@@ -173,7 +177,7 @@
   <details>
     <summary>What units can it work in?</summary>
     <p>Depths in feet, meters, or fathoms; rode answers in any of those plus shots (shackles) or
-    your own rode markings at whatever interval you've marked. Input and output units are set
+    your own rode markings at whatever interval you&rsquo;ve marked. Input and output units are set
     separately, because you read depth off an instrument but pay out rode by your marks.</p>
   </details>
 
@@ -181,7 +185,7 @@
 
   <details>
     <summary>How does the anchor watch work?</summary>
-    <p>Mark the drop on the Watch tab and the app draws a fence from tonight's plan — the swing
+    <p>Mark the drop on the Watch tab and the app draws a fence from tonight&rsquo;s plan — the swing
     circle plus a margin for GPS scatter when you lie to one anchor, the corridor between two
     anchors for a Bahamian moor, and a tight ring around a boat held by a quay or by lines ashore.
     It then reads the GPS and plots the boat north-up against the fence, with the trail of
@@ -191,9 +195,9 @@
   </details>
 
   <details>
-    <summary>The boat crossed the fence and the alarm didn't sound right away. Why?</summary>
+    <summary>The boat crossed the fence and the alarm didn&rsquo;t sound right away. Why?</summary>
     <p>By design. GPS scatters, and one wandering fix at three in the morning is not a drag. The
-    alarm needs several consecutive fixes clearly outside the fence, beyond the fix's own reported
+    alarm needs several consecutive fixes clearly outside the fence, beyond the fix&rsquo;s own reported
     accuracy, so it takes a few seconds to be sure. An alarm that cries wolf gets disarmed for
     good, which is worse than one that takes a breath. If the GPS goes quiet or the app is closed,
     the screen says the watch has stopped rather than pretending to guard you.</p>
@@ -204,7 +208,7 @@
     <p>Yes, from version 1.3.0, using a second device on the same Apple ID. Aboard, arm the watch
     and switch on <strong>Share to my other devices</strong>. Ashore, open the Watch tab and tap
     <strong>Look for a shared watch</strong>; the shore device shows the same fence, boat, and
-    trail, and sounds its own alarm if she breaks out. The boat's reports travel through your own
+    trail, and sounds its own alarm if she breaks out. The boat&rsquo;s reports travel through your own
     iCloud and nowhere else, so both devices need to be signed into the same Apple ID with iCloud
     Drive on, and the boat needs a signal. Keep the app open on the shore device too — it checks
     for a fresh report every half minute. Only the boat can disarm the watch; silencing the alarm
@@ -215,7 +219,7 @@
     <summary>Can crew or guests watch the boat without my Apple ID?</summary>
     <p>Yes, from version 1.5.0. Aboard, arm the watch and switch on <strong>Share with crew</strong>;
     the screen shows an eight-character code, with Copy, Send and New code beneath it. Anyone you
-    give the code to opens the free companion app, <strong>Rainbow's End Monitor</strong>, enters
+    give the code to opens the free companion app, <strong>Rainbow&rsquo;s End Monitor</strong>, enters
     it, and sees the same fence, boat and trail with the same alarms — and can tap Find the boat for
     an arrow that points at her with the bearing and distance, which is how you get back to the
     right boat from a dinghy dock full of identical charter yachts. The record is encrypted with a
@@ -239,12 +243,12 @@
 
   <details>
     <summary>Does it need internet or my location?</summary>
-    <p>Not for the calculator: Rainbow's End works entirely offline and nothing you enter leaves
-    your device. The anchor watch asks for location permission, "while using the app" only, and
+    <p>Not for the calculator: Rainbow&rsquo;s End works entirely offline and nothing you enter leaves
+    your device. The anchor watch asks for location permission, &ldquo;while using the app&rdquo; only, and
     reads the GPS — which is satellites, not internet — on the device alone. The remote watch and
-    sharing with crew are the features that need a connection: switch on "Share to my other
-    devices" and the watch, and only the watch, is copied to your own iCloud so your other devices
-    can monitor it; switch on "Share with crew" and it is published encrypted under a code for the
+    sharing with crew are the features that need a connection: switch on &ldquo;Share to my other
+    devices&rdquo; and the watch, and only the watch, is copied to your own iCloud so your other devices
+    can monitor it; switch on &ldquo;Share with crew&rdquo; and it is published encrypted under a code for the
     people you give the code to. Both off by default, readable by nobody else. See the <a href="privacy.html">privacy policy</a>, which
     is still short because there is still little to disclose.</p>
   </details>
@@ -260,8 +264,8 @@
   <details>
     <summary>I found a number that looks wrong.</summary>
     <p>Please tell me — seriously. Every calculation in this app got better because a sailor said
-    “that doesn't look right” and included their inputs. Email the numbers you entered, what the
-    app said, and what you expected, and I'll trace it through the math and either fix the app or
+    “that doesn&rsquo;t look right” and included their inputs. Email the numbers you entered, what the
+    app said, and what you expected, and I&rsquo;ll trace it through the math and either fix the app or
     show the working.</p>
   </details>
 
@@ -269,7 +273,7 @@
     <summary>How do refunds work?</summary>
     <p>Purchases are handled by Apple and Google, so refunds are too — through
     <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> for the App Store, or
-    your order history on Google Play. I never see your payment details and can't issue refunds
+    your order history on Google Play. I never see your payment details and can&rsquo;t issue refunds
     directly.</p>
   </details>
 
@@ -277,8 +281,12 @@
     <p><strong>Still stuck, or have an idea?</strong> Email
     <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a> with what you saw and what
     you expected. Feature suggestions from people who actually anchor are how this app was built.</p>
-    <p>Designed by Rainbow's End Marine. Apps for sailors, by sailors.</p>
   </div>
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </footer>
 </main>
 </body>
 </html>
