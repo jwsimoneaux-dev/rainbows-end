@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s Arc Positioning</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <meta name="description" content="Rainbow's Arc Positioning turns your phone into a camera sextant: photograph the sun and the horizon, get an honest line of position. Fully offline." />
+  <style>
+    :root { --paper: #F6F8FA; --card: #FFFFFF; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --sea1: #12557F; --sea2: #062232; --rule: #D8E0E7; --gold: #8A6A1F; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C; }
+    }
+    :root[data-theme="dark"] { --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C; }
+    * { box-sizing: border-box; }
+    body { background: var(--paper); color: var(--ink); font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; }
+    .hero {
+      background: linear-gradient(180deg, var(--sea1), var(--sea2));
+      color: #F4F8FA; padding: 56px 20px 44px;
+    }
+    .hero-inner, main { max-width: 46rem; margin: 0 auto; }
+    .seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+    .brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: #9CCDE8; margin: 0 0 6px; }
+    h1 { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+    .tagline { font-style: italic; color: #9CCDE8; margin: 0 0 14px; font-size: 1.05rem; }
+    .sub { color: #C9DCE9; max-width: 58ch; margin: 0; }
+    .badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid #9CCDE8; border-radius: 10px; color: #F4F8FA; font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+    a.badge:hover { background: #9CCDE8; color: var(--sea2); }
+    .lede { max-width: 62ch; margin: 0 0 16px; }
+    .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+    main { padding: 8px 20px 80px; }
+    h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+    .features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+    .features strong { display: block; margin-bottom: 3px; }
+    .features span { color: var(--muted); font-size: 0.94rem; }
+    .honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+    .warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+    .links { list-style: none; padding: 0; margin: 16px 0 0; }
+    .links li { border-top: 1px solid var(--rule); }
+    .links li:last-child { border-bottom: 1px solid var(--rule); }
+    .links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+    .links a:hover { color: var(--navy); }
+    .links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+    .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+    .foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+    a { color: var(--navy); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="seal" src="../brand/mark-512.png" width="132" height="132" alt="" />
+      <p class="brand">RAINBOW&rsquo;S END MARINE, LLC</p>
+      <h1>Rainbow&rsquo;s Arc Positioning</h1>
+      <p class="tagline">A camera sextant, for the fun of it.</p>
+      <p class="sub">Your phone becomes a camera sextant. Photograph the sun and the sea horizon
+      in one frame; the picture and the clock do the rest — a line of position in seconds, a
+      latitude-and-longitude fix from two sights, and a deck log that keeps honest dead
+      reckoning between them. Fully offline: it works aboard, on the beach, or at the kitchen
+      table.</p>
+      <span class="badge">In beta on TestFlight &middot; headed for the App Store</span>
+    </div>
+  </div>
+  <main>
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><strong>One photo is the sight</strong>
+      <span>Sun and horizon together in the frame. The horizon is the level reference, so
+      the boat&rsquo;s roll and your grip don&rsquo;t matter — hold the phone any way that works.</span></li>
+      <li><strong>The whole reduction, worked for you</strong>
+      <span>Dip, refraction, semidiameter, parallax — the same corrections a paper sight
+      reduction works, shown line by line, against a built-in almanac good through 2050.</span></li>
+      <li><strong>Marking you can mean</strong>
+      <span>Draggable handles with a magnifier loupe, then one-pixel nudge arrows — because
+      on a sun sight, a pixel is roughly a nautical mile.</span></li>
+      <li><strong>A real deck log</strong>
+      <span>Start from a known position, log course-and-speed legs, tap Stopped whenever she
+      isn&rsquo;t moving. Every sight reduces against the DR for its own moment; every fix can
+      restart the reckoning.</span></li>
+      <li><strong>Fixes that own their error</strong>
+      <span>Cross any two sights into a running fix with a stated radius — and see the gap
+      between where the log said you&rsquo;d be and where the sky says you are. That gap is the
+      current talking.</span></li>
+      <li><strong>Noon, predicted</strong>
+      <span>Local apparent noon computed for your longitude with a countdown. A sight near
+      the meridian reads directly as latitude — the classic noon sight, kept classic.</span></li>
+    </ul>
+
+    <p class="honest">A camera sight is typically good to a few nautical miles, and every
+      result says exactly how sure it is. When a sight isn&rsquo;t trustworthy — sun too low, camera
+      angle too uncertain, a line falling absurdly far from your reckoning — the app says so in
+      plain language instead of pretending. Every boat carries GPS these days; this is not a
+      contingency plan for the day they all fail at once, though it would serve. It is a fun
+      alternative to try — and if you own a sextant, a genuinely useful one. It is not a
+      chartplotter, and it never claims to be.</p>
+
+    <p class="warn">Never look directly at the sun. Every sight can be taken with the screen
+      doing the looking — the app is built around that rule, and so is the manual.</p>
+
+    <h2>More</h2>
+    <ul class="links">
+      <li><a href="support.html">Support &amp; FAQ<span>Setup, taking a good sight, what the numbers mean, and the honest limits.</span></a></li>
+      <li><a href="privacy.html">Privacy Policy<span>The short version: no data collected, nothing leaves your phone, photos stay on the device.</span></a></li>
+      <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/galley/">Rainbow&rsquo;s End Galley<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <!-- family:end -->
+    </ul>
+
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s Arc Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F5F8FA; --ink: #131B22; --muted: #53626E; --navy: #14567E; --gold: #8A6A1F; --rule: #D7E0E7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0A1218; --ink: #E8EEF3; --muted: #A3B1BC; --navy: #6FB0D8; --gold: #D9B04C; --rule: #223039;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0A1218; --ink: #E8EEF3; --muted: #A3B1BC; --navy: #6FB0D8; --gold: #D9B04C; --rule: #223039;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 28px; }
+  h2 {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 40px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  details { border-bottom: 1px dotted var(--rule); padding: 4px 0; }
+  summary {
+    cursor: pointer; font-weight: 650; font-size: 1.02rem;
+    padding: 10px 0; list-style-position: outside;
+  }
+  summary:hover { color: var(--navy); }
+  details p { color: var(--muted); max-width: 64ch; margin: 4px 0 14px; }
+  details strong { color: var(--ink); }
+  a { color: var(--navy); }
+  .warn {
+    border-left: 4px solid var(--gold); border-radius: 4px;
+    padding: 10px 16px; margin: 20px 0 0;
+    background: color-mix(in srgb, var(--gold) 9%, transparent);
+  }
+  .warn p { margin: 6px 0; max-width: 64ch; }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; max-width: 64ch; }
+  /* The family footer (brand standards, section 7): the Designed-by line, the wish, then the copyright. */
+  .brand-foot .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 28px 0 0; }
+  .brand-foot .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; max-width: 58ch; margin: 40px 0 0; }
+  .brand-foot .foot { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+  /* Also from Rainbow’s End Marine (brand standards, section 7: cross-marketing). */
+  .family { margin-top: 44px; }
+  .family ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  .family li { border-top: 1px solid var(--rule); }
+  .family li:last-child { border-bottom: 1px solid var(--rule); }
+  .family a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+  .family a:hover { color: var(--navy); }
+  .family span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+</style>
+<main>
+  <h1>Rainbow&rsquo;s Arc — Support</h1>
+  <p class="meta">Answers to the questions that come up, in the order they usually come up.
+  Anything not covered here: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <div class="warn">
+    <p><strong>Never look directly at the sun</strong> — not to aim, not for a moment. Hold the
+    phone so the screen does the looking, and wear sunglasses for comfort, remembering they do
+    not make the sun safe to look at. Every sight in this app can be taken without your eyes
+    ever meeting the sun.</p>
+  </div>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does Rainbow&rsquo;s Arc actually do?</summary>
+    <p>It turns your phone into a camera sextant. You photograph the sun and the sea horizon in
+    one frame; the app measures the sun&rsquo;s height above the horizon from the photo&rsquo;s own geometry,
+    works the sight against a built-in nautical almanac using the time the photo was taken, and
+    gives you a line of position — you are somewhere on that line, give or take a stated number
+    of miles. Cross two sights taken hours apart and you get a fix: latitude and longitude, with
+    an honest error radius. It runs entirely offline. It is a fun alternative to try, not a
+    serious alternative to conventional navigation — and if you own a sextant, the drill that
+    scores your sights is the genuinely useful part.</p>
+  </details>
+
+  <details>
+    <summary>What do I need to set up before the first sight?</summary>
+    <p>Three things. <strong>Height of eye</strong> — how far above the water you stand when you
+    take the photo; it feeds the horizon-dip correction. <strong>A starting position</strong> —
+    start your voyage&rsquo;s dead reckoning at a known place (the marina you left, a buoy, a chart
+    fix). And <strong>a phone clock that&rsquo;s been online recently</strong> — each second of clock
+    error costs up to a quarter mile of longitude, so let the phone sync before a long time
+    offline. That&rsquo;s it; the almanac is built in.</p>
+  </details>
+
+  <details>
+    <summary>How do I take a good sun photo?</summary>
+    <p>Sun and sea horizon in the same frame, with the horizon a true sea horizon — open water,
+    not land, haze, or a cloud bank. Hold the phone any way you like: the horizon in the photo is
+    the level reference, so the boat&rsquo;s roll and your grip don&rsquo;t matter. When the sun rides high,
+    roll the phone so sun and horizon share the frame corner to corner — the tilt costs nothing.
+    Use the in-app camera when you can; it reads the lens&rsquo;s own calibration for each shot.</p>
+  </details>
+
+  <details>
+    <summary>What&rsquo;s the practice mode?</summary>
+    <p>The sight screen offers a practice morning and a practice afternoon: a made-up sun over a
+    made-up sea off Galveston, with the clock and position set to match. Mark both well, then
+    cross them into a fix on the Camera tab — it should land within a few nautical miles of the
+    practice starting point. It&rsquo;s the whole flow, learnable at the kitchen table.</p>
+  </details>
+
+  <h2>Marking the sight</h2>
+
+  <details>
+    <summary>How precisely do I need to place the markers?</summary>
+    <p>One image pixel is roughly one nautical mile, so precision pays. The two gold handles go
+    anywhere along the horizon, as far apart as the photo allows — they define the line, not its
+    ends. The blue ring goes on the sun: its center is the usual mark, but when glare hides the
+    middle, put the ring on the crisp lower or upper edge instead and tell the app which you
+    chose — it corrects for the sun&rsquo;s half-width either way. A loupe magnifies while you drag,
+    and the arrow buttons nudge the selected marker one pixel at a time.</p>
+  </details>
+
+  <details>
+    <summary>Why does the sight time matter so much?</summary>
+    <p>The Earth turns fifteen degrees an hour, so each second of time error moves the answer up
+    to a quarter mile. Photos taken with the in-app camera or your phone&rsquo;s camera carry their
+    moment with them; photos chosen from your library without a time stamp fall back to the
+    clock, and the app asks you to set it. The displayed time is always UTC.</p>
+  </details>
+
+  <details>
+    <summary>What are all the corrections in the result table?</summary>
+    <p><strong>Horizon dip</strong>: the horizon sits below true level because your eye is above
+    the water. <strong>Refraction</strong>: the atmosphere bends the sun&rsquo;s light upward, more so
+    near the horizon. <strong>Semidiameter</strong>: you marked an edge of the sun, but the
+    almanac tracks its center. <strong>Parallax</strong>: the small shift from observing on the
+    Earth&rsquo;s surface rather than its center. The same chain a paper sight reduction works
+    through — shown line by line so you can check it.</p>
+  </details>
+
+  <h2>The numbers</h2>
+
+  <details>
+    <summary>What does &ldquo;±12 nm&rdquo; on a sight mean, and why is it sometimes large?</summary>
+    <p>It&rsquo;s the honest uncertainty of that line of position. The biggest contributor is how well
+    the app knows your camera&rsquo;s angle of view: a photo from the in-app camera carries per-shot
+    lens calibration and earns a tight radius; a photo from your library leans on the photo&rsquo;s own
+    metadata or an assumed lens, and the radius widens to match. Marking precision, refraction,
+    and your height of eye contribute the rest. The app never hides the number.</p>
+  </details>
+
+  <details>
+    <summary>What&rsquo;s the difference between a line and a fix?</summary>
+    <p>One sight tells you a line you&rsquo;re somewhere on — it cannot tell you where along it. Two
+    sights with the sun&rsquo;s bearing well changed between them cross into a position. That&rsquo;s why the
+    app keeps saying &ldquo;one sight is a line, not a position&rdquo;: it&rsquo;s the oldest rule in celestial
+    navigation, and the app refuses to forget it.</p>
+  </details>
+
+  <details>
+    <summary>Why does the app want my sights hours apart?</summary>
+    <p>The fix is found where the lines cross, and lines nearly parallel cross sloppily. The
+    sun&rsquo;s bearing swings through the day, so a mid-morning line and a mid-afternoon line cut at a
+    healthy angle. The fix screen tells you when the crossing is too shallow to trust.</p>
+  </details>
+
+  <details>
+    <summary>The fix says I&rsquo;m miles from my dead reckoning. Which is right?</summary>
+    <p>The sky, almost always — that&rsquo;s the point of taking sights. The printed gap between the DR
+    and the fix is real information: it&rsquo;s the current, the leeway, and the optimism in your
+    logged speed, all talking at once. Restart the reckoning from the fix and it starts fresh
+    from truth.</p>
+  </details>
+
+  <details>
+    <summary>What is &ldquo;local apparent noon&rdquo; on the Camera tab?</summary>
+    <p>The moment the sun crosses your meridian — highest in the sky, bearing due south or north.
+    The app predicts it from your DR longitude and counts down to it. A sight within a few
+    minutes of noon produces a line running nearly east–west, which reads directly as your
+    latitude; the result card says so when it happens. The card also warns when the noon sun is
+    too high for your lens — shoot morning and afternoon lines instead on those days.</p>
+  </details>
+
+  <h2>The deck log</h2>
+
+  <details>
+    <summary>How does the dead reckoning work?</summary>
+    <p>Like the paper one. You start from a trusted position — a known place, or a fix — and log
+    a leg whenever course or speed changes: &ldquo;0930, came to 250° at 6 knots.&rdquo; The app advances the
+    starting point along your legs and shows the DR for this moment, stamped with the moment
+    it was computed for. Tap &ldquo;Stopped&rdquo; when you heave to, anchor, or drift for lunch — a
+    zero-speed leg holds the plot still.</p>
+  </details>
+
+  <details>
+    <summary>I entered something wrong. How do I fix it?</summary>
+    <p>Everything you enter, you can correct. Tap a leg to edit its course or speed, or delete
+    it. Delete a bad sight or a bad fix from their lists — each asks you to tap twice. Restart
+    the reckoning from any earlier fix. Enter a known position under &ldquo;I know where I am&rdquo; to
+    restart it from there. And if the whole story has gone wrong, &ldquo;Reset the reckoning&rdquo; wipes
+    the leg log and holds still until you log the next leg.</p>
+  </details>
+
+  <details>
+    <summary>Can I keep separate voyages?</summary>
+    <p>Yes — each voyage is its own deck log: starting point, legs, sights, and fixes together. Start a
+    new voyage for a new passage; rename or delete old ones. Practice keeps to its own voyage so
+    it never muddies a real log.</p>
+  </details>
+
+  <h2>Limits, honestly</h2>
+
+  <details>
+    <summary>When can&rsquo;t the app work?</summary>
+    <p>When there&rsquo;s no sun or no sea horizon: at night, under overcast, in fog or haze, or
+    inshore with land across the horizon. In high summer at midday the sun can stand too high
+    for the camera to hold both it and the horizon — the noon card warns you, and the morning
+    and afternoon still work fine, which is where sun navigation always lived. The camera sight
+    is sun-only for now; the moon, planets, and stars are planned for it. (The sextant drill
+    already knows the four bright planets and twenty-one stars.)</p>
+  </details>
+
+  <details>
+    <summary>How accurate is it, really?</summary>
+    <p>A careful sight with the in-app camera is typically good to a few nautical miles, and the
+    app always states its actual estimate. Plenty for the fun of it; not a chartplotter, and
+    not meant as your main way to navigate or even a serious alternative to it. Treat it as
+    what it is: the oldest way there is of finding yourself, made fast and honest, for the
+    pleasure of doing it.</p>
+  </details>
+
+  <details>
+    <summary>Does anything I do leave my phone?</summary>
+    <p>No. No accounts, no servers, no analytics, no network requests. Photos are processed on
+    the device and never uploaded. The optional sextant drill and the deck log&rsquo;s &ldquo;Check against
+    GPS&rdquo; can each read your position once, on the spot — to score a practice sight, or to grade
+    your reckoning — and it is never stored or sent anywhere. See the
+    <a href="privacy.html">privacy policy</a> — it&rsquo;s short because there&rsquo;s little to disclose.</p>
+  </details>
+
+  <h2>The sextant drill</h2>
+
+  <details>
+    <summary>I own a real sextant. Can the app check my sights?</summary>
+    <p>Yes — that&rsquo;s the sextant drill. Shoot the sun, a planet, or one of twenty-one named
+    stars, tap <strong>MARK</strong> at the instant the body kisses the horizon, and enter what
+    the arc read, degrees and minutes. The app applies your index correction, height of eye,
+    refraction, semidiameter and parallax, computes what the sextant <em>should</em> have read
+    from where you truly are (GPS, with your permission, or your DR), and scores you: minutes of
+    arc off, which is nautical miles off. Within 2′ is professional work; within 5′ makes good
+    fixes; past 10′ the app suggests what to check first.</p>
+  </details>
+
+  <details>
+    <summary>What is index correction?</summary>
+    <p>Sextants rarely read exactly zero when the horizon is brought to itself. Check yours: if
+    it reads 2.0′ when it should read zero (&ldquo;on the arc&rdquo;), your correction is −2.0; if it reads
+    below zero (&ldquo;off the arc&rdquo;), +2.0. Enter it once in the drill and every score accounts for
+    it. An unnoticed index error is the most common reason a beginner&rsquo;s sights all miss the same
+    way.</p>
+  </details>
+
+  <div class="contact">
+    <p><strong>Still stuck, or found something wrong?</strong></p>
+    <p>Write to <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a> and describe
+    what you saw and what you expected — screenshots of the result card help enormously. Reports
+    like that are how this app gets better.</p>
+  </div>
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/galley/">Rainbow&rsquo;s End Galley<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </footer>
+</main>
+</body>
+</html>
