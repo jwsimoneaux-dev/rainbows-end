@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Logbook</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <meta name="description" content="The book of your voyage: a week's charter or a weekend on your own boat, kept a day at a time with pictures, a marked position and a small ledger of what it cost — fully offline, shared as a PDF." />
+  <style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="seal" src="../brand/mark-512.png" width="132" height="132" alt="" />
+      <p class="brand">RAINBOW&rsquo;S END MARINE, LLC</p>
+      <h1>Rainbow&rsquo;s End Logbook</h1>
+      <p class="tagline">The book of your voyage.</p>
+      <p class="sub">The last night of a charter, the crew around the cockpit table, and someone asks
+      where it was you anchored on Tuesday. Logbook keeps the voyage a day at a time &mdash; where you
+      left, where you dropped the hook, the pictures, what it cost &mdash; and hands everyone the book
+      when it&rsquo;s over. On your device, bought once, with no account.</p>
+      <span class="badge">In beta on TestFlight &middot; headed for the App Store</span>
+    </div>
+  </div>
+  <main>
+    <h2>Why it stands out</h2>
+    <ul class="features">
+      <li><strong>A logbook for the voyage, not the boat</strong><span>Most logbook apps assume you
+        own the boat and want her engine hours. Logbook assumes you have a week aboard and want to
+        remember it: one logbook per voyage, her name and the charter base on the cover, and a day at
+        a time inside.</span></li>
+      <li><strong>The pictures are in the book</strong><span>Up to six a day, with captions, kept on
+        the phone and printed on the day&rsquo;s page. The PDF at the end is the album and the log in
+        one.</span></li>
+      <li><strong>The ledger sits beside the days</strong><span>What the voyage cost, in seven
+        categories a cruiser recognizes, with a donut and a per-day figure. A free anchorage can be
+        noted with no amount, because that is worth remembering too.</span></li>
+      <li><strong>Kept simple on purpose</strong><span>No tanks, no watches, no maintenance. When
+        an owner wants those, the book of the boat is Rainbow&rsquo;s End Manifest, from the same
+        company; Logbook stays the book of the days.</span></li>
+    </ul>
+
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><strong>A logbook per voyage</strong><span>The boat and what she is, the dates, who was
+        aboard, and &mdash; when she is chartered &mdash; the company and the base. Her name is
+        remembered for the next voyage. Close the book when the voyage ends; it stays as a past
+        voyage.</span></li>
+      <li><strong>A day</strong><span>A passage or a lay day. A passage has where you left, where
+        you arrived and the nautical miles if you know them; a lay day has only where she lay. A note
+        in your own words. Two passages on one date are two days in the book.</span></li>
+      <li><strong>Pictures</strong><span>From the library or the camera, six a day, each with a
+        caption; a full-screen viewer with a swipe between them. They are copied into the app at a
+        size that reads well on a phone and prints well on the page.</span></li>
+      <li><strong>Position</strong><span>Tap Mark position at the anchorage and the phone&rsquo;s GPS
+        writes the spot into the day as degrees and minutes, the way a chart reads it. Once, when
+        you ask; never in the background.</span></li>
+      <li><strong>The ledger</strong><span>Provisions, meals ashore, fuel, fees and permits,
+        transport ashore, moorings and transient dockage, other. The donut shows where the money
+        went; the total over the days aboard says what a day cost; tap a slice to see one category&rsquo;s
+        lines.</span></li>
+      <li><strong>The summary</strong><span>Days written of days aboard, passages and lay days,
+        the miles, the longest passage, and every place in the order you first saw it &mdash; at the
+        head of the book, and on the phone pinned while the days scroll.</span></li>
+      <li><strong>Share</strong><span>A PDF logbook: a cover with the boat, the dates and the crew;
+        a page for each day with its notes and pictures; the ledger with its donut. Through the share
+        sheet, so the whole crew can have the book by email or AirDrop.</span></li>
+      <li><strong>Entirely offline</strong><span>No account, no server of ours, no signal needed.
+        Your pictures and positions stay on your device; nothing you enter ever leaves it unless you
+        share the logbook yourself.</span></li>
+    </ul>
+
+    <h2>What it won&rsquo;t do</h2>
+    <ul class="wont">
+      <li>Keep engine hours, tanks, fuel fills, gear or maintenance. That is the book of the boat, Rainbow&rsquo;s End Manifest.</li>
+      <li>Track you. The GPS is read once, at your tap, and the app has no background modes.</li>
+      <li>Draw a chart or a track. A position is a line of text on the day.</li>
+      <li>Share the kitty. The ledger is your own record of the voyage, not a shared purse.</li>
+      <li>Put your logbook on a server. It lives on your phone and leaves only as the PDF you send.</li>
+    </ul>
+
+    <p class="honest">Rainbow&rsquo;s End Logbook is a record of the voyage, not a navigational
+    document. Miles are what you enter; a marked position is the phone&rsquo;s reading at that moment,
+    to the tenth of a minute.</p>
+
+    <h2>Now in beta</h2>
+    <p class="lede">Rainbow&rsquo;s End Logbook is on TestFlight, headed for the App Store. It works
+    fully offline &mdash; no account, no server of ours; nothing leaves your device unless you share
+    the logbook yourself.</p>
+
+    <h2>More</h2>
+    <ul class="links">
+      <li><a href="support.html">Support &amp; FAQ<span>Voyages and days, pictures, positions, the ledger, sharing the PDF.</span></a></li>
+      <li><a href="privacy.html">Privacy Policy<span>Sends nothing; pictures and positions stay on the phone.</span></a></li>
+      <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+      <!-- family:end -->
+    </ul>
+
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </main>
+</body>
+</html>

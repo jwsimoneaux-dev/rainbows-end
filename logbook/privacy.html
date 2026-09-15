@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Logbook Privacy Policy</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+</style>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Rainbow&rsquo;s End Logbook &mdash; The book of your voyage &mdash; Effective September 15, 2026</p>
+
+  <p class="lead"><strong>The short version: Rainbow&rsquo;s End Logbook sends nothing to us &mdash; ever.
+  Your logbooks, your pictures and your marked positions stay on your device, and leave it only
+  when you share the logbook yourself.</strong></p>
+
+  <h2>What the app stores, and where</h2>
+  <p>Everything you put into Rainbow&rsquo;s End Logbook &mdash; each voyage&rsquo;s name, the boat&rsquo;s name
+  and type, the dates, the names of the people aboard, the charter company and base if you enter
+  them, every day&rsquo;s places, notes and miles, the captions on the pictures, and every line of the
+  ledger &mdash; is stored in the app&rsquo;s local storage on your own device. The app has no server of
+  ours and no account system, and it makes no network requests at all.</p>
+  <p>Deleting a day, a logbook, or the app deletes this data from the device. If you back up your
+  device, your backup may include the app&rsquo;s data like any other app&rsquo;s; backups are managed by
+  Apple under Apple&rsquo;s terms, and we never see them.</p>
+
+  <h2>Pictures</h2>
+  <p>When you tap <strong>Add pictures</strong> or <strong>Take a photo</strong> on a day, the app
+  asks for the photo library or the camera, through the system&rsquo;s own prompt, only at that tap.
+  Each picture you choose or take is copied into the app&rsquo;s own folder on the device at a reduced
+  size, with a small thumbnail; the logbook records only the file&rsquo;s name and your caption. Your
+  original in the photo library is not changed or deleted. The pictures leave the device only inside
+  a PDF you share, or when you tap Share on one picture in the viewer. Deleting a day deletes its
+  pictures; deleting a logbook deletes them all.</p>
+
+  <h2>Position</h2>
+  <p>When you tap <strong>Mark position</strong> on a day, the app asks for your location while in
+  use, through the system&rsquo;s own prompt, only at that tap. It reads one position and writes it into
+  that day as two numbers, shown as degrees and minutes. It never reads your location in the
+  background, never on a schedule, and never sends it anywhere. Clear removes it from the day.</p>
+
+  <h2>Sharing the logbook</h2>
+  <p>Share builds a PDF of the logbook &mdash; the cover, the days with their notes and pictures, the
+  ledger &mdash; on your device and hands it to the system&rsquo;s share sheet only when you tap the
+  button. Where it goes from there (Mail, AirDrop, Messages, Files, a printer) is your choice, made
+  each time. The app keeps no copy beyond the file it just made for you, and we never see it.</p>
+
+  <h2>What the app does not do</h2>
+  <p>Rainbow&rsquo;s End Logbook contains no analytics, no advertising, no tracking of any kind, and no
+  third-party data-collection software. It has no background modes. It does not read your contacts
+  or anything else on your device. It works offline &mdash; by design, because it is meant to be
+  used aboard, where there is often no signal.</p>
+
+  <h2>Purchases</h2>
+  <p>Buying the app is handled entirely by the App Store. We receive no payment details, no card
+  numbers, and no personal information from your purchase.</p>
+
+  <h2>Children</h2>
+  <p>The app collects no data from anyone, children included.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If a future version of the app ever changes any of the above &mdash; for example, by adding a way
+  to keep a logbook on more than one device &mdash; this policy will be updated first, with the
+  effective date above revised, and the change described plainly rather than buried.</p>
+  <p><em>September 15, 2026:</em> first version.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <hr />
+  <p class="foot">Rainbow&rsquo;s End Logbook is a record of the voyage, not a navigational document.</p>
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </footer>
+</main>
+</body>
+</html>
