@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Ship&rsquo;s Purse Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+</style>
+<main>
+  <h1>Rainbow&rsquo;s End Ship&rsquo;s Purse &mdash; Support</h1>
+  <p class="meta">Anything not covered here: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <h2>Getting started</h2>
+  <details>
+    <summary>What does Ship&rsquo;s Purse do?</summary>
+    <p>It keeps the books for a shared charter kitty. You set a budget, collect a share from each person, record every expense, count the envelope, and at the end the app gives each person one figure: what they hand the purse, or what the purse hands them.</p>
+  </details>
+  <details>
+    <summary>Does everyone aboard need to buy it?</summary>
+    <p>No. Only the bookkeeper needs Ship&rsquo;s Purse. The rest of the crew can read the purse on their own phones with Ship&rsquo;s Purse Guest, which is free.</p>
+  </details>
+  <details>
+    <summary>Where is the sample?</summary>
+    <p>On the Purses screen under <strong>Sample</strong>: a week in the Exumas with seven people, one at half share and one who joined on day four. It is read-only. <strong>Copy the sample as a new purse</strong> makes a copy you can change or delete.</p>
+  </details>
+
+  <h2>Setting up</h2>
+  <details>
+    <summary>How do I set the budget?</summary>
+    <p>Tap <strong>New purse</strong>. Enter the dates and the people, then fill in the worksheet: meals, fuel, moorings, dockage, water and ice, fees, the crew tip and a contingency. You set every rate. The total, divided by the shares, is the opening round per share.</p>
+  </details>
+  <details>
+    <summary>How do meals work in the budget?</summary>
+    <p>Count only the meals the purse pays for. Breakfasts, lunches and dinners aboard and meals ashore each have their own count and their own rate per person. One meal is one sitting for everyone aboard. Leave out any meal each person pays for themselves. When a dinner moves ashore, take it off the dinners aboard and add it to the meals ashore.</p>
+  </details>
+  <details>
+    <summary>What is a share, and how do I set one below 1?</summary>
+    <p>A share is how much of the purse a person is on the hook for. Everyone starts at 1. On the <strong>People</strong> screen, type the share: 0.5 for a child at half board, 0.57 for four days of seven. In build 7 and earlier, type it without the leading zero (.57).</p>
+  </details>
+  <details>
+    <summary>Someone is joining mid-cruise.</summary>
+    <p>Add them on the <strong>People</strong> screen when they arrive. They are not on the rounds already asked, so they owe only the rounds from then on, starting with the next top-up.</p>
+  </details>
+  <details>
+    <summary>Can one purse use two currencies?</summary>
+    <p>No. A purse has one currency, chosen when you create it.</p>
+  </details>
+
+  <h2>During the cruise</h2>
+  <details>
+    <summary>How do I record money paid in?</summary>
+    <p>Tap <strong>Transactions</strong>, then <strong>Paid in</strong>. Tap every name that paid. Each is filled in with what they owe on the rounds; change any amount that differs, pick how the money came in, and add them all at once.</p>
+  </details>
+  <details>
+    <summary>Someone paid for fuel on their own card.</summary>
+    <p>Enter it as an expense paid by that person, then choose how to square up. <strong>Reimburse</strong> means you hand them cash from the envelope and record it under Transactions &gt; Reimburse. <strong>Offset</strong> means no cash moves: it counts against their next round, and anything left over comes back at settlement. Both end at the same figure.</p>
+  </details>
+  <details>
+    <summary>The purse is running low.</summary>
+    <p>Tap <strong>Transactions</strong>, then <strong>Top-up round</strong>, and enter the amount per share. Each person is asked for that amount times their share, less any credit they already have.</p>
+  </details>
+  <details>
+    <summary>Our plans changed. How do I change the budget?</summary>
+    <p>Tap <strong>Budget</strong> on the purse. The worksheet opens as you left it. Change the counts or rates and commit. With <strong>Refigure share due</strong> on, the difference becomes a round for everyone: a top-up if the budget went up, a reduction if it went down.</p>
+  </details>
+  <details>
+    <summary>I entered something wrong.</summary>
+    <p>Tap <strong>Strike&hellip;</strong> under the line in the ledger and give a reason. The line stays, crossed out, and every figure is worked out again as if it was never entered. Then enter it correctly.</p>
+  </details>
+  <details>
+    <summary>How do I attach a receipt?</summary>
+    <p>On an expense, tap <strong>Take a photo</strong> or <strong>Choose a photo</strong>. The photo is kept on your phone with the purse. <strong>Receipt &rsaquo;</strong> under the ledger line opens it.</p>
+  </details>
+  <details>
+    <summary>What is the float?</summary>
+    <p>The money paid in by Venmo, Zelle, card or anything other than cash, held in your own account for the purse. The envelope is the cash. Together they are what the purse holds.</p>
+  </details>
+  <details>
+    <summary>The envelope count is off.</summary>
+    <p>Tap <strong>Count</strong> and enter what the envelope holds. The app compares it with what the cash should be and records the difference. It changes no other figure. To explain the difference, enter an expense or a payment on purpose.</p>
+  </details>
+  <details>
+    <summary>Can I rename a category?</summary>
+    <p>Yes. On an expense, tap <strong>Rename or add categories&hellip;</strong>. A category that has entries can be renamed but not removed.</p>
+  </details>
+
+  <h2>Settling</h2>
+  <details>
+    <summary>How does settling work?</summary>
+    <p>Tap <strong>Settle</strong>. Whoever paid in less than their share due owes the purse the shortfall. Whoever paid in more, or paid for the boat beyond their share due, is owed the difference. What is left is shared back in proportion to each person&rsquo;s share due. Each person gets one line. Mark each line received or paid as it happens; when all are marked, the purse holds nothing.</p>
+  </details>
+  <details>
+    <summary>Why did someone get a few cents more?</summary>
+    <p>Cents that do not divide evenly go to the bookkeeper&rsquo;s line, and the Settle screen says so.</p>
+  </details>
+  <details>
+    <summary>The purse spent more than everyone paid in.</summary>
+    <p>Then there is nothing to share back. Each person&rsquo;s part of the shortfall, in proportion to their share due, is added to what they owe the purse. A top-up round before settling does the same.</p>
+  </details>
+  <details>
+    <summary>How do I close a purse?</summary>
+    <p>Tap <strong>Close the purse</strong>. It moves to Past purses and becomes read-only. You can reopen it if a late receipt turns up.</p>
+  </details>
+
+  <h2>Sharing with the crew</h2>
+  <details>
+    <summary>How does the crew see the purse?</summary>
+    <p>Tap <strong>Share</strong> on the purse and switch sharing on. The app shows an eight-character code. Each person installs the free Ship&rsquo;s Purse Guest and types the code. They see the ledger, the receipts, the settlement, and their own share due and balance. They cannot change anything.</p>
+  </details>
+  <details>
+    <summary>Does the crew need an iCloud account?</summary>
+    <p>No. Reading needs no account. Your phone, as the bookkeeper, must be signed into iCloud to share.</p>
+  </details>
+  <details>
+    <summary>Who can read a shared purse?</summary>
+    <p>Only someone with the code. The purse is sealed with a key made from the code before it leaves your phone, and nobody without the code can read it, including us.</p>
+  </details>
+  <details>
+    <summary>The Share screen says Not yet shared.</summary>
+    <p>Your phone has no signal, or iCloud has not answered yet. Every change is saved on your phone first and sent when there is signal: on the next change, when you open the app, and every minute while it is open. <strong>Try now</strong> sends it at once.</p>
+  </details>
+  <details>
+    <summary>How do I stop sharing?</summary>
+    <p>Switch sharing off on the Share screen. The purse and its receipt photos are taken down, and the code no longer opens anything. <strong>New code</strong> takes down the old code and shares under a new one.</p>
+  </details>
+
+  <h2>Records and deleting</h2>
+  <details>
+    <summary>How do I get a copy for my records?</summary>
+    <p>Tap <strong>Export</strong>. <strong>Share the statement</strong> makes a PDF with the settlement, spending by category and the full ledger. <strong>Share the spreadsheet</strong> makes a CSV for your books. <strong>Share the backup</strong> saves the whole purse as a file. Each goes to the share sheet.</p>
+  </details>
+  <details>
+    <summary>How do I delete a purse?</summary>
+    <p>On the Purses screen, swipe the purse to the left and tap <strong>Delete</strong>. The app asks first. The ledger and receipt photos go with it, and if the purse is shared it is taken down. It cannot be undone.</p>
+  </details>
+  <details>
+    <summary>Does it work on the iPad?</summary>
+    <p>Yes. In landscape the purse, the budget and the settlement show in two panes. In portrait, and on the phone, everything is one column with a summary pinned at the top.</p>
+  </details>
+
+  <h2>Contact</h2>
+  <p>Anything else: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>. Say which device and version you have, what you did, and what you expected to see.</p>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </footer>
+</main>
+</body>
+</html>
