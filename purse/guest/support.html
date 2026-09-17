@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ship&rsquo;s Purse Guest Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+</style>
+
+<main>
+  <h1>Ship&rsquo;s Purse Guest &mdash; Support</h1>
+  <p class="meta">The free crew app for <a href="../">Rainbow&rsquo;s End Ship&rsquo;s Purse</a>. Anything not covered here: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>.</p>
+
+  <h2>Getting started</h2>
+  <details>
+    <summary>What does Ship&rsquo;s Purse Guest do?</summary>
+    <p>It shows you the charter kitty the bookkeeper keeps in Rainbow&rsquo;s End Ship&rsquo;s Purse: the money paid in, every expense, the receipts, the settlement, and where you stand. You read it; only the bookkeeper enters anything.</p>
+  </details>
+  <details>
+    <summary>Where do I get the code?</summary>
+    <p>From the bookkeeper. When they switch sharing on in Ship&rsquo;s Purse, the Share screen shows an eight-character code in two groups of four, like RB7K-4MQX. Type it on the first screen and tap <strong>Open the purse</strong>.</p>
+  </details>
+  <details>
+    <summary>Do I need an account or iCloud?</summary>
+    <p>No. Reading a purse needs no account and no iCloud sign-in. It needs a signal the first time you open it.</p>
+  </details>
+  <details>
+    <summary>Can I try it without a code?</summary>
+    <p>Yes. Tap the <strong>Sample</strong> purse on the first screen, or type DEMO-DEMO. It is a worked week in the Exumas with seven people, kept on your phone, and needs no network.</p>
+  </details>
+
+  <h2>Joining</h2>
+  <details>
+    <summary>It says &ldquo;No purse is shared under that code.&rdquo;</summary>
+    <p>Either a character is wrong or the bookkeeper has sharing switched off. Codes use the digits 2 to 9 and the letters A to Z without I or O, so there is no 0, 1, I or O to mistake. Check the code with the bookkeeper.</p>
+  </details>
+  <details>
+    <summary>It says the code does not open the purse.</summary>
+    <p>A record exists under that code, but the code does not unlock it, which almost always means one character is misread. Check it with the bookkeeper.</p>
+  </details>
+  <details>
+    <summary>It says to update the app.</summary>
+    <p>The bookkeeper&rsquo;s Ship&rsquo;s Purse is newer than this app. Update Ship&rsquo;s Purse Guest from the App Store.</p>
+  </details>
+  <details>
+    <summary>Do I have to type the code every time?</summary>
+    <p>No. Every purse you open is listed on the first screen under <strong>Purses on this phone</strong>, newest first. Tap one to open it. <strong>Forget this purse</strong> removes it from your phone; the purse itself is untouched.</p>
+  </details>
+
+  <h2>Reading the purse</h2>
+  <details>
+    <summary>How do I see my own figures?</summary>
+    <p>Open the purse and tap your name under <strong>Which one are you?</strong> The card shows your share due, what you have paid in, what you paid for the boat that has not been paid back, what you still owe on the rounds, and what would change hands if the purse settled now. Your name is remembered on this phone only.</p>
+  </details>
+  <details>
+    <summary>What is a share due?</summary>
+    <p>Everything the bookkeeper has asked of you, across all rounds, at your share. A full share is 1; a child at half board might be 0.5. The bookkeeper sets the shares.</p>
+  </details>
+  <details>
+    <summary>I paid for fuel on my own card. Where is it?</summary>
+    <p>The bookkeeper enters it as an expense you paid. It shows on your card as paid for the boat until you are paid back in cash. If it was offset instead, it counts against your next round, and anything left over comes back at settlement.</p>
+  </details>
+  <details>
+    <summary>What are the envelope and the float?</summary>
+    <p>The envelope is the cash. The float is money sent another way, such as Venmo or Zelle, held in the bookkeeper&rsquo;s own account for the purse. Together they are what the purse holds.</p>
+  </details>
+  <details>
+    <summary>Some lines are crossed out.</summary>
+    <p>Those are struck entries. The bookkeeper never edits or deletes a line; a mistake is struck with a reason, and every figure is worked out as if it had never been entered.</p>
+  </details>
+  <details>
+    <summary>How do I see a receipt?</summary>
+    <p>Tap <strong>Receipt &rsaquo;</strong> under the expense. The photo is fetched when you tap. If it says the photo is not shared yet, the bookkeeper&rsquo;s phone has not had signal since the photo was taken; try again later.</p>
+  </details>
+  <details>
+    <summary>How does settling work?</summary>
+    <p>Tap <strong>Settlement</strong>. Your line comes first. Everyone settles with the purse, never with another guest: whoever paid in less than their share due owes the purse, whoever paid in more or paid for the boat is owed the difference, and what is left goes back in proportion to each share due. Each person gets one line, marked paid as the bookkeeper records it.</p>
+  </details>
+
+  <h2>Keeping up</h2>
+  <details>
+    <summary>How current is what I see?</summary>
+    <p>As current as the bookkeeper&rsquo;s last update. The line under the purse name says when that was. Your phone looks for changes when you open the purse, when you come back to the app, and every minute while it is open. <strong>Check for changes</strong> looks at once.</p>
+  </details>
+  <details>
+    <summary>Can I read it with no signal?</summary>
+    <p>Yes, from the last copy your phone saw. The line under the purse name says how old it is. Receipt photos you have not opened before need a signal.</p>
+  </details>
+  <details>
+    <summary>It says &ldquo;No longer shared.&rdquo;</summary>
+    <p>The bookkeeper switched sharing off, chose a new code, or deleted the purse. Your last copy stays readable, including the settlement. If they chose a new code, ask for it.</p>
+  </details>
+  <details>
+    <summary>Can I change anything?</summary>
+    <p>No. Payments, expenses, shares and counts are entered by the bookkeeper in Ship&rsquo;s Purse. Tell them, and the change shows here after their next update.</p>
+  </details>
+  <details>
+    <summary>Does it work on the iPad?</summary>
+    <p>Yes, on iPhone and iPad.</p>
+  </details>
+
+  <h2>Contact</h2>
+  <p>Anything else: <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a>. Say which device and version you have, what you did, and what you expected to see.</p>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:rainbow@svrainbow.net">rainbow@svrainbow.net</a></p>
+  </footer>
+</main>
+</body>
+</html>
