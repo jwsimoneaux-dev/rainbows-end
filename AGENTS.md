@@ -33,6 +33,16 @@ It is public; keep secrets and private links out of it.
   superseded; if any Airo page still carries a copy, tell Jerry on release
   day. The Airo site's own app summaries are static: when an app gains or
   loses a feature, tell Jerry which Airo page to correct.
+  VERIFIED Sept 18 after Jerry's page-by-page prompts to GoDaddy's AI:
+  every Airo app page links to the real App Store IDs and to these GitHub
+  pages (privacy, support, "Full details on the official page"); the
+  /privacy/<app> and /support/<app> routes redirect here; no false claims
+  left (no cloud, local network, real time, invented features). OPEN: the
+  AI-written generic files rainbowsendmarine.com/privacy-policy.html and
+  /support.html are still published (unlinked; false claims), for Jerry to
+  delete by hand; the Arc page heading reads just "Arc". Release days: when
+  Monitor, Logbook, Ship's Purse or Guest go live, Jerry adds the store
+  link and "Full details" link on its Airo page.
 
 ## The fleet dashboard
 
