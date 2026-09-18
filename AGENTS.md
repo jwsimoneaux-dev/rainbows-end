@@ -24,7 +24,11 @@ It is public; keep secrets and private links out of it.
   www.RainbowsEndMarine.com". THIS site stays the home of the App Store
   URLs (privacy, support, marketing): the Airo site's privacy pages were
   generic and not accurate for these apps, and its App Store links were
-  placeholders, when checked on Sept 18.
+  placeholders, when checked on Sept 18. Jerry pastes each app's text from
+  this site into the Airo pages (paste kit, generated Sept 18:
+  https://claude.ai/artifact/HiZakuwHy6JaJQTVgkqcxV). So on EVERY release
+  day that changes a privacy or support page here, tell Jerry which Airo
+  page to re-paste, and regenerate the kit.
 
 ## The fleet dashboard
 
