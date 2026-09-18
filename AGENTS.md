@@ -17,6 +17,14 @@ It is public; keep secrets and private links out of it.
   sailors." The copyright line names Rainbow's End Marine, LLC.
 - The store URLs (root privacy.html and support.html, the app folders) are
   registered in App Store Connect and must never move.
+- **Contact and company site (Sept 18, 2026).** Email:
+  support@RainbowsEndMarine.com (was rainbow@svrainbow.net). Company
+  website: https://www.RainbowsEndMarine.com, a separate GoDaddy Airo site
+  Jerry edits himself. Every footer here ends "· support@… ·
+  www.RainbowsEndMarine.com". THIS site stays the home of the App Store
+  URLs (privacy, support, marketing): the Airo site's privacy pages were
+  generic and not accurate for these apps, and its App Store links were
+  placeholders, when checked on Sept 18.
 
 ## The fleet dashboard
 
