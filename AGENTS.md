@@ -40,7 +40,7 @@ It is public; keep secrets and private links out of it.
   left (no cloud, local network, real time, invented features). OPEN: the
   AI-written generic files rainbowsendmarine.com/privacy-policy.html and
   /support.html are still published (unlinked; false claims), for Jerry to
-  delete by hand; the Arc page heading reads just "Arc". Release days: when
+  delete by hand (Arc heading fixed Sept 18). Release days: when
   Monitor, Logbook, Ship's Purse or Guest go live, Jerry adds the store
   link and "Full details" link on its Airo page.
 
