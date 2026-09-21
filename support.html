@@ -81,7 +81,8 @@
     anchor-and-rode combination from the gear you actually carry, and tells you plainly what to
     watch — thin holding, a bottom your anchor won&rsquo;t set in, not enough water under the keel at
     low tide. It covers regular anchoring, mooring balls, Med mooring, lines ashore, and Bahamian
-    moors, plus a storm mode. It runs entirely offline.</p>
+    moors, plus a storm mode. It runs offline, except for the optional map under the watch
+    plot.</p>
   </details>
 
   <details>
@@ -110,6 +111,17 @@
     night. In shallow water the difference is dramatic: 8 ft of water under a 6 ft bow roller
     needs scope on 14 ft, nearly double what the sounder alone suggests. The old rule isn&rsquo;t wrong;
     it just forgets where the rode begins.</p>
+  </details>
+
+  <details>
+    <summary>Does it matter if I pay out more or less than the app says?</summary>
+    <p>Yes, and the app shows you how much. Set <strong>What I paid out</strong> on the Anchor
+    tab to what you actually put down. With less than tonight wants, the chain lifts off the
+    bottom and starts pulling the anchor upward, and the steeper that pull, the less it holds;
+    with too little, the anchor never reaches the bottom at all, and the app says so. With more,
+    extra chain lies on the bottom and the pull stays flat, but the boat swings wider, and the
+    anchor watch&rsquo;s fence grows with her. The drawing is to scale along the bottom, with the
+    depth stretched so the curve can be seen.</p>
   </details>
 
   <details>
@@ -198,8 +210,10 @@
     anchors for a Bahamian moor, and a tight ring around a boat held by a quay or by lines ashore.
     It then reads the GPS and plots the boat north-up against the fence, with the trail of
     everywhere she has ranged. You can mark from the bow, midships, or the stern; point the phone
-    toward the bow and the app places the anchor where it actually went down. Keep the phone
-    plugged in with the app open on the Watch tab — the screen stays awake by itself.</p>
+    toward the bow and the app places the anchor where it actually went down. Allow location
+    &ldquo;always&rdquo; when you arm and the watch keeps running with the phone locked or another app in
+    front; decline and it runs with the app open, as before. Plug the phone in either way — the
+    GPS is what uses the battery.</p>
   </details>
 
   <details>
@@ -209,6 +223,94 @@
     accuracy, so it takes a few seconds to be sure. An alarm that cries wolf gets disarmed for
     good, which is worse than one that takes a breath. If the GPS goes quiet or the app is closed,
     the screen says the watch has stopped rather than pretending to guard you.</p>
+  </details>
+
+  <details>
+    <summary>Can I make the fence bigger or smaller?</summary>
+    <p>Yes, once the watch is armed: − and + on the Fence row step it by a twentieth of the
+    recommended radius, and the alarm watches the fence as you set it. The plot shows both — the
+    fence you set as a solid line, the plan&rsquo;s fence dashed beside it. Tightening spends the GPS
+    margin and stops where the fence meets the swing itself; a boat lying to her rode reaches that
+    line by doing nothing wrong, so a fence inside it would not be a closer watch, only a false
+    alarm waiting for the wind to shift. Widening is for a GPS that scatters in this anchorage, a
+    long snubber, or a fence that cried once tonight; it stops at twice the recommended radius. The
+    setting stays with the watch and returns to the recommendation the next time you arm.</p>
+  </details>
+
+  <details>
+    <summary>What is the map under the plot?</summary>
+    <p>Switch Map on under the plot and Apple&rsquo;s satellite imagery of the anchorage appears under
+    the same fence, hull and trail, in the same place, so the shore, the docks and your neighbors
+    sit around the picture. It needs a signal and comes from Apple; the plot, the alarm and
+    everything else work exactly the same with it off. It is not a chart — no depths, no marks —
+    and the imagery may be years old.</p>
+  </details>
+
+  <details>
+    <summary>Which way is up on the plot?</summary>
+    <p>North up, like a chart, or heads up, with the boat&rsquo;s bow at the top. At anchor she lies to
+    her rode, so her bow points at the anchor and the picture reads the way the view from the
+    cockpit does. Auto chooses north up with the map off and heads up with it on; you can choose
+    either. The phone&rsquo;s compass is not used, so carrying the phone about the deck does not swing
+    the picture.</p>
+  </details>
+
+  <details>
+    <summary>What is the swing alarm, and how is it different from the anchor alarm?</summary>
+    <p>The anchor alarm catches a boat that drags out of her fence. The swing alarm catches a boat
+    that stays inside her fence but swings round her anchor to where she should not be — a wind
+    shift that lays her over a neighbor, a shoal or a mooring on the other side. Switch it on once
+    she is lying to her anchor. The alarm sector is an arc of the circle, set by two true bearings
+    from the anchor and read clockwise; aim it at the water you want guarded by dragging the two
+    handles on the fence line, or by stepping each edge round 5° at a time. It holds those
+    bearings while she swings, so the same water is watched all night, and Guard the other side
+    swaps it to the opposite arc in one tap. Three fixes in a row clearly inside it sound the same
+    klaxon, and the card says which alarm it is. Near the anchor a bearing means nothing, so the
+    sector counts only past an inner radius, half the fence unless you change it. It is offered
+    where the boat swings — regular anchoring and a mooring ball.</p>
+  </details>
+
+  <details>
+    <summary>Can crew see the swing alarm?</summary>
+    <p>Yes. A boat sharing with crew sends the sector with every report; the Monitor draws it and,
+    with the app closed, a swing alarm arrives as its own notification, worded so the crew know it
+    is a swing and not a drag.</p>
+  </details>
+
+  <details>
+    <summary>What is the soft chime?</summary>
+    <p>The early warning. Inside the fence lies a band the width of the GPS margin — what is left
+    of it, if you have tightened — and a chime sounds once when three fixes in a row put her in it
+    by more than her own GPS uncertainty. At the recommended setting the band begins where the
+    rode&rsquo;s reach ends, so a chime there means she is either scattered by GPS or beginning to drag;
+    watch the trail for a minute and it tells you which. If you have widened the fence, crossing
+    the plan&rsquo;s original line chimes too — that is the alarm you would have had, demoted. Tighten
+    the fence all the way and there is no room for a warning, and the Fence row says so. The chime
+    is soft and sounds once; the alarm is still the only alarm.</p>
+  </details>
+
+  <details>
+    <summary>Does the watch run with the phone locked?</summary>
+    <p>Yes, from version 1.6.0. When you arm, iOS asks to use your location always; allow it and
+    the card says &ldquo;Background watch — you may lock the phone.&rdquo; The GPS keeps coming, the fence is
+    judged by the same rule, and the alarm sounds through the lock screen — on the phone&rsquo;s own
+    speaker, which ignores the silent switch and Focus for as long as the app is running — with its
+    words on the lock screen as a notification. If iOS ever stops the app, you get a notification
+    within two minutes saying the watch has stopped. Decline &ldquo;always&rdquo; and the card says
+    &ldquo;Foreground watch — keep this screen open,&rdquo; with Settings one tap away if you change your
+    mind. Either way, plug the phone in: the GPS is what uses the battery, and a locked screen
+    saves only the screen.</p>
+  </details>
+
+  <details>
+    <summary>What notifications does the app send?</summary>
+    <p>Three, all made on the phone, none involving a server: the anchor alarm with its words while
+    the phone is locked; the early warning&rsquo;s chime, the same way; and the watch-stopped warning, a
+    notification the app keeps two minutes ahead while the watch runs so that a watch iOS
+    terminated is announced rather than silent. The alarm&rsquo;s notification and the watch-stopped
+    warning are Critical Alerts if you allow them when iOS asks: they sound through the silent switch
+    and Do Not Disturb. If you decline, they still break through a Focus mode but not the silent
+    switch; while the app is running, its own sound ignores the silent switch either way.</p>
   </details>
 
   <details>
@@ -234,6 +336,9 @@
     key made from the code; nobody without the code can read it, and it is deleted when you disarm
     or switch sharing off. The code stays until you choose New code. Crew can watch and find; only
     the boat can disarm.</p>
+    <p>From version 1.6.0 the Monitor hears the boat with the app closed: a breach, a quiet GPS or
+    a stand-down reaches crew as a notification within seconds, and silence after fifteen minutes.
+    That needs the crew phone signed into iCloud; watching with the app open does not.</p>
   </details>
 
   <details>
@@ -251,14 +356,17 @@
 
   <details>
     <summary>Does it need internet or my location?</summary>
-    <p>Not for the calculator: Rainbow&rsquo;s End Anchoring works entirely offline and nothing you enter leaves
-    your device. The anchor watch asks for location permission, &ldquo;while using the app&rdquo; only, and
-    reads the GPS — which is satellites, not internet — on the device alone. The remote watch and
+    <p>Not for the calculator: Rainbow&rsquo;s End Anchoring works offline except for the optional map under the
+    watch plot, which needs a signal to draw Apple&rsquo;s imagery and is off unless you switch it on;
+    nothing you enter leaves your device. The anchor watch asks for location permission — and, from version 1.6.0, to use it
+    &ldquo;always&rdquo;, so the watch can keep running with the phone locked — and reads the GPS — which is satellites, not internet — on the device alone. The remote watch and
     sharing with crew are the features that need a connection: switch on &ldquo;Share to my other
     devices&rdquo; and the watch, and only the watch, is copied to your own iCloud so your other devices
     can monitor it; switch on &ldquo;Share with crew&rdquo; and it is published encrypted under a code for the
-    people you give the code to. Both off by default, readable by nobody else. See the <a href="privacy.html">privacy policy</a>, which
-    is still short because there is still little to disclose.</p>
+    people you give the code to. Both off by default, readable by nobody else. The app also asks
+    to send notifications, for the three things listed under the anchor watch. See the
+    <a href="privacy.html">privacy policy</a>, which is still short because there is still little to
+    disclose.</p>
   </details>
 
   <details>
