@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Manifest Guide</title>
+  <meta name="description" content="How to do every job in Rainbow&rsquo;s End Manifest, in the order you meet them aboard." />
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --call: #D2691E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --call: #E8894A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --call: #E8894A;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 20px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 20px; max-width: 64ch; }
+  h2.part {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 48px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  h3 { font-size: 1.4rem; margin: 36px 0 6px; scroll-margin-top: 16px; }
+  h4 { font-size: 1.02rem; margin: 22px 0 4px; }
+  p, li { max-width: 64ch; }
+  p { margin: 6px 0 12px; }
+  ol, ul { padding-left: 1.4em; margin: 6px 0 14px; }
+  li { margin: 4px 0; }
+  a { color: var(--navy); }
+  .toc { border: 1px solid var(--rule); border-radius: 8px; padding: 10px 18px 6px; margin: 8px 0 12px; }
+  .toc-h { font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 4px 0; }
+  .toc ol { columns: 2; column-gap: 28px; margin: 4px 0 8px; }
+  .toc li { margin: 2px 0; break-inside: avoid; }
+  figure { margin: 18px 0 22px; }
+  figure img { display: block; width: 100%; max-width: 300px; height: auto; border: 1px solid var(--rule); border-radius: 14px; }
+  figcaption { color: var(--muted); font-size: 0.92rem; max-width: 60ch; margin-top: 8px; }
+  figcaption strong { color: var(--ink); }
+  b.n { display: inline-block; min-width: 1.35em; height: 1.35em; line-height: 1.35em; border-radius: 50%; background: var(--call); color: #fff; text-align: center; font-size: 0.8rem; font-weight: 700; }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; }
+  /* The family footer (brand standards, section 7): the Designed-by line, the wish, then the copyright. */
+  .brand-foot .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 28px 0 0; }
+  .brand-foot .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; max-width: 58ch; margin: 40px 0 0; }
+  .brand-foot .foot { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+  @media (min-width: 720px) {
+    figure { display: flex; gap: 22px; align-items: flex-end; }
+    figure img { flex: 0 0 280px; }
+  }
+  @media (max-width: 480px) { .toc ol { columns: 1; } }
+  /* Printed: one column, no contents box, each part on a new page, pictures kept whole. */
+  @media print {
+    :root { --paper: #fff; --ink: #000; --muted: #333; --navy: #0B5C8A; --rule: #bbb; --call: #D2691E; }
+    body { padding: 0; font-size: 11pt; }
+    main { max-width: none; }
+    .toc { display: none; }
+    h1 { margin-top: 0; }
+    h2.part { break-before: page; border-top: 0; }
+    h3, h4 { break-after: avoid; }
+    figure { display: flex; gap: 16px; align-items: flex-end; break-inside: avoid; }
+    figure img { flex: 0 0 2.2in; max-width: 2.2in; }
+    b.n { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+<main>
+  <h1>Rainbow&rsquo;s End Manifest — the guide</h1>
+  <p class="meta">Every job in the book, in the order you meet them: setting her up, then the moments aboard, then a reference to every page. On the phone, the book’s Quick reference (at the back, after Maintenance) says where each job lives; this guide says how to do it.</p>
+  <figure><img src="guide/s6-quick-reference.png" width="375" height="728" alt="The Quick reference in the book" loading="lazy" /><figcaption><strong>The Quick reference in the book.</strong> <b class="n">1</b> A job, and where it lives: tap it to open the page. <b class="n">2</b> Check her over opens Before you go.</figcaption></figure>
+  <nav class="toc"><p class="toc-h">Contents</p><ol><li><a href="#setup">Setting her up</a></li><li><a href="#alongside">Alongside for a boarding</a></li><li><a href="#guests">At the dock with guests</a></li><li><a href="#underway">Under way</a></li><li><a href="#after">After the fact</a></li><li><a href="#yearsend">At year’s end</a></li><li><a href="#housekeeping">Housekeeping</a></li><li><a href="#pages">Every page, one line each</a></li><li><a href="#editor">The Editor’s five tabs</a></li><li><a href="#glossary">Glossary — the app’s own words</a></li></ol></nav>
+    <h2 class="part">Part 1 — By moment</h2>
+  <h3 id="setup">Setting her up</h3>
+  <h4>Start</h4>
+  <ol><li>Open the app. The first page says what it does.</li><li>Tap <strong>Welcome aboard — set up my boat</strong> to start your own, or <strong>Explore with Rainbow first</strong> to look around the sample ketch. Your own boat never mixes with Rainbow’s.</li></ol>
+  <h4>Tell it about her once</h4>
+  <p>On Her papers, tap <strong>Edit boat</strong>. Four answers set the gear list: her length (LOA sets the equipment class), propulsion, fuel, and inland or coastal waters. Then, in any order:</p>
+  <ul><li>Her papers and identity: registration, official number, HIN, hailing port.</li><li>Owners and radio: the owners, the people in charge, call sign, MMSI. The MAYDAY card on the briefing reads these.</li><li>Systems: heads, generator, air conditioning, propane, shore power, solar and wind, batteries.</li><li>Tanks: each fuel and water tank with its capacity, the burn rates, the water maker.</li><li>Hour meters: each engine’s and the generator’s reading today. The log’s running totals start from these, and the maintenance schedule comes due by them.</li><li>The vessel: hull color, identifying features and a photo — what a float plan or a search asks for.</li></ul>
+  <p>Tap <strong>Done</strong>. Every page redraws from her. Change her length later and the Gear list redraws with it.</p>
+  <h4>Record where the gear is stowed</h4>
+  <ol><li>Gear › What’s aboard › <strong>Log the gear</strong>.</li><li>Check each item aboard and type where it lives: “port cockpit locker“.</li><li>The briefing’s Where things live page and the stowage door on Her papers now say exactly that.</li></ol>
+  <h4>Another boat</h4>
+  <p>Her papers › <strong>New boat</strong>. Each boat keeps her own book: gear, dates, log and ledgers never mix. The chips under The fleet switch between them.</p>
+  <h3 id="alongside">Alongside for a boarding</h3>
+  <figure><img src="guide/s1-her-papers.png" width="375" height="728" alt="Her papers" loading="lazy" /><figcaption><strong>Her papers.</strong> <b class="n">1</b> What's expired or due. <b class="n">2</b> Where things are stowed. <b class="n">3</b> The day's buttons.</figcaption></figure>
+  <p>The book opens on Her papers, or on the page you left if you were there in the last twelve hours.</p>
+  <ul><li><strong>Her numbers.</strong> Her papers shows the registration, official number and HIN. Owners &amp; radio, the next page, shows the call sign and MMSI.</li><li><strong>Where something is stowed.</strong> Tap <strong>Where things are stowed</strong> on Her papers, or type the item in the Index: “flares“, “extinguisher“.</li><li><strong>The required gear.</strong> Gear › What’s aboard lists the federal minimum for her, each item with its citation, its expiry and where it is stowed. Beyond the minimum follows, kept apart. The federal items are minimums; state law can add to them.</li><li><strong>What’s expired or due.</strong> The line at the head of Her papers counts it; tap it for Maintenance › Attention.</li><li><strong>Clearing in abroad.</strong> Gear › Inventory is her declaration: firearms (even “none“), equipment with serials, alcohol and tobacco, medications, food, animals. Record it in the Editor’s Gear tab; <strong>Share the list</strong> hands an official the whole thing as text.</li></ul>
+  <figure><img src="guide/s2-index-search.png" width="375" height="728" alt="The Index" loading="lazy" /><figcaption><strong>The Index.</strong> <b class="n">1</b> Type the item. <b class="n">2</b> Tap the page it is on.</figcaption></figure>
+  <h3 id="guests">At the dock with guests</h3>
+  <h4>Check her over</h4>
+  <ol><li>Checklists › <strong>Before you go</strong>. The list is drawn from her: a gasoline inboard gets the blower, a sailboat her rig and jacklines.</li><li>Tick each line as you check it. Your ticks keep for the next departure.</li><li>Ticks more than a day old ask “still good?” Tap <strong>Keep them</strong>, or <strong>Start over</strong> to clear them.</li></ol>
+  <figure><img src="guide/s4-before-you-go.png" width="375" height="728" alt="The Checklists page, two days after the ticks" loading="lazy" /><figcaption><strong>The Checklists page, two days after the ticks.</strong> <b class="n">1</b> The question. <b class="n">2</b> Keep them. <b class="n">3</b> Start over.</figcaption></figure>
+  <p>The float plan line opens Rainbow’s End Float Plan. Leave word ashore before you leave the dock.</p>
+  <h4>Brief your guests</h4>
+  <ol><li>Checklists › <strong>Briefing</strong>: four pages — calling for help, where things live, crew overboard, the rules.</li><li>Read them through with your guests aboard.</li><li>On the last page, tap <strong>Briefing given</strong>. The mark stands 24 hours; <strong>Undo</strong> takes it back.</li></ol>
+  <p>The day’s entry records both: the log reads “checked 14 of 15 · briefed 08:40“.</p>
+  <h3 id="underway">Under way</h3>
+  <h4>Start a voyage</h4>
+  <p>A voyage is a trip under one name: a day sail, or weeks of legs and lay days.</p>
+  <ol><li>Her papers › <strong>Log the day</strong>.</li><li>Type a name under <strong>Voyage</strong> and tap <strong>Start</strong>.</li><li>Every entry collects under it until you tap <strong>End the voyage</strong> on the day’s entry. After seven days with nothing logged, the book asks whether she is still under way.</li></ol>
+  <h4>Log the day</h4>
+  <ol><li>Her papers › <strong>Log the day</strong>.</li><li>Choose <strong>Underway</strong> for a day that moves her, or <strong>Lay day aboard</strong> for a day at anchor or in a marina away from home.</li><li>Fill in the date, the times, where from and where to, the distance, the engine hours (the start is filled in from her hour meter), the persons aboard, the weather and the journal.</li><li>If the check or the briefing was done, their chips are on: <strong>Record the predeparture check</strong>, <strong>Record the briefing</strong>.</li><li>Tap <strong>Log the day</strong>.</li></ol>
+  <h4>A passage of a day or more</h4>
+  <figure><img src="guide/s3-days-entry.png" width="375" height="728" alt="The day&#x27;s entry" loading="lazy" /><figcaption><strong>The day’s entry.</strong> <b class="n">1</b> The kind of day. <b class="n">2</b> Name the voyage and tap Start. <b class="n">3</b> The day she arrives, for a passage logged after the fact. Log the departure is at the foot of the page.</figcaption></figure>
+  <ol><li>As you leave, fill in the day’s entry and tap <strong>Log the departure</strong>. The entry is saved as under way; every day at sea counts toward the voyage and the water estimate.</li><li>When you get in, tap <strong>Arrived</strong> at the top of the day’s entry. The same entry opens with the arrival day set.</li><li>Add the arrival time and engine hours, take the miles the watches logged, and tap <strong>Log the arrival</strong>.</li></ol>
+  <p>To log a whole passage after you arrive, use the <strong>Arrives</strong> stepper under the times to set the day she got in.</p>
+  <h4>The change of watch</h4>
+  <ol><li>Her papers › <strong>Log the watch</strong>, or <strong>Change of watch</strong> on the day’s entry.</li><li>Write the time in local time or UTC; the page shows the other.</li><li><strong>Fill from GPS</strong>, or type the position as you would on a chart: 29 18.4 N, 94 47.2 W.</li><li>Add course and speed, wind, sea, barometer (or tap to read the phone’s own), sky, sails, engine, and who kept the watch. Wind, sea, sky, sails and engine carry over from the last watch.</li><li>Tap <strong>Log the watch</strong>.</li></ol>
+  <p>From the second position on, the page works out the distance, speed and course made good. The barometer’s three-hour trend is given in the forecast’s words, and a quick fall is flagged. Watches add no miles or hours to the voyage.</p>
+  <h4>Fuel and water aboard</h4>
+  <p>Log › Estimated fuel &amp; water. Each figure is an estimate and says what it runs from: a measured level, a fill marked topped off, or nothing yet. The gauge outranks the arithmetic.</p>
+  <h3 id="after">After the fact</h3>
+  <h4>Log a fill</h4>
+  <ol><li>Her papers › <strong>Log a fill</strong>. The form opens over the Fuel Log.</li><li>Fill in the date, gallons, price and dock. Mark <strong>topped off</strong> if she was; the estimate starts over from full.</li><li>The voyage chip proposes the voyage for that date. Tap another, or <strong>none</strong>.</li><li>Tap <strong>Log the fill</strong>.</li></ol>
+  <h4>Log the work, a cost or an expense</h4>
+  <ul><li><strong>The work</strong> — repairs, routine maintenance, equipment added: Her papers › <strong>Log the work</strong>.</li><li><strong>A cost</strong> — the home slip, storage, insurance, registration, dues: Her papers › <strong>Log a cost</strong>.</li><li><strong>An expense on a voyage</strong> — provisions, meals ashore, fees and permits, transport ashore, moorings and transient slips: Her papers › <strong>Log an expense</strong> (the button reads so while a voyage is under way). The ⓘ beside Category says what each category takes.</li></ul>
+  <h4>Measure a tank</h4>
+  <ul><li>Fuel: Expenses › Fuel Log › <strong>Measure</strong> on the tank’s line. Set the level by the quarters or in gallons.</li><li>Water: Log › Estimated fuel &amp; water: <strong>Topped off today</strong>, or type the measured level.</li></ul>
+  <h4>Correct or delete an entry</h4>
+  <p>Tap it on its page. The same form opens with <strong>Save changes</strong>, and a delete button below it that asks first.</p>
+  <h4>Photos on a day</h4>
+  <ol><li>On the day’s entry, or on a logged day, tap <strong>Add photos</strong> or <strong>Take a photo</strong> (up to twelve a day).</li><li>Tap a thumbnail for the full view: swipe through the day, write a caption, share, or delete.</li></ol>
+  <p>The app keeps a copy of about 200 KB; your originals stay in Photos.</p>
+  <h3 id="yearsend">At year’s end</h3>
+  <h4>Choose the dates</h4>
+  <p>Every ledger and the log open on year to date. At the head of the record, tap <strong>This month</strong>, <strong>Year to date</strong>, <strong>Last year</strong>, <strong>All</strong> or <strong>Dates…</strong>. The choice carries from page to page while the app is open.</p>
+  <h4>What she cost</h4>
+  <ol><li>Expenses › <strong>Boat expenses</strong>: the total for the dates, by category. It counts fuel, work and ownership; tap the <strong>boat only</strong> chip to add the fourth ledger, and it reads <strong>with cruising expenses</strong>.</li><li>Tap <strong>Compare with…</strong> to set a second period beside it — the same dates last year, the whole of last year, or dates you type — with the difference in dollars and percent.</li></ol>
+  <figure><img src="guide/s5-boat-expenses.png" width="375" height="728" alt="Boat expenses" loading="lazy" /><figcaption><strong>Boat expenses.</strong> <b class="n">1</b> The dates. <b class="n">2</b> Compare with…. <b class="n">3</b> The total for the dates.</figcaption></figure>
+  <h4>Send the year’s expenses</h4>
+  <ol><li>Expenses › <strong>Boat expenses, entries</strong>.</li><li>Choose <strong>Last year</strong>.</li><li>Tap <strong>Export as CSV</strong> for a spreadsheet, or <strong>Export as PDF</strong> for a statement. Both go out through the share sheet: Mail, Files, AirDrop.</li></ol>
+  <h4>What a voyage cost</h4>
+  <p>Log › <strong>Voyage expenses</strong>, the page after the voyage card: the total, per day and per nautical mile, by category, from all four ledgers. Entries in the voyage’s dates without a voyage are listed with a button to assign them.</p>
+  <h4>Sea service</h4>
+  <p>Log › <strong>Sea service</strong> tallies what the CG-719S asks for each year: the days (four hours or more under way, by default), the hours, the dates and the waters. Set the waters on each day’s entry, and gross tonnage on the Editor’s Boat tab. Tap <strong>Share as text</strong> to copy the figures onto the form. You attest them; the app prepares them.</p>
+  <h4>A voyage’s track</h4>
+  <p>Log › The log › <strong>Share as GPX</strong> on the voyage card: a track for each passage, a point for each watch that carried a position. Open it in your chart app.</p>
+  <h3 id="housekeeping">Housekeeping</h3>
+  <h4>Back up the book</h4>
+  <p>Her papers › Edit boat › <strong>Export the book</strong> writes every boat, her gear, dates, log and ledgers to one file. Save it somewhere you control. <strong>Import a book</strong> brings it back. The export records which photos a day had, not the pictures.</p>
+  <h4>iPhone and iPad</h4>
+  <ol><li>Her papers › Edit boat › iCloud sync › <strong>Sync her books across your devices</strong>. Switch it on on each device.</li><li>Edits reach the other device when it next opens the app, or on <strong>Sync now</strong>.</li></ol>
+  <p>The copy lives in your own iCloud; we cannot read it. If two devices edit the same boat, the newer edit keeps that boat’s whole book. Finish an entry on one device before picking up the other, and update both devices together.</p>
+  <h4>A new phone</h4>
+  <p>With iCloud sync on, switch it on on the new phone and the fleet comes down. A device backup or Apple’s Quick Start also carries the whole book. So does an exported book.</p>
+  <h4>Delete a boat</h4>
+  <p>Her papers › Edit boat › The fleet › <strong>Delete</strong>. It asks first. (With one boat aboard there is nothing to delete.)</p>
+  <h4>Where things stand on this device</h4>
+  <p>Edit boat › <strong>About this app</strong> shows the version and how much space the voyage photos take.</p>
+  <h2 class="part">Part 2 — Reference</h2>
+  <h3 id="pages">Every page, one line each</h3>
+  <h4>The Boat</h4>
+  <ul><li>Her papers — what’s due, the stowage door, the day’s buttons, the fleet, her identity.</li><li>Owners &amp; radio — call sign, MMSI, owners and who’s in charge.</li><li>Dimensions &amp; propulsion — LOA, beam, draft, air draft; engines; waters.</li><li>Systems aboard — heads, generator, air conditioning, propane, sea water.</li><li>Power — shore power, wind, solar, batteries.</li><li>Capacities — tanks and burn rates.</li></ul>
+  <h4>Gear</h4>
+  <ul><li>What’s aboard — the federal minimum for her, with expiry and stowage.</li><li>Federal requirements, continued — the rest of the minimum.</li><li>Beyond the minimum — the recommended gear.</li><li>Inventory — the declaration for clearing in.</li></ul>
+  <h4>Checklists</h4>
+  <ul><li>Checklists — the doors to Before you go and the briefing.</li><li>Before you go — the boat; on deck — the skipper’s predeparture check.</li><li>Briefing — calling for help; where things live; crew overboard; the rules — the passenger briefing, Briefing given on the last.</li></ul>
+  <h4>Log</h4>
+  <ul><li>Estimated fuel &amp; water — what is aboard, and what each figure runs from.</li><li>The day’s entry — a day under way, a lay day, a passage.</li><li>The change of watch — while under way, or once asked for.</li><li>The log — the days, the voyage card, the miles under her keel.</li><li>Voyage expenses — what a voyage cost.</li><li>Sea service — the figures for the CG-719S.</li><li>The watches — the watches logged, newest first.</li></ul>
+  <h4>Expenses</h4>
+  <ul><li>Boat expenses — the total, by category, and Compare with….</li><li>Boat expenses, entries — the entries, Export as CSV or PDF.</li><li>Fuel Log, Work Log, Ownership Log, Cruising expenses — the four ledgers.</li></ul>
+  <h4>Maintenance</h4>
+  <ul><li>Attention — what is expired, overdue or due soon.</li><li>The schedule — every item, its last date and hour meter.</li></ul>
+  <h4>Quick reference</h4>
+  <ul><li>Four pages: where each job lives.</li></ul>
+  <h3 id="editor">The Editor’s five tabs</h3>
+  <p>Open the Editor from the tab at the top of any page; <strong>The Book</strong> on its bar brings you back.</p>
+  <ul><li><strong>Boat</strong> — the full manifest, the fleet, iCloud sync, Export and Import.</li><li><strong>Gear</strong> — every item, aboard or not, its stowage and dates; the Inventory.</li><li><strong>Briefing</strong> — the briefing in one scroll, and Briefing given.</li><li><strong>Log</strong> — every day and voyage, searchable by name, place, weather, journal or date.</li><li><strong>Maintenance</strong> — the whole schedule, and the ledgers’ totals by month, year and category.</li></ul>
+  <h3 id="glossary">Glossary — the app’s own words</h3>
+  <ul><li><strong>Federal minimum</strong> — what 33 CFR and 46 CFR require her to carry.</li><li><strong>Beyond the minimum</strong> — gear the app recommends; never counted as required.</li><li><strong>Hard date</strong> — a legal or safety expiration. Past it, the gear doesn’t count.</li><li><strong>Attention</strong> — everything expired or overdue, expirations within 60 days, service within 30 days or its hour margin.</li><li><strong>Replace, Inspect, Test, Clean, Exercise, Service, Renew</strong> — what the maintenance job is. Replace means new on schedule; Inspect means replace only what is worn.</li><li><strong>Voyage</strong> — entries collected under one name until you end it.</li><li><strong>Leg</strong> — a day’s entry under way.</li><li><strong>Lay day</strong> — a day aboard without getting under way.</li><li><strong>Passage</strong> — a leg logged at departure and finished on arrival, however many days between.</li><li><strong>Watch</strong> — a change-of-watch record: time, position, weather. It adds no miles or hours.</li><li><strong>Estimate</strong> — a figure worked out, not read from a gauge. Each says what it runs from.</li><li><strong>Hour meter</strong> — an engine’s or generator’s running-hours meter.</li><li><strong>Persons aboard</strong> — on a day’s entry, the people aboard that day; on Gear, the most she is equipped for.</li><li><strong>The four ledgers</strong> — Fuel Log, Work Log, Ownership Log, Cruising expenses.</li><li><strong>Transport ashore</strong> — taxis, rental cars, ferries, excursions once you have arrived.</li><li><strong>Sea-service day</strong> — a calendar day with four hours or more under way (the threshold can be set to eight or twelve).</li><li><strong>Sounding</strong> — a tank’s level measured, by quarters or in gallons.</li></ul>
+  <div class="contact">
+    <p><strong>Questions this guide doesn&rsquo;t answer?</strong> <a href="support.html">The support page</a> has the rest, or write to
+    <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>
+  </div>
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
