@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Handover &mdash; Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+</style>
+<main>
+  <h1>Rainbow&rsquo;s End Handover &mdash; Support</h1>
+  <p class="meta">Answers to the questions that come up.
+  Anything not covered here: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does Handover do?</summary>
+    <p>It makes a record of the boat&rsquo;s condition when you take her over and when you hand her
+    back. At check-in you walk her area by area with the app&rsquo;s camera, mark any damage on the
+    photos, take the readings, tick the equipment, note what the base told you, sign and seal.
+    Underway it keeps each fault with its history. At checkout you walk her again against the check-in
+    photos, and the app makes the Final turnover report. It works offline.</p>
+  </details>
+
+  <details>
+    <summary>Where is the sample, and can I change it?</summary>
+    <p>On the Handovers screen: Halcyon at Road Town, check-in sealed, with a windlass fault
+    authorized. It shows the walk-through, the marked photos, the readings, the faults and both
+    reports without using the camera. The sample itself is read-only; <strong>Copy the sample</strong>
+    makes a copy of your own to try things on.</p>
+  </details>
+
+  <details>
+    <summary>How do I start a handover?</summary>
+    <p>Tap <strong>New handover</strong>. Enter the boat&rsquo;s name, choose Monohull or Catamaran
+    (the areas and the tanks follow from it), and fill in the charter company, the base, the skipper,
+    the crew, the first day and the nights. The handover opens on Check-in.</p>
+  </details>
+
+  <h2>Check-in</h2>
+
+  <details>
+    <summary>Why can I only use the app&rsquo;s own camera?</summary>
+    <p>So every photo&rsquo;s time and position come from the phone at the moment it was taken, never
+    from a picture made earlier. Receipts are the one exception: they may come from your photo
+    library, because a receipt often arrives by email, and an imported one is marked as imported.</p>
+  </details>
+
+  <details>
+    <summary>How do I mark damage on a photo?</summary>
+    <p>Open the photo and tap where the damage is. A numbered circle appears; choose its size. Tap
+    <strong>Record a fault here</strong> to turn the marks into a fault with its own history, or tie a
+    mark to a fault already recorded. <strong>Remove this mark</strong> takes it off.</p>
+  </details>
+
+  <details>
+    <summary>What is the fingerprint?</summary>
+    <p>A SHA-256 fingerprint of the photo&rsquo;s bytes, worked out on the phone. If a single byte of
+    the photo changes, the fingerprint changes. Each photo&rsquo;s fingerprint is printed in the
+    report, and sealing a walk fingerprints the whole walk. <strong>Check the photo files</strong> on
+    Reports works each one out again and says whether they still match.</p>
+  </details>
+
+  <details>
+    <summary>Can I record the base&rsquo;s briefing?</summary>
+    <p>Yes, as notes, a voice memo, or both. The app asks first: turn on <strong>Everyone recorded
+    agrees</strong> before <strong>Record the briefing</strong> will start. The recording stays on the
+    phone.</p>
+  </details>
+
+  <details>
+    <summary>What does sealing do?</summary>
+    <p>Signers sign the fingerprint they see, and sealing stores the time and the fingerprint of the
+    whole walk. After that the check-in is fixed. If anything changes after someone has signed, their
+    signature goes stale and the walk cannot be sealed until they sign again. Anything written in
+    after the seal is kept, and marked <strong>Added after sealing</strong> in the report.</p>
+  </details>
+
+  <h2>Underway</h2>
+
+  <details>
+    <summary>How do I record a fault?</summary>
+    <p>On Faults, tap <strong>Record a fault</strong>, or <strong>Record a fault here</strong> on a
+    marked photo. Say what it is and take a photo of it. Then add its history as it happens: when you
+    reported it and to whom, what repair was authorized, when it was repaired, the receipts, and when
+    it was closed. Each fault says where it came from: found at check-in, arose underway, or found at
+    checkout.</p>
+  </details>
+
+  <details>
+    <summary>Can I still add to a fault after the check-in is sealed?</summary>
+    <p>Yes. A fault&rsquo;s history can always be added to, even after checkout. The sealed parts
+    themselves do not change.</p>
+  </details>
+
+  <h2>Checkout</h2>
+
+  <details>
+    <summary>What is the faint photo over the camera?</summary>
+    <p>At checkout the camera shows the check-in photo of the same area over the live view, so the
+    photo you take now lines up with the one you took then. Choose Off, Faint or Half.</p>
+  </details>
+
+  <details>
+    <summary>Where do I enter the fuel and water I paid for at the handback?</summary>
+    <p>On Returns. Turn on <strong>Refueled</strong> or <strong>Water tanks filled</strong>, then enter
+    the amount, how much went in, and the receipt. If the fuel reading at checkout is not full while
+    Refueled is on, Returns says so.</p>
+  </details>
+
+  <details>
+    <summary>Can I record fuel I bought in the middle of the week?</summary>
+    <p>No, on purpose. Handover records the boat&rsquo;s condition, and the costs of the handback.
+    Costs during the voyage belong in <a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s
+    End Logbook</a> or <a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End
+    Ship&rsquo;s Purse</a>.</p>
+  </details>
+
+  <details>
+    <summary>How do I share the reports?</summary>
+    <p>On Reports, share the Condition at delivery report after check-in and the Final turnover report
+    after checkout. Each is a PDF, handed to the phone&rsquo;s share sheet, so you choose where it
+    goes: Mail, AirDrop, Messages, Files or a printer.</p>
+  </details>
+
+  <h2>Crew photographers</h2>
+
+  <details>
+    <summary>Can several of us photograph at once?</summary>
+    <p>Yes, with the free Handover Crew app on each crew phone. On <strong>Crew photographers</strong>,
+    add the crew, <strong>Share the areas out</strong>, and <strong>Start sharing</strong>. Each crew
+    member scans the code, chooses their name, and photographs only their own areas. Their photos come
+    to your phone and land in the right areas with their names.</p>
+  </details>
+
+  <details>
+    <summary>What if there is no signal?</summary>
+    <p>Photos wait on the crew phone and go when there is a signal. Your phone checks every 45 seconds
+    while it is open, or tap <strong>Check for photos now</strong>. Sending from a crew phone needs its
+    iCloud sign-in.</p>
+  </details>
+
+  <details>
+    <summary>Can anyone else see the crew&rsquo;s photos?</summary>
+    <p>No. They travel through iCloud sealed under a key made from the handover&rsquo;s code, and
+    without the code nobody can find or open them, including us. <strong>Stop sharing</strong> takes
+    down what your phone put up. The <a href="privacy.html">privacy policy</a> has the details.</p>
+  </details>
+
+  <h2>What it is and is not</h2>
+
+  <details>
+    <summary>What is the report worth if there is a dispute over the deposit?</summary>
+    <p>It is a record. Each photo was taken in the app, its time and position come from the phone, and
+    each photo and sealed report carries a fingerprint. What that record is worth is for the parties
+    to decide.</p>
+  </details>
+
+  <details>
+    <summary>Does it work on the iPad?</summary>
+    <p>Yes. In landscape every main screen shows two panes side by side. In portrait, and on the phone,
+    it is one column.</p>
+  </details>
+
+  <details>
+    <summary>How do I delete a handover?</summary>
+    <p>Open it, go to Details, and tap <strong>Delete this handover</strong>. Its photos, recordings
+    and signatures go with it. It cannot be undone.</p>
+  </details>
+
+  <h2>Contact</h2>
+  <p>Anything else: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>. Say which
+  device and version (the About page names the version) and what you expected to see.</p>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>

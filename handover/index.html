@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Handover</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <meta name="description" content="The record of a boat&rsquo;s condition at check-in and at checkout, for the bareboat skipper: photos from the app&rsquo;s own camera, readings, faults and the turnover report, offline." />
+  <style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="seal" src="../brand/mark-512.png" width="132" height="132" alt="" />
+      <p class="brand">RAINBOW&rsquo;S END MARINE, LLC</p>
+      <h1>Rainbow&rsquo;s End Handover</h1>
+      <p class="tagline">Take charge of the boat with confidence.</p>
+      <p class="sub">The base walks you round her in twenty minutes, hands you the keys, and by the
+      time you notice the gouge in the topsides you are three anchorages away. Handover is the record
+      of her condition when you take her over and when you hand her back. On your device, bought once,
+      with no account.</p>
+      <span class="badge">In beta on TestFlight &middot; headed for the App Store</span>
+    </div>
+  </div>
+  <main>
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><strong>Check-in, area by area</strong><span>Cabins, hull, deck, rig and sails, engine,
+        systems, inventory lockers. Every photo is taken in the app and carries the phone&rsquo;s time
+        and position. Circle the damage on the photo itself.</span></li>
+      <li><strong>Readings and equipment</strong><span>Fuel, water, battery, hour meters, holding
+        tank; the equipment she is required to carry, ticked. At checkout every reading shows its
+        difference.</span></li>
+      <li><strong>The base&rsquo;s briefing</strong><span>Write down what the base told you, or record
+        it as a voice memo once everyone recorded agrees.</span></li>
+      <li><strong>Signed and sealed</strong><span>Sign, and seal the check-in. Sealing makes the
+        Condition at delivery report, with a fingerprint for each photo and for the walk.</span></li>
+      <li><strong>Faults underway</strong><span>Record a fault when it happens: when it was reported
+        and to whom, what repair was authorized, the receipts. Each says where it came from: found at
+        check-in, arose underway, or found at checkout.</span></li>
+      <li><strong>Checkout against the check-in</strong><span>The camera shows each check-in photo
+        faintly over the live view, so the picture you take now lines up with the one you took
+        then.</span></li>
+      <li><strong>Returns</strong><span>Fuel, water, trash, linens, keys, documents, equipment, with
+        the cost and the receipt for what you paid at the handback, checked against the
+        readings.</span></li>
+      <li><strong>The Final turnover report</strong><span>Each area before and after, the difference
+        in every reading, and every fault with its history, as a PDF through the share sheet.</span></li>
+      <li><strong>Several photographers</strong><span>Share the areas out; each crew member photographs
+        their own on the free Handover Crew app, and the photos come to your phone through iCloud,
+        sealed under the handover&rsquo;s code.</span></li>
+      <li><strong>Works offline</strong><span>No account, no server of ours, nothing tracked. Only crew
+        photographers need a signal, and their photos wait until there is one.</span></li>
+    </ul>
+
+    <p class="lede" style="margin-top:18px">It came from our own charters, for the bareboat skipper.
+    It serves the delivery captain, and an owner lending the boat to a friend, the same way.</p>
+
+    <h2>What it won&rsquo;t do</h2>
+    <ul class="wont">
+      <li>Take a walk-through photo from your library. Every picture&rsquo;s time starts in the app&rsquo;s own camera. Receipts are the one exception, and an imported one is marked as imported.</li>
+      <li>Claim more than a record. What the record is worth is for the parties to decide.</li>
+      <li>Keep the voyage or its costs. The days are Rainbow&rsquo;s End Logbook; the kitty is Rainbow&rsquo;s End Ship&rsquo;s Purse.</li>
+      <li>Put your handover on a server of ours. It lives on your phone and leaves only as the report you send, or as crew photos sealed under your code.</li>
+    </ul>
+
+    <p class="honest">Rainbow&rsquo;s End Handover makes a record of the boat&rsquo;s condition: each
+    photo taken in the app, with the phone&rsquo;s time and position, and a fingerprint that changes if
+    a single byte changes. What that record is worth is for the parties, and if it comes to it a court,
+    to decide.</p>
+
+    <h2>Now in beta</h2>
+    <p class="lede">Rainbow&rsquo;s End Handover is on TestFlight, headed for the App Store for iPhone
+    and iPad, $7.99, bought once. The free Handover Crew app comes with it.</p>
+
+    <h2>More</h2>
+    <ul class="links">
+      <li><a href="support.html">Support &amp; FAQ<span>Check-in, marks and the seal, faults, checkout, reports, crew photographers.</span></a></li>
+      <li><a href="privacy.html">Privacy Policy<span>Sends nothing to us; crew photos travel sealed under your code.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s End Logbook<span>The book of your voyage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </main>
+</body>
+</html>
