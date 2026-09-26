@@ -148,8 +148,8 @@ a { color: var(--navy); }
 
   <details>
     <summary>What date does a new day get?</summary>
-    <p>The first date of the voyage not yet written. When every date has a day, the next one is the
-    day after the last. Change the date on the day itself if you are writing out of order.</p>
+    <p>Today, when today is a day of the voyage and has no day yet. Otherwise the first date of the
+    voyage not yet written. Change the date on the day itself if you are writing out of order.</p>
   </details>
 
   <h2>Pictures</h2>
@@ -193,13 +193,32 @@ a { color: var(--navy); }
   <details>
     <summary>Is this a shared kitty?</summary>
     <p>No. The ledger is your own record of what the voyage cost. It has no people, no shares and
-    no settlement.</p>
+    no settlement. For the crew&rsquo;s kitty, use Rainbow&rsquo;s End Ship&rsquo;s Purse; the expenses
+    entered there can come to Logbook, as the next question explains.</p>
   </details>
 
   <details>
     <summary>What is &ldquo;a day&rdquo; in the per-day figure?</summary>
-    <p>The total over the days aboard: first day to last, inclusive. A weekend of three days with
-    $300 spent reads $100 a day, whether or not every day has a line.</p>
+    <p>While the voyage is under way, the days sailed so far, counting today: two days into a week
+    with $300 spent reads $150 a day, marked &ldquo;so far&rdquo;. Once its last day has passed, or it
+    is closed, all its days, first to last: a three-day weekend with $300 spent reads $100 a day.</p>
+  </details>
+
+  <details>
+    <summary>Can expenses from Ship&rsquo;s Purse come into Logbook?</summary>
+    <p>Yes, from version 1.1.0. What the bookkeeper enters in Ship&rsquo;s Purse (fuel, groceries,
+    dockage, fees) appears at the top of the voyage&rsquo;s Expenses as offers, under
+    <strong>From Ship&rsquo;s Purse</strong>. Nothing goes into your ledger until you tap
+    <strong>Add</strong>. If you already typed the same expense, Logbook offers <strong>Link</strong>
+    instead, so it is not counted twice. The voyage must be for the same boat, and the expense dated
+    on the voyage.</p>
+    <p>On one phone they arrive by themselves when you open Expenses. From the bookkeeper&rsquo;s phone
+    they come as a file by AirDrop or Messages: tap it and choose Logbook.</p>
+    <p><strong>Not this one</strong> turns one down. It goes to <strong>Set aside</strong> at the foot
+    of Expenses and is never offered again by itself; <strong>Offer again</strong> there brings it
+    back. The other way, open any expense with an amount: <strong>Send to Ship&rsquo;s Purse</strong>
+    (when it is on this phone) or <strong>Send to another phone</strong>. Nothing is sent by
+    itself.</p>
   </details>
 
   <h2>Sharing the book</h2>
