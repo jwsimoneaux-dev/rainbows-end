@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watch Bill Crew Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png" />
+  <style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Watch Bill Crew &mdash; Support</h1>
+  <p class="meta">Answers to the questions that come up.
+  Anything not covered here: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>
+
+  <h2>Getting started</h2>
+  <details>
+    <summary>What does Watch Bill Crew do?</summary>
+    <p>It shows your own watches from the skipper&rsquo;s watch bill: when you are on, whether on the helm or as lookout, and your time off watch, and it sets an alarm before each of your watches. It is free. The skipper plans the watches with <a href="../">Rainbow&rsquo;s End Watch Bill</a>.</p>
+  </details>
+  <details>
+    <summary>How do I get the plan?</summary>
+    <p>Ask the skipper to open the Share tab in Watch Bill. Tap <strong>Scan the skipper&rsquo;s code</strong>, scan the code on their screen, and choose your name. No signal is needed.</p>
+  </details>
+  <details>
+    <summary>Why does the skipper scan my phone back?</summary>
+    <p>Your phone shows its own code under My code. When the skipper scans it, their device records that your phone has this version of the plan and how far ahead your alarms are set. That is how the skipper knows whose phone is up to date.</p>
+  </details>
+  <details>
+    <summary>Can I try it without a skipper?</summary>
+    <p>Yes: scan the <a href="#practice">practice code</a> below, from this screen or a printout.</p>
+  </details>
+
+  <h2>Your watches</h2>
+  <details>
+    <summary>What does My watch show?</summary>
+    <p>Your status first: on watch until when, or off watch until your next and on which post. On watch, it says when you move from lookout to the helm and who comes on. Under it, the version of the plan your phone holds and when you scanned it. Night view, red on black, is one tap at the top.</p>
+  </details>
+  <details>
+    <summary>The skipper changed the plan. What do I do?</summary>
+    <p>Scan the new code on the skipper&rsquo;s screen. Until you do, your phone follows the old version and rings at the old times. Your phone cannot know of a change it has not scanned.</p>
+  </details>
+  <details>
+    <summary>It says &ldquo;All hands&rdquo; or &ldquo;Watches stopped&rdquo;.</summary>
+    <p>All hands: watches have not started; the skipper begins them when the start or the run out is over, then everyone scans the new code. Watches stopped: the skipper has stood the watches down, for a night at anchor for instance. When they restart, scan the new code.</p>
+  </details>
+  <details>
+    <summary>I have left the boat. How do I stop the alarms?</summary>
+    <p>At the bottom of My watch, tap <strong>Leave this voyage</strong>, then tap again. The plan and its alarms are removed from your phone.</p>
+  </details>
+
+  <h2>Alarms</h2>
+  <details>
+    <summary>Will the alarm ring if my phone is on Silent?</summary>
+    <p>On iOS 26, yes, once you allow alarms: the wake call is a full-screen alarm with a Stop button. On earlier iOS it is a notification, which Silent and Focus can hide; Alarms on this phone says which yours uses.</p>
+  </details>
+  <details>
+    <summary>How do I test it?</summary>
+    <p>Open <strong>Alarms on this phone</strong>, allow alarms and notifications, and tap <strong>Test: ring in one minute</strong>. Try it with the phone on Silent.</p>
+  </details>
+  <details>
+    <summary>Is the alarm guaranteed?</summary>
+    <p>No. Alarms can be silenced, phones go flat, a phone can be left below. The person on watch wakes you in person, by name. That is the standard; this phone is the backup.</p>
+  </details>
+
+  <h2 id="practice">A practice code</h2>
+  <p>To try Watch Bill Crew without a skipper, scan this code with <strong>Scan the skipper&rsquo;s
+  code</strong>. It is a practice passage with four crew, Alex, Blair, Casey and Drew, on the rolling
+  watch in Central time, with watches running until November 25, 2026. Choose any name. Your phone
+  will set alarms for that person&rsquo;s watches; <strong>Leave this voyage</strong> removes them.</p>
+  <p><img src="practice-code.svg" width="320" height="320" alt="The practice watch bill code" style="display:block; max-width:100%; height:auto; border-radius:8px;" /></p>
+
+  <h2>Contact</h2>
+  <p>Anything else: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>. Say which
+  device and version (the About page names the version) and what you expected to see.</p>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
