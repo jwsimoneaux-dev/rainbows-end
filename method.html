@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How Anchoring Works It Out</title>
+  <meta name="description" content="Every formula Rainbow&rsquo;s End Anchoring uses, what each rests on, and the figures for one boat worked through." />
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+</head>
+<body>
+<style>
+  :root {
+    --paper: #F6F8FA; --ink: #131A20; --muted: #55636E; --navy: #0B5C8A; --rule: #D8E0E7; --card: #FFFFFF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --card: #121A21;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #0C1116; --ink: #E8EEF3; --muted: #A5B2BC; --navy: #6FB6DF; --rule: #24303A; --card: #121A21;
+  }
+  body {
+    background: var(--paper); color: var(--ink);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    margin: 0; padding: 0 16px 80px;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    text-wrap: balance; letter-spacing: -0.01em;
+  }
+  h1 { font-size: 1.9rem; margin: 52px 0 4px; }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 20px; max-width: 64ch; }
+  h2 {
+    font-size: 0.8rem; font-family: system-ui, sans-serif; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy);
+    margin: 44px 0 4px; padding-top: 16px; border-top: 1px solid var(--rule);
+  }
+  h3 { font-size: 1.35rem; margin: 18px 0 6px; }
+  p { max-width: 64ch; margin: 6px 0 12px; }
+  .muted { color: var(--muted); }
+  a { color: var(--navy); }
+  .contents { columns: 2; column-gap: 24px; padding: 0; list-style: none; margin: 8px 0 0; }
+  .contents li { padding: 3px 0; break-inside: avoid; }
+  @media (max-width: 480px) { .contents { columns: 1; } }
+  .formula {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 1.15rem; font-variant-numeric: tabular-nums;
+    background: var(--card); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 12px 16px; margin: 10px 0 12px; overflow-x: auto;
+  }
+  .formula small { display: block; font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+  .footing { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
+  .footing span {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted);
+  }
+  .footing span b { color: var(--ink); font-weight: 700; }
+  table.work { border-collapse: collapse; width: 100%; max-width: 40rem; font-variant-numeric: tabular-nums; margin: 6px 0 14px; }
+  table.work td { padding: 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  table.work td:last-child { text-align: right; padding-left: 16px; white-space: nowrap; font-weight: 650; }
+  table.work tr.total td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; }
+  dl.labels { margin: 8px 0 0; max-width: 64ch; }
+  dl.labels dt { font-weight: 700; margin-top: 8px; }
+  dl.labels dd { margin: 0; color: var(--muted); }
+  .contact {
+    border-left: 4px solid var(--navy); border-radius: 4px;
+    padding: 10px 16px; margin: 36px 0 0;
+    background: color-mix(in srgb, var(--navy) 7%, transparent);
+  }
+  .contact p { margin: 6px 0; }
+  .brand-foot .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 28px 0 0; }
+  .brand-foot .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; max-width: 58ch; margin: 40px 0 0; }
+  .brand-foot .foot { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+  .family { margin-top: 44px; }
+  .family ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  .family li { border-top: 1px solid var(--rule); }
+  .family li:last-child { border-bottom: 1px solid var(--rule); }
+  .family a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+  .family a:hover { color: var(--navy); }
+  .family span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+</style>
+<main>
+  <h1>How Anchoring works it out</h1>
+  <p class="meta">Every figure Rainbow&rsquo;s End Anchoring gives you, and where it comes from. Each
+  section shows the formula, what it means, what it rests on, and the numbers for
+  <em>Rainbow</em>, the ketch the app starts with, so you can check them in the app yourself.</p>
+
+  <div class="contact" style="margin-top:0">
+    <p><strong>This page describes version 2.1.0, now in testing.</strong> Until it reaches the App
+    Store, the version there differs in four ways: it does not take a current, it draws the
+    chain&rsquo;s curve from its weight in air rather than in water, it uses one chain weight for
+    every grade, and it cannot mark the anchor after the drop. Every other figure here is the same.</p>
+  </div>
+
+  <p><em>Rainbow</em>: <span data-v="boat.loa">46.7</span> ft long, <span data-v="boat.beam">13.7</span> ft
+  beam, <span data-v="boat.draft">5.5</span> ft draft, <span data-v="boat.displacement">36,500</span> lb,
+  bow roller <span data-v="boat.roller">6</span> ft above the water, a 65 lb scoop anchor on 200 ft of
+  3/8&Prime; G43 chain. The night: <span data-v="depth.reading">10</span> ft on the sounder, 12 kt of wind,
+  a short chop, soft mud, overnight in settled weather, one anchor down.</p>
+
+  <h2>What each figure rests on</h2>
+  <dl class="labels">
+    <dt>Physics</dt><dd>Standard physics: the drag equation, the catenary, the friction of water.</dd>
+    <dt>Geometry</dt><dd>Arithmetic on lengths and angles. Nothing is assumed.</dd>
+    <dt>Published</dt><dd>A published figure, and whose. We name a source only when we have read it.</dd>
+    <dt>Our estimate</dt><dd>A figure we chose. The app treats it as an estimate, and so should you.</dd>
+  </dl>
+
+  <h2>Contents</h2>
+  <ul class="contents">
+    <li><a href="#depth">Depth</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#load">The load</a></li>
+    <li><a href="#current">Current</a></li>
+    <li><a href="#catenary">The chain&rsquo;s curve</a></li>
+    <li><a href="#holding">Holding and the margin</a></li>
+    <li><a href="#strength">Strength of the gear</a></li>
+    <li><a href="#swing">The swing</a></li>
+    <li><a href="#mooring">Mooring balls</a></li>
+    <li><a href="#held">Held and two-anchor moors</a></li>
+    <li><a href="#fence">The anchor watch&rsquo;s fence</a></li>
+    <li><a href="#alarm">The alarm and the early warning</a></li>
+    <li><a href="#late">Marking the anchor after the drop</a></li>
+  </ul>
+
+  <!-- ===================================================================== -->
+  <h2 id="depth">Depth</h2>
+  <h3>How deep the rode has to reach</h3>
+  <p>Scope is measured from the bow roller to the seabed at the worst of the night, not from the
+  surface. In shallow water the height of the roller is a large share of it.</p>
+  <div class="formula">Depth to reach = sounder + correction + bow roller + tide to rise + surge
+    <small>correction: added when your sounder reads from the transducer or the keel · surge: 0 flat,
+    0.5 ft chop, 1.5 ft moderate swell, 3 ft rough</small></div>
+  <div class="footing"><span><b>Geometry</b> the sum</span><span><b>Our estimate</b> the surge allowance</span></div>
+  <table class="work">
+    <tr><td>On the sounder (it reads from the waterline)</td><td><span data-v="depth.reading">10</span> ft</td></tr>
+    <tr><td>Bow roller above the water</td><td><span data-v="boat.roller">6</span> ft</td></tr>
+    <tr><td>Tide still to rise</td><td><span data-v="depth.tide">1</span> ft</td></tr>
+    <tr><td>Surge allowance for a short chop</td><td><span data-v="depth.surge">0.5</span> ft</td></tr>
+    <tr class="total"><td>Depth to reach</td><td><span data-v="depth.effective">17.5</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="scope">Scope</h2>
+  <h3>How much rode to pay out</h3>
+  <p>A base ratio for the kind of rode, raised for wind, for a stop you will leave the boat on, for
+  doubtful ground and for boats that range at anchor, and lowered for a short stop with someone
+  aboard.</p>
+  <div class="formula">Scope = base + wind + stop + ground + boat + shallow
+    <small>base: 4:1 all chain, 5.5:1 chain and rope, 7:1 mostly rope · wind: +0.5 from 15 kt, +1 from
+    20, +1.5 from 25, +2.5 from 30, +4 from 40, sized halfway to the gusts, and in a current on the wind that
+    pulls as hard as wind and current together (see Current) · stop: −1 a short stop, +0.5
+    unsettled, +1 unattended, +2 storm · ground: +0.5 soft mud, grass or unknown · boat: +0.5 a
+    catamaran, +0.5 a high-windage motor boat · shallow: +0.5 under 15 ft to reach · never under 4:1
+    (3:1 a short stop), never over 12:1, and 10:1 at least in a storm</small></div>
+  <div class="footing"><span><b>Our estimate</b> every step</span></div>
+  <p class="muted">Pay out = scope × depth to reach. The chain&rsquo;s curve is checked separately
+  below; it adds advice, never a longer pay-out.</p>
+  <table class="work">
+    <tr><td>All chain</td><td><span data-v="scope.base">4</span>:1</td></tr>
+    <tr><td>Soft mud</td><td>+<span data-v="scope.bottom">0.5</span></td></tr>
+    <tr><td>12 kt, settled, overnight: nothing added</td><td>+0</td></tr>
+    <tr class="total"><td>Scope</td><td><span data-v="scope.ratio">4.5</span>:1</td></tr>
+    <tr><td>Pay out: 17.5 ft × 4.5</td><td><span data-v="scope.out">78.75</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="load">The load</h2>
+  <h3>How hard the wind pulls</h3>
+  <p>The wind pushes on everything the boat shows it from ahead: the hull above the water, the rig,
+  and the canvas. The pull grows with the square of the wind, so twice the wind is four times the
+  pull.</p>
+  <div class="formula">F = q × Cd × A × V²
+    <small>q = <span data-v="load.q">0.00339</span> lb per sq ft per knot² (air) · Cd = 1.1 for a monohull,
+    1.2 a catamaran, +0.05 a motor boat · A = frontal area, sq ft · V = wind, knots</small></div>
+  <div class="footing"><span><b>Physics</b> the drag equation</span><span><b>Our estimate</b> the frontal area and Cd</span></div>
+  <p class="muted">The frontal area is estimated from what you enter: the hull from beam and bow
+  height, the rig from length and rig type, the canvas from how much you carry. A boat with a hard
+  dodger, davits and a dinghy can show half again what the estimate gives.</p>
+  <table class="work">
+    <tr><td>Hull: 13.7 ft beam × 6 ft bow height × 0.65</td><td><span data-v="load.hull">53.4</span> sq ft</td></tr>
+    <tr><td>Rig: a ketch&rsquo;s two masts and furled sails</td><td><span data-v="load.rig">125.1</span> sq ft</td></tr>
+    <tr><td>Canvas: a bimini and furling headsail (moderate)</td><td><span data-v="load.canvas">21.4</span> sq ft</td></tr>
+    <tr class="total"><td>Frontal area</td><td><span data-v="load.area">199.9</span> sq ft</td></tr>
+    <tr><td>Wind force at 12 kt: 0.00339 × 1.1 × 199.9 × 12²</td><td><span data-v="load.wind">107</span> lb</td></tr>
+  </table>
+
+  <h3>From steady wind to the design load</h3>
+  <p>Wind alone is not what breaks ground tackle. Waves surge the boat back on her rode, and a boat
+  that sails about at anchor snatches at it. The app multiplies the wind&rsquo;s pull for both.</p>
+  <div class="formula">Design load = F × surge × yaw × style + current
+    <small>surge 1.15 flat · 1.6 chop · 2.1 moderate swell · 2.8 rough — yaw 1.15 a monohull, 1.35 a
+    catamaran, +0.1 a motor boat; a riding sail keeps about a third of the yaw above 1
+    (<span data-v="load.sailYaw">1.0525</span> for a monohull), on one anchor or a mooring ball only, and not above
+    40 kt or in a current of a knot or more — style 1.15 Med moored, 1.3 lines ashore · the peak load uses the gusts</small></div>
+  <div class="footing"><span><b>Our estimate</b> every factor</span></div>
+  <table class="work">
+    <tr><td>107 lb × <span data-v="load.surge">1.6</span> (short chop) × <span data-v="load.yaw">1.15</span> (a monohull&rsquo;s yaw)</td><td><span data-v="load.design">198</span> lb</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="current">Current</h2>
+  <h3>How hard the stream pulls</h3>
+  <p>Water is about <span data-v="current.ratio">836</span> times denser than air. Head-on, a hull is
+  streamlined and meets little of it. Lying at an angle to the stream, her whole underwater profile
+  meets it. So the pull has two parts, and the angle matters more than the speed.</p>
+  <div class="formula">Along the hull: q<sub>w</sub> × V² × S × Cf × 1.2
+    <small>q<sub>w</sub> = <span data-v="current.qSea">2.835</span> lb per sq ft per knot² in seawater,
+    <span data-v="current.qFresh">2.763</span> in fresh · S = wetted surface, by the Denny–Mumford formula,
+    1.7 × waterline length × draft + displaced volume ÷ draft · Cf = 0.075 ÷ (log Re − 2)², the ITTC 1957
+    friction line · 1.2 for a full-bodied hull</small></div>
+  <div class="formula">Across the hull: q<sub>w</sub> × V² × 1.0 × A<sub>lat</sub> × sin²β
+    <small>A<sub>lat</sub> = the underwater profile seen from abeam · β = the angle she lies to the stream:
+    <span data-v="current.sheerSteady">15</span>° in a river, <span data-v="current.sheerTidal">30</span>° in a tidal
+    stream, which the wind turns her across half the time</small></div>
+  <div class="footing"><span><b>Physics</b> water friction and crossflow</span><span><b>Published</b> the ITTC 1957 line; the Denny–Mumford formula</span><span><b>Our estimate</b> the areas and the angle</span></div>
+  <p class="muted">We take the waterline as 0.85 of her length and the profile from abeam as 0.65 of
+  waterline × draft, keel included. A current is steady, so surge and yaw multiply the wind only.</p>
+  <table class="work">
+    <tr><td>Wetted surface</td><td><span data-v="current.S">475</span> sq ft</td></tr>
+    <tr><td>Underwater profile from abeam</td><td><span data-v="current.A">142</span> sq ft</td></tr>
+    <tr><td>2 kt tidal stream, along the hull</td><td><span data-v="current.headOn">19</span> lb</td></tr>
+    <tr><td>2 kt, lying 30° to it: 2.835 × 2² × 1.0 × 142 × sin²30°</td><td><span data-v="current.across">402</span> lb</td></tr>
+    <tr class="total"><td>Current, added to the wind&rsquo;s design load</td><td><span data-v="current.total">421</span> lb</td></tr>
+  </table>
+  <h3>How the current raises the scope</h3>
+  <p>The scope rule sizes on wind. In a current it sizes on the wind that would pull as hard as the
+  wind and the current together, through the same table, so the same limits hold.</p>
+  <div class="formula">Wind to size on = √(wind² + current ÷ k)
+    <small>k = her design pull per knot² of wind, with surge and yaw · the current&rsquo;s pull is steady,
+    the wind&rsquo;s grows with its square</small></div>
+  <div class="footing"><span><b>Physics</b> the two pulls added</span><span><b>Our estimate</b> the scope table</span></div>
+  <table class="work">
+    <tr><td>k: 198 lb ÷ 12²</td><td><span data-v="current.k">1.372</span></td></tr>
+    <tr><td>12 kt with a 2 kt tidal stream: √(12² + 421 ÷ 1.372)</td><td><span data-v="current.eqWind">21.2</span> kt</td></tr>
+    <tr><td>Scope: 4 + 0.5 (soft mud) + 1 (from 20 kt)</td><td><span data-v="current.scope">5.5</span>:1</td></tr>
+    <tr class="total"><td>Pay out: 17.5 ft × 5.5</td><td><span data-v="current.out">96.25</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="catenary">The chain&rsquo;s curve</h2>
+  <h3>When the chain pulls straight</h3>
+  <p>Chain hangs in a curve under its own weight, so the pull at the anchor stays along the bottom.
+  Pull hard enough and the curve comes out; above that load the chain no longer cushions anything,
+  and the snubber does.</p>
+  <div class="formula">Load at which the chain pulls straight = w × (L² − d²) ÷ (2d)
+    <small>w = the chain&rsquo;s weight in water per foot · L = chain out · d = depth to reach</small></div>
+  <div class="formula">Chain to keep the curve at a load T = √(d² + 2 × d × T ÷ w)</div>
+  <div class="footing"><span><b>Physics</b> the catenary</span><span><b>Published</b> chain weights, ACCO chain catalog</span></div>
+  <p class="muted">Steel in water weighs <span data-v="cat.factor">0.87</span> of its weight in air (the
+  water it displaces). The weight in air is the chain maker&rsquo;s figure for your size and grade.
+  The app offers more chain only when it is cheap: never more than 1.3 times what is out.</p>
+  <table class="work">
+    <tr><td>3/8&Prime; G43, weight in air</td><td><span data-v="cat.wAir">1.478</span> lb/ft</td></tr>
+    <tr><td>In water: 1.478 × 0.87</td><td><span data-v="cat.wWater">1.286</span> lb/ft</td></tr>
+    <tr><td>Pulls straight at: 1.286 × (78.75² − 17.5²) ÷ 35</td><td><span data-v="cat.lift">217</span> lb</td></tr>
+    <tr><td>That load comes at: 12 × √(217 ÷ 198)</td><td><span data-v="cat.liftWind">12.6</span> kt</td></tr>
+    <tr><td>Chain to keep the curve at 198 lb</td><td><span data-v="cat.needed">75.4</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="holding">Holding and the margin</h2>
+  <h3>How hard the anchor holds, and how much to spare</h3>
+  <p>Once set, an anchor holds roughly in proportion to its weight, by a factor that depends on its
+  design and the bottom. Whether it sets at all is a separate question, which the app asks
+  separately.</p>
+  <div class="formula">Holding = anchor weight × holding factor
+    <small>the factor by design and bottom: a scoop anchor 45 in hard sand, 18 in soft mud; a fluke
+    anchor 50 in hard sand, 4 in grass; and so on for seven designs and ten bottoms</small></div>
+  <div class="formula">Margin = holding ÷ design load
+    <small>wanted: 1.5 a short stop · 2 overnight, settled · 2.5 unsettled · 3 unattended · 4 a storm</small></div>
+  <div class="footing"><span><b>Our estimate</b> every factor, from the pattern of independent tests, not makers&rsquo; claims</span></div>
+  <table class="work">
+    <tr><td><span data-v="hold.weight">65</span> lb scoop anchor × <span data-v="hold.coef">18</span> in soft mud</td><td><span data-v="hold.lb">1,170</span> lb</td></tr>
+    <tr><td>Margin: 1,170 ÷ 198</td><td><span data-v="hold.margin">5.9</span>×</td></tr>
+    <tr><td>Wanted overnight in settled weather</td><td><span data-v="hold.wanted">2</span>×</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="strength">Strength of the gear</h2>
+  <h3>What breaks first</h3>
+  <p>The system is as strong as its weakest part. Chain size sets the curve; chain grade sets the
+  strength. The app keeps the two apart and checks the peak load against the weakest part.</p>
+  <div class="formula">Safe load: chain = its working load limit · rope = breaking strength ÷ 5</div>
+  <div class="footing"><span><b>Published</b> chain working load limits, ACCO chain catalog</span><span><b>Our estimate</b> the rope&rsquo;s 5 to 1</span></div>
+  <p class="muted">A chain&rsquo;s working load limit already carries the maker&rsquo;s own margin. Rope
+  gets five to one because anchor rode is rarely new and rarely inspected end to end.</p>
+  <table class="work">
+    <tr><td>3/8&Prime; G43 chain, working load limit</td><td><span data-v="str.wll">5,400</span> lb</td></tr>
+    <tr><td>Peak load tonight</td><td><span data-v="str.peak">198</span> lb</td></tr>
+    <tr><td>5/8&Prime; nylon three-strand: <span data-v="str.ropeBreak">10,400</span> lb ÷ <span data-v="str.ropeFactor">5</span></td><td><span data-v="str.ropeSafe">2,080</span> lb</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="swing">The swing</h2>
+  <h3>How far she can range</h3>
+  <p>She can lie anywhere on a circle around the anchor. Its radius is how far the rode reaches
+  across the bottom, plus the boat herself.</p>
+  <div class="formula">Radius = √(L² − d²) + LOA
+    <small>L = rode paid out · d = depth to reach · LOA = length overall</small></div>
+  <div class="footing"><span><b>Geometry</b> the rode taken straight</span></div>
+  <p class="muted">Taking the rode as straight is the safe side: the sag of the chain only ever
+  shortens its reach.</p>
+  <table class="work">
+    <tr><td>Reach across the bottom: √(78.75² − 17.5²)</td><td><span data-v="swing.reach">76.8</span> ft</td></tr>
+    <tr class="total"><td>Swing radius: 76.8 + 46.7</td><td><span data-v="swing.radius">123.5</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="mooring">Mooring balls</h2>
+  <h3>How far a ball lets her range</h3>
+  <p>The ball floats on a riser from the mooring&rsquo;s anchor. Laid for high water, the riser is
+  slackest at low water, which is when the ball can range furthest.</p>
+  <div class="formula">Ball&rsquo;s reach = √(riser² − low-water depth²) · riser = ratio × high-water depth
+    <small>ratio: <span data-v="ball.chainRatio">3</span>:1 chain to a block, <span data-v="ball.helixRatio">1.5</span>:1
+    a helix · pennant: <span data-v="ball.pennantFactor">2.5</span> × bow height, at least
+    <span data-v="ball.pennantMin">10</span> ft · swing = ball&rsquo;s reach + pennant + LOA</small></div>
+  <div class="footing"><span><b>Geometry</b> the reach</span><span><b>Our estimate</b> the riser ratios and the pennant, from harbor practice</span></div>
+  <p class="muted">A long riser ranges further, so the app takes the top of the usual range for
+  chain. It does not rank your own anchors on a ball; none of them is in the water.</p>
+  <table class="work">
+    <tr><td>30 ft on the sounder: high water <span data-v="ball.high">31</span> ft, low <span data-v="ball.low">29</span> ft</td><td></td></tr>
+    <tr><td>Pennant: 6 ft × 2.5</td><td><span data-v="ball.pennant">15</span> ft</td></tr>
+    <tr><td>Chain riser <span data-v="ball.chainRiser">93</span> ft: reach √(93² − 29²)</td><td><span data-v="ball.chainReach">88.4</span> ft</td></tr>
+    <tr class="total"><td>Swing on a chain riser: 88.4 + 15 + 46.7</td><td><span data-v="ball.chainSwing">150.1</span> ft</td></tr>
+    <tr><td>Helix riser <span data-v="ball.helixRiser">46.5</span> ft: reach √(46.5² − 29²)</td><td><span data-v="ball.helixReach">36.3</span> ft</td></tr>
+    <tr class="total"><td>Swing on a helix: 36.3 + 15 + 46.7</td><td><span data-v="ball.helixSwing">98.0</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="held">Held and two-anchor moors</h2>
+  <h3>Med mooring, lines ashore, the Bahamian moor</h3>
+  <div class="formula">Med: drop distance from the quay = rode&rsquo;s reach + LOA + gap at the stern</div>
+  <div class="formula">Lines ashore: each line = distance to shore ÷ cos 30° × 1.25 + 20 ft, to the next 5 ft
+    <small>the two lines at 60° to each other; the extra for reaching a tree and leading back</small></div>
+  <div class="formula">Bahamian: anchors 2 × the rode&rsquo;s reach apart · she occupies a corridor 2 × LOA wide</div>
+  <div class="footing"><span><b>Geometry</b> the distances</span><span><b>Our estimate</b> the 60° and the allowances</span></div>
+  <table class="work">
+    <tr><td>Med, <span data-v="med.standoff">6</span> ft gap: 76.8 + 46.7 + 6</td><td><span data-v="med.drop">129.5</span> ft</td></tr>
+    <tr><td>Lines ashore, 60 ft to shore: each line</td><td><span data-v="ashore.line">110</span> ft</td></tr>
+    <tr><td>Bahamian: anchors apart</td><td><span data-v="bah.spacing">153.6</span> ft</td></tr>
+    <tr><td>Bahamian: corridor width</td><td><span data-v="bah.width">93.4</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="fence">The anchor watch&rsquo;s fence</h2>
+  <h3>The line the alarm watches</h3>
+  <p>The fence is the swing circle with room for GPS scatter. It allows for the phone anywhere
+  aboard, since the swing already includes the boat&rsquo;s length.</p>
+  <div class="formula">Fence = swing radius + <span data-v="fence.margin">50</span> ft
+    <small>a held boat: half her length + 50 ft · a Bahamian moor: the corridor + 50 ft · a ball: twice
+    the ball&rsquo;s reach and pennant, + LOA, + 50 ft</small></div>
+  <div class="footing"><span><b>Our estimate</b> the 50 ft margin</span></div>
+  <p class="muted">You can move the fence in steps of <span data-v="fence.step">5</span>%. It cannot be
+  tightened inside the swing, which she reaches by doing nothing wrong, or widened past
+  <span data-v="fence.ceiling">200</span>%.</p>
+  <table class="work">
+    <tr><td>One anchor: 123.5 + 50</td><td><span data-v="fence.radius">173.5</span> ft</td></tr>
+    <tr><td>Tightest step: 123.5 of 173.5, to the next 5%</td><td><span data-v="fence.floor">75</span>%</td></tr>
+    <tr><td>Held to a quay: 46.7 ÷ 2 + 50</td><td><span data-v="fence.hold">73.35</span> ft</td></tr>
+  </table>
+
+  <!-- ===================================================================== -->
+  <h2 id="alarm">The alarm and the early warning</h2>
+  <h3>When the alarm sounds</h3>
+  <p>One stray GPS fix must not wake you. The alarm sounds after <span data-v="alarm.fixes">3</span> fixes in
+  a row clearly outside the fence: outside by more than <span data-v="alarm.floor">15</span> ft, or half the
+  fix&rsquo;s own accuracy if that is more. It stands down by itself when she comes back inside.</p>
+  <p>The early warning is a band inside the fence, <span data-v="warn.band">50</span> ft wide (a held
+  boat&rsquo;s <span data-v="warn.holdBand">25</span>). It chimes once as she enters it, and not again
+  until she has come <span data-v="warn.hysteresis">15</span> ft back inside. When you widen the fence, the
+  plan&rsquo;s own line warns too. A band narrower than
+  <span data-v="warn.min">10</span> ft is no band, and the screen says so.</p>
+  <div class="footing"><span><b>Our estimate</b> every threshold</span></div>
+
+  <!-- ===================================================================== -->
+  <h2 id="late">Marking the anchor after the drop</h2>
+  <h3>When the alarm was not set at the drop</h3>
+  <p>From the bow, backing down gently with the rode straight, the anchor lies the rode&rsquo;s reach
+  ahead, along the rode. The direction is the weak point, so the fence is widened by how far the
+  mark may be off.</p>
+  <div class="formula">Anchor = here + reach, along the bearing · widened by max(reach × sin e, 5% of reach)
+    <small>reach: the rode&rsquo;s shape at <span data-v="late.load">300</span> lb · e: <span data-v="late.compass">10</span>°
+    by the phone&rsquo;s compass, <span data-v="late.typed">15</span>° typed from the chartplotter · reach error
+    <span data-v="late.reachErr">5</span>%</small></div>
+  <div class="footing"><span><b>Physics</b> the rode&rsquo;s shape</span><span><b>Our estimate</b> the errors</span></div>
+  <table class="work">
+    <tr><td>78.75 ft out in 17.5 ft, pulled by 300 lb</td><td><span data-v="late.reach">76.4</span> ft</td></tr>
+    <tr><td>By compass: 76.4 × sin 10°, rounded up</td><td><span data-v="late.unc">14</span> ft wider</td></tr>
+  </table>
+
+  <div class="contact">
+    <p><strong>Found a figure you think is wrong?</strong> Write to
+    <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> with the figure and
+    your working. That is how this app has been corrected before.</p>
+    <p class="muted">Every figure on this page is checked against the app&rsquo;s own calculations
+    before the page is published. The figures are aids to judgment, not a substitute for it.</p>
+  </div>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/#monitor">Rainbow&rsquo;s End Monitor<span>A free companion app for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s End Logbook<span>The book of your voyage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
