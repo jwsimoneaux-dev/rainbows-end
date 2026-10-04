@@ -51,7 +51,7 @@
 <body>
 <main>
   <h1>Privacy Policy</h1>
-  <p class="meta">Rainbow&rsquo;s End Monitor — the free crew companion to Rainbow&rsquo;s End Anchoring · Effective September 22, 2026</p>
+  <p class="meta">Rainbow&rsquo;s End Monitor — the free crew companion to Rainbow&rsquo;s End Anchoring · Effective October 4, 2026</p>
 
   <p class="lead"><strong>The short version: Rainbow&rsquo;s End Monitor collects nothing. It reads a
   boat&rsquo;s anchor watch that the boat&rsquo;s owner chose to share with you, using a code the owner gave
@@ -73,11 +73,18 @@
   decrypts it on your phone. The record holds the fence, the boat&rsquo;s position and GPS accuracy, how
   far she has ranged, whether she is inside or outside the fence, a short recent trail, the time of
   the report, the boat&rsquo;s name and hull color, the version of the boat&rsquo;s app, and — if the owner
-  added one — a photo of the boat, also encrypted. Nobody without the code can read any of it,
-  including us. Reading needs no iCloud account on your phone. The boat also
+  added one — a photo of the boat, also encrypted. We never see the code and do not read the
+  record. Reading needs no iCloud account on your phone. The boat also
   writes two small records beside it: an event, whose one unencrypted field is the kind of her
   latest change — alarm, swing, inside, quiet, or ended — kept readable so that a notification can say
-  it, and a heartbeat every five minutes. Neither says which boat, or where.</p>
+  it, and a heartbeat every five minutes. Neither carries her name, her position or her photo. All
+  three are filed under the same hash of the code.</p>
+  <p><strong>The code is the only key, and it is short enough to type.</strong> Someone with
+  technical skill who obtained one of these records could try every possible code until one
+  opened it. Give the code only to people you would have aboard, and ask the owner for a new code
+  when a crew changes. After a new code the boat reports only under it, so the old code shows
+  nothing newer, and the old record is removed if the boat has a signal when the code is
+  changed.</p>
   <p>This app writes no records to iCloud; the only thing it saves there is the notification
   subscriptions described under Notifications. It cannot change or delete the boat&rsquo;s record, disarm the
   watch, or affect the boat in any way; only the boat&rsquo;s own device can do those things. The record
@@ -150,6 +157,12 @@
   store holding the last reading of the boat so the face can say how old it is. Nothing on the
   Watch is transmitted or reaches us. The night view added in the same version is a color
   setting kept on the phone; it collects nothing.</p>
+  <p><strong>October 4, 2026:</strong> corrected What the app reads. It said nobody without the
+  code could read the boat&rsquo;s record, including us. That was more than we can promise: the code
+  is short, and someone with technical skill who obtained a record could try every code until one
+  opened it. The section now says what we do (we never see the code and do not read the record),
+  how to treat the code, and that the event and heartbeat records carry no name, position or
+  photo.</p>
 
   <h2>Contact</h2>
   <p>Questions about this policy: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>

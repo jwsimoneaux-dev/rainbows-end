@@ -51,13 +51,13 @@
 <main>
   <h1>Privacy Policy</h1>
   <!-- 1.6.0: revise the effective date when the background watch ships -->
-  <p class="meta">Rainbow&rsquo;s End Anchoring — Anchor &amp; Rode Calculator · Effective September 21, 2026</p>
+  <p class="meta">Rainbow&rsquo;s End Anchoring — Anchor &amp; Rode Calculator · Effective October 4, 2026</p>
 
   <p class="lead"><strong>The short version: Rainbow&rsquo;s End Anchoring sends nothing anywhere. Everything you
   enter — and, if you use the anchor watch, your GPS position — stays on your device. The
   exceptions are yours to switch on: the remote watch, which copies the watch to your own iCloud
   so your other devices can monitor it, and sharing with crew, which publishes the watch encrypted
-  under a code you hand out, readable by nobody without it.</strong></p>
+  under a code you hand out; we never see the code and do not read the record.</strong></p>
 
   <h2>What the app stores, and where</h2>
   <p>Everything you put into Rainbow&rsquo;s End Anchoring — boat particulars, anchors and rodes, saved boats,
@@ -121,11 +121,17 @@
   color and, if you have added one, a photo of her, to the app&rsquo;s public iCloud database — a store Apple hosts for the app rather than
   for any one account — encrypted with a key derived from an eight-character code the app shows
   you. Anyone you give the code to can read the watch and find the boat in the free companion
-  app, Rainbow&rsquo;s End Monitor. Anyone without it sees only ciphertext, filed under a name that is a
-  hash of the code. One small field beside it is not encrypted, on purpose: the kind of the boat&rsquo;s
-  latest event — alarm, inside, quiet, or ended — because a notification cannot decrypt. A record
-  named by a hash says &ldquo;alarm&rdquo; without saying which boat, or where. Apple holds the ciphertext; the app has no server; we cannot read the record.
+  app, Rainbow&rsquo;s End Monitor. The record is filed under a name that is a hash of the code. One
+  small field beside it is not encrypted, on purpose: the kind of the boat&rsquo;s latest event —
+  alarm, swing, inside, quiet, or ended — because a notification cannot decrypt. That event
+  carries no name, position or photo, and is filed under the same hash. Apple holds the ciphertext
+  and the app has no server. We never see the code and do not read the record.
   The code never leaves your device except as you choose to share it.</p>
+  <p><strong>The code is the only key, and it is short enough to type.</strong> Someone with
+  technical skill who obtained one of these records could try every possible code until one
+  opened it. Give the code only to people you would have aboard, and tap New code when a crew
+  changes. The boat then reports only under the new code, so the old one shows nothing newer, and
+  the old record is removed if the boat has a signal when you tap it.</p>
   <p>The code stays the same on that device until you choose &ldquo;New code&rdquo;, so a crew who joined at
   the dock still find the boat the next day. Turning &ldquo;Share with crew&rdquo; off, or disarming the
   watch, deletes the record, and only the boat device can change or delete it. If the boat has no
@@ -174,6 +180,12 @@
   still leaves the device only if you share the watch. Nothing else changed.</p>
   <p><strong>September 8, 2026:</strong> for version 1.7.0, the map under the watch plot and the
   swing alarm; see Location.</p>
+  <p><strong>October 4, 2026:</strong> corrected Sharing with crew. It said that anyone without the
+  code sees only ciphertext and that we cannot read the record. That was more than we can promise:
+  the code is short, and someone with technical skill who obtained a record could try every code
+  until one opened it. The section now says what we do (we never see the code and do not read the
+  record), how to treat the code, and that the event record carries no name, position or photo.
+  It also names &ldquo;swing&rdquo; among the event kinds, which the boat has written since 1.7.0.</p>
 
   <h2>Contact</h2>
   <p>Questions about this policy: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>
