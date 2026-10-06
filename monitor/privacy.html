@@ -60,7 +60,7 @@
 
   <h2>What the app is</h2>
   <p>A boat running Rainbow&rsquo;s End Anchoring can share her anchor watch with crew by an
-  eight-character crew code. Enter the code in this app and you see the watch — the fence around
+  ten-character crew code. Enter the code in this app and you see the watch — the fence around
   the anchor, where the boat lies, the trail of where she has swung, and an alarm on your phone if
   she breaks out of the fence or falls silent — and you can find your way back to her behind an
   arrow that shows her bearing and distance. Without a code, the app can show you only its built-in
@@ -75,16 +75,16 @@
   the report, the boat&rsquo;s name and hull color, the version of the boat&rsquo;s app, and — if the owner
   added one — a photo of the boat, also encrypted. We never see the code and do not read the
   record. Reading needs no iCloud account on your phone. The boat also
-  writes two small records beside it: an event, whose one unencrypted field is the kind of her
+  writes two small records beside it: an event, whose record type says the kind of her
   latest change — alarm, swing, inside, quiet, or ended — kept readable so that a notification can say
   it, and a heartbeat every five minutes. Neither carries her name, her position or her photo. All
-  three are filed under the same hash of the code.</p>
-  <p><strong>The code is the only key, and it is short enough to type.</strong> Someone with
-  technical skill who obtained one of these records could try every possible code until one
-  opened it. Give the code only to people you would have aboard, and ask the owner for a new code
-  when a crew changes. After a new code the boat reports only under it, so the old code shows
-  nothing newer, and the old record is removed if the boat has a signal when the code is
-  changed.</p>
+  three are filed under the same name, derived from the code.</p>
+  <p><strong>The code is the only key.</strong> It is ten characters, and the app turns it into
+  the record&rsquo;s name and its key by a deliberately slow step, so working back from a stored
+  name to the code would take far longer than anyone would spend. Still give the code only to
+  people you would have aboard, and ask the owner for a new code when a crew changes. After a new
+  code the boat reports only under it, so the old code shows nothing newer, and the old record is
+  removed as soon as the boat next has a signal.</p>
   <p>This app writes no records to iCloud; the only thing it saves there is the notification
   subscriptions described under Notifications. It cannot change or delete the boat&rsquo;s record, disarm the
   watch, or affect the boat in any way; only the boat&rsquo;s own device can do those things. The record
