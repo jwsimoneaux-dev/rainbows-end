@@ -119,19 +119,17 @@
   Apple ID: crew, guests, family ashore. This is off unless you turn on &ldquo;Share with crew&rdquo; on the
   Watch tab. When it is on, the boat device writes the same watch record, plus the boat&rsquo;s name, hull
   color and, if you have added one, a photo of her, to the app&rsquo;s public iCloud database — a store Apple hosts for the app rather than
-  for any one account — encrypted with a key derived from an eight-character code the app shows
+  for any one account — encrypted with a key derived from a ten-character code the app shows
   you. Anyone you give the code to can read the watch and find the boat in the free companion
-  app, Rainbow&rsquo;s End Monitor. The record is filed under a name that is a hash of the code. One
-  small field beside it is not encrypted, on purpose: the kind of the boat&rsquo;s latest event —
-  alarm, swing, inside, quiet, or ended — because a notification cannot decrypt. That event
-  carries no name, position or photo, and is filed under the same hash. Apple holds the ciphertext
+  app, Rainbow&rsquo;s End Monitor. The record is filed under a name derived from the code. Beside it the boat writes a small event record whose type says the kind of her latest event — alarm, swing, inside, quiet, or ended — because a notification cannot decrypt. That event carries no name, position or photo, and is filed under the same name. Apple holds the ciphertext
   and the app has no server. We never see the code and do not read the record.
   The code never leaves your device except as you choose to share it.</p>
-  <p><strong>The code is the only key, and it is short enough to type.</strong> Someone with
-  technical skill who obtained one of these records could try every possible code until one
-  opened it. Give the code only to people you would have aboard, and tap New code when a crew
-  changes. The boat then reports only under the new code, so the old one shows nothing newer, and
-  the old record is removed if the boat has a signal when you tap it.</p>
+  <p><strong>The code is the only key.</strong> It is ten characters, and the app turns it into
+  the record&rsquo;s name and its key by a deliberately slow step, so working back from a stored name
+  to the code would take far longer than anyone would spend. Still give the code only to people
+  you would have aboard, and tap New code when a crew changes. The boat then reports only under the
+  new code, so the old one shows nothing newer, and the old record is removed as soon as the boat
+  next has a signal.</p>
   <p>The code stays the same on that device until you choose &ldquo;New code&rdquo;, so a crew who joined at
   the dock still find the boat the next day. Turning &ldquo;Share with crew&rdquo; off, or disarming the
   watch, deletes the record, and only the boat device can change or delete it. If the boat has no

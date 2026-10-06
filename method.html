@@ -92,7 +92,7 @@
   beam, <span data-v="boat.draft">5.5</span> ft draft, <span data-v="boat.displacement">36,500</span> lb,
   bow roller <span data-v="boat.roller">6</span> ft above the water, a 65 lb scoop anchor on 200 ft of
   3/8&Prime; G43 chain. The night: <span data-v="depth.reading">10</span> ft on the sounder, 12 kt of wind,
-  a short chop, soft mud, overnight in settled weather, one anchor down.</p>
+  a short chop, firm mud, overnight in settled weather, one anchor down.</p>
 
   <h2>What each figure rests on</h2>
   <dl class="labels">
@@ -154,10 +154,10 @@
   below; it adds advice, never a longer pay-out.</p>
   <table class="work">
     <tr><td>All chain</td><td><span data-v="scope.base">4</span>:1</td></tr>
-    <tr><td>Soft mud</td><td>+<span data-v="scope.bottom">0.5</span></td></tr>
+    <tr><td>Firm mud: nothing added</td><td>+<span data-v="scope.bottom">0</span></td></tr>
     <tr><td>12 kt, settled, overnight: nothing added</td><td>+0</td></tr>
-    <tr class="total"><td>Scope</td><td><span data-v="scope.ratio">4.5</span>:1</td></tr>
-    <tr><td>Pay out: 17.5 ft × 4.5</td><td><span data-v="scope.out">78.75</span> ft</td></tr>
+    <tr class="total"><td>Scope</td><td><span data-v="scope.ratio">4</span>:1</td></tr>
+    <tr><td>Pay out: 17.5 ft × 4</td><td><span data-v="scope.out">70</span> ft</td></tr>
   </table>
 
   <!-- ===================================================================== -->
@@ -188,8 +188,24 @@
     <small>surge 1.15 flat · 1.6 chop · 2.1 moderate swell · 2.8 rough — yaw 1.15 a monohull, 1.35 a
     catamaran, +0.1 a motor boat; a riding sail keeps about a third of the yaw above 1
     (<span data-v="load.sailYaw">1.0525</span> for a monohull), on one anchor or a mooring ball only, and not above
-    40 kt or in a current of a knot or more — style 1.15 Med moored, 1.3 lines ashore · the peak load uses the gusts</small></div>
+    40 kt or in a current of a knot or more — style 1.3 Med moored, 2.0 lines ashore · the peak load uses the gusts</small></div>
   <div class="footing"><span><b>Our estimate</b> every factor</span></div>
+  <p class="muted">The yaw allowance assumes a boat that lies fairly quietly. One that sails back
+  and forth through 60° or more pulls harder, and her anchor holds less. The style factors for a boat
+  held across the wind (Med moored, lines ashore) are our judgment from her side-on area, which is more
+  than twice what she shows bow-on, not a measured figure.</p>
+  <p class="muted">The four surge factors are our estimate, chosen when the app was built; no
+  published source stands behind them. Against the one published table they bracket it: for
+  <em>Rainbow</em> at 30 knots the design load is <span data-v="surge.abyc.flat">0.6</span> of the ABYC
+  working load for her length when flat, <span data-v="surge.abyc.chop">0.84</span> in a chop,
+  <span data-v="surge.abyc.moderate">1.1</span> in a moderate swell and
+  <span data-v="surge.abyc.rough">1.47</span> when rough. Practical Sailor puts snatch loads at up to
+  five times the average, and found the worst of them on all chain with no snubber in shallow water.
+  The app warns when an all-chain rode has no snubber.</p>
+  <p class="muted">The surge allowance is the same whatever the rode is made of. Nylon stretches and
+  takes up some of each surge, so on a rode with rope beyond the chain, or with a snubber, the real
+  load is likely lower than this figure. The app does not count that stretch yet, so its figures err
+  on the high side for a nylon rode.</p>
   <table class="work">
     <tr><td>107 lb × <span data-v="load.surge">1.6</span> (short chop) × <span data-v="load.yaw">1.15</span> (a monohull&rsquo;s yaw)</td><td><span data-v="load.design">198</span> lb</td></tr>
   </table>
@@ -229,8 +245,8 @@
   <table class="work">
     <tr><td>k: 198 lb ÷ 12²</td><td><span data-v="current.k">1.372</span></td></tr>
     <tr><td>12 kt with a 2 kt tidal stream: √(12² + 421 ÷ 1.372)</td><td><span data-v="current.eqWind">21.2</span> kt</td></tr>
-    <tr><td>Scope: 4 + 0.5 (soft mud) + 1 (from 20 kt)</td><td><span data-v="current.scope">5.5</span>:1</td></tr>
-    <tr class="total"><td>Pay out: 17.5 ft × 5.5</td><td><span data-v="current.out">96.25</span> ft</td></tr>
+    <tr><td>Scope: 4 + 1 (from 20 kt)</td><td><span data-v="current.scope">5</span>:1</td></tr>
+    <tr class="total"><td>Pay out: 17.5 ft × 5</td><td><span data-v="current.out">87.5</span> ft</td></tr>
   </table>
 
   <!-- ===================================================================== -->
@@ -238,19 +254,23 @@
   <h3>When the chain pulls straight</h3>
   <p>Chain hangs in a curve under its own weight, so the pull at the anchor stays along the bottom.
   Pull hard enough and the curve comes out; above that load the chain no longer cushions anything,
-  and the snubber does.</p>
+  and a snubber does, or on a rode with rope beyond the chain, the nylon&rsquo;s stretch.</p>
   <div class="formula">Load at which the chain pulls straight = w × (L² − d²) ÷ (2d)
     <small>w = the chain&rsquo;s weight in water per foot · L = chain out · d = depth to reach</small></div>
   <div class="formula">Chain to keep the curve at a load T = √(d² + 2 × d × T ÷ w)</div>
-  <div class="footing"><span><b>Physics</b> the catenary</span><span><b>Published</b> chain weights, ACCO chain catalog</span></div>
+  <div class="footing"><span><b>Physics</b> the catenary</span><span><b>Published</b> chain weights, ACCO chain catalog and DIN 766</span></div>
   <p class="muted">Steel in water weighs <span data-v="cat.factor">0.87</span> of its weight in air (the
   water it displaces). The weight in air is the chain maker&rsquo;s figure for your size and grade.
   The app offers more chain only when it is cheap: never more than 1.3 times what is out.</p>
+  <p class="muted">The two formulas above are for a rode that is all chain, like the worked example.
+  With rope beyond the chain, the rope runs nearly straight from where the chain ends, so the app
+  works both figures, and the angle the rode makes at the anchor, from the rode&rsquo;s true shape:
+  the chain&rsquo;s curve, then the rope. The drawing on the Anchor tab is the same shape.</p>
   <table class="work">
     <tr><td>3/8&Prime; G43, weight in air</td><td><span data-v="cat.wAir">1.478</span> lb/ft</td></tr>
     <tr><td>In water: 1.478 × 0.87</td><td><span data-v="cat.wWater">1.286</span> lb/ft</td></tr>
-    <tr><td>Pulls straight at: 1.286 × (78.75² − 17.5²) ÷ 35</td><td><span data-v="cat.lift">217</span> lb</td></tr>
-    <tr><td>That load comes at: 12 × √(217 ÷ 198)</td><td><span data-v="cat.liftWind">12.6</span> kt</td></tr>
+    <tr><td>Pulls straight at: 1.286 × (70² − 17.5²) ÷ 35</td><td><span data-v="cat.lift">169</span> lb</td></tr>
+    <tr><td>That load comes at: 12 × √(169 ÷ 197.5)</td><td><span data-v="cat.liftWind">11.1</span> kt</td></tr>
     <tr><td>Chain to keep the curve at 198 lb</td><td><span data-v="cat.needed">75.4</span> ft</td></tr>
   </table>
 
@@ -261,24 +281,45 @@
   design and the bottom. Whether it sets at all is a separate question, which the app asks
   separately.</p>
   <div class="formula">Holding = anchor weight × holding factor
-    <small>the factor by design and bottom: a scoop anchor 45 in hard sand, 18 in soft mud; a fluke
+    <small>the factor by design and bottom: a scoop anchor 45 in hard sand, 14 in soft mud; a fluke
     anchor 50 in hard sand, 4 in grass; and so on for seven designs and ten bottoms</small></div>
   <div class="formula">Margin = holding ÷ design load
     <small>wanted: 1.5 a short stop · 2 overnight, settled · 2.5 unsettled · 3 unattended · 4 a storm</small></div>
+  <p>The margin is figured on the steady pull, with waves and yawing allowed for. The gusts are
+  checked separately: if their peak load could exceed what the anchor holds, the app warns under
+  What to watch.</p>
   <div class="footing"><span><b>Our estimate</b> every factor, from the pattern of independent tests, not makers&rsquo; claims</span></div>
   <table class="work">
-    <tr><td><span data-v="hold.weight">65</span> lb scoop anchor × <span data-v="hold.coef">18</span> in soft mud</td><td><span data-v="hold.lb">1,170</span> lb</td></tr>
-    <tr><td>Margin: 1,170 ÷ 198</td><td><span data-v="hold.margin">5.9</span>×</td></tr>
+    <tr><td><span data-v="hold.weight">65</span> lb scoop anchor × <span data-v="hold.coef">26</span> in firm mud</td><td><span data-v="hold.lb">1,690</span> lb</td></tr>
+    <tr><td>Margin: 1,690 ÷ 197.5</td><td><span data-v="hold.margin">8.6</span>×</td></tr>
     <tr><td>Wanted overnight in settled weather</td><td><span data-v="hold.wanted">2</span>×</td></tr>
+  </table>
+  <h3>Big enough for the boat</h3>
+  <p>A light night makes any anchor&rsquo;s margin look large, so the app also sizes the anchor against
+  the boat. For a night aboard, a storm or a boat left unattended, the pick must hold, in good sand,
+  the load ABYC gives for a boat of her length in 30 knots of wind. A smaller anchor is never the pick
+  while a bigger one is aboard; it is marked as fine for a lunch stop. Good sand is the bottom makers
+  size their anchors for; a poorer bottom tonight is the margin&rsquo;s business, above.</p>
+  <p>This is a minimum, not a recommended size: makers&rsquo; charts, which allow for poorer bottoms
+  and harder weather, usually call for a bigger anchor.</p>
+  <div class="formula">Big enough = anchor weight × holding factor in good sand ≥ the 30-knot load for her length
+    <small>30 knots: 360 lb at 20 ft · 490 at 25 · 700 at 30 · 900 at 35 · 1,200 at 40 · 1,600 at 50 ·
+    2,000 at 60, interpolated between</small></div>
+  <div class="footing"><span><b>Published</b> the working loads, ABYC H-40</span><span><b>Our estimate</b> the holding factor</span></div>
+  <table class="work">
+    <tr><td>65 lb scoop anchor × <span data-v="size.coefSand">45</span> in good sand</td><td><span data-v="size.sand">2,925</span> lb</td></tr>
+    <tr><td>A 46.7 ft boat in 30 knots: 1,200 + 6.7 × 40</td><td><span data-v="size.working">1,468</span> lb</td></tr>
   </table>
 
   <!-- ===================================================================== -->
   <h2 id="strength">Strength of the gear</h2>
   <h3>What breaks first</h3>
   <p>The system is as strong as its weakest part. Chain size sets the curve; chain grade sets the
-  strength. The app keeps the two apart and checks the peak load against the weakest part.</p>
+  strength. The app keeps the two apart and checks the peak load against the weaker of the chain
+  and the rope. Shackles and swivels are not counted: each should be rated at least as high as the
+  chain.</p>
   <div class="formula">Safe load: chain = its working load limit · rope = breaking strength ÷ 5</div>
-  <div class="footing"><span><b>Published</b> chain working load limits, ACCO chain catalog</span><span><b>Our estimate</b> the rope&rsquo;s 5 to 1</span></div>
+  <div class="footing"><span><b>Published</b> chain working load limits, ACCO chain catalog and DIN 766</span><span><b>Our estimate</b> the rope&rsquo;s 5 to 1</span></div>
   <p class="muted">A chain&rsquo;s working load limit already carries the maker&rsquo;s own margin. Rope
   gets five to one because anchor rode is rarely new and rarely inspected end to end.</p>
   <table class="work">
@@ -296,10 +337,13 @@
     <small>L = rode paid out · d = depth to reach · LOA = length overall</small></div>
   <div class="footing"><span><b>Geometry</b> the rode taken straight</span></div>
   <p class="muted">Taking the rode as straight is the safe side: the sag of the chain only ever
-  shortens its reach.</p>
+  shortens its reach. The depth is tonight&rsquo;s highest water; at low water the same rode
+  reaches a little further (on Rainbow&rsquo;s <span data-v="scope.out">70</span> ft, about
+  <span data-v="swing.lowWater8">1.6</span> ft with an 8 ft fall), which the fence&rsquo;s GPS margin
+  covers.</p>
   <table class="work">
-    <tr><td>Reach across the bottom: √(78.75² − 17.5²)</td><td><span data-v="swing.reach">76.8</span> ft</td></tr>
-    <tr class="total"><td>Swing radius: 76.8 + 46.7</td><td><span data-v="swing.radius">123.5</span> ft</td></tr>
+    <tr><td>Reach across the bottom: √(70² − 17.5²)</td><td><span data-v="swing.reach">67.8</span> ft</td></tr>
+    <tr class="total"><td>Swing radius: 67.8 + 46.7</td><td><span data-v="swing.radius">114.5</span> ft</td></tr>
   </table>
 
   <!-- ===================================================================== -->
@@ -332,9 +376,9 @@
   <div class="formula">Bahamian: anchors 2 × the rode&rsquo;s reach apart · she occupies a corridor 2 × LOA wide</div>
   <div class="footing"><span><b>Geometry</b> the distances</span><span><b>Our estimate</b> the 60° and the allowances</span></div>
   <table class="work">
-    <tr><td>Med, <span data-v="med.standoff">6</span> ft gap: 76.8 + 46.7 + 6</td><td><span data-v="med.drop">129.5</span> ft</td></tr>
+    <tr><td>Med, <span data-v="med.standoff">6</span> ft gap: 67.8 + 46.7 + 6</td><td><span data-v="med.drop">120.5</span> ft</td></tr>
     <tr><td>Lines ashore, 60 ft to shore: each line</td><td><span data-v="ashore.line">110</span> ft</td></tr>
-    <tr><td>Bahamian: anchors apart</td><td><span data-v="bah.spacing">153.6</span> ft</td></tr>
+    <tr><td>Bahamian: anchors apart</td><td><span data-v="bah.spacing">135.6</span> ft</td></tr>
     <tr><td>Bahamian: corridor width</td><td><span data-v="bah.width">93.4</span> ft</td></tr>
   </table>
 
@@ -351,8 +395,8 @@
   tightened inside the swing, which she reaches by doing nothing wrong, or widened past
   <span data-v="fence.ceiling">200</span>%.</p>
   <table class="work">
-    <tr><td>One anchor: 123.5 + 50</td><td><span data-v="fence.radius">173.5</span> ft</td></tr>
-    <tr><td>Tightest step: 123.5 of 173.5, to the next 5%</td><td><span data-v="fence.floor">75</span>%</td></tr>
+    <tr><td>One anchor: 114.5 + 50</td><td><span data-v="fence.radius">164.5</span> ft</td></tr>
+    <tr><td>Tightest step: 114.5 of 164.5, to the next 5%</td><td><span data-v="fence.floor">70</span>%</td></tr>
     <tr><td>Held to a quay: 46.7 ÷ 2 + 50</td><td><span data-v="fence.hold">73.35</span> ft</td></tr>
   </table>
 
@@ -381,8 +425,8 @@
     <span data-v="late.reachErr">5</span>%</small></div>
   <div class="footing"><span><b>Physics</b> the rode&rsquo;s shape</span><span><b>Our estimate</b> the errors</span></div>
   <table class="work">
-    <tr><td>78.75 ft out in 17.5 ft, pulled by 300 lb</td><td><span data-v="late.reach">76.4</span> ft</td></tr>
-    <tr><td>By compass: 76.4 × sin 10°, rounded up</td><td><span data-v="late.unc">14</span> ft wider</td></tr>
+    <tr><td>70 ft out in 17.5 ft, pulled by 300 lb</td><td><span data-v="late.reach">67.5</span> ft</td></tr>
+    <tr><td>By compass: 67.5 × sin 10°, rounded up</td><td><span data-v="late.unc">12</span> ft wider</td></tr>
   </table>
 
   <div class="contact">
