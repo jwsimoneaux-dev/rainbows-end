@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rainbow's End Boat Calculator</title>
+<meta name="description" content="Work out your sailboat's ratios as she is loaded, not as the brochure weighed her: SA/D, D/L, comfort, capsize screening, multihull Bruce number, sheet loads and range under power. Every step shown.">
+<link rel="icon" type="image/png" sizes="64x64" href="../favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<style>
+/* The apps' look (Jerry, 2026-10-08: "It should look more like our apps").
+   Numbers: Anchoring's src/ui/tokens.ts. Inks: Anchoring's src/ui/palette.ts,
+   light and dark, named after its keys. Copied, never edited here;
+   `npm run verify:kit` compares both with dev/set-and-hold, as Float Plan's does.
+   Layout: a masthead, then one card per section on the sea-glass ground. */
+/* kit:numbers */
+:root {
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-tab-clear: 96px;
+  --radius-control: 12px;
+  --radius-card: 16px;
+  --radius-sheet: 24px;
+  --radius-pill: 999px;
+  --radius-thumb: 8px;
+  --control-height: 48px;
+  --control-chip: 44px;
+  --control-large: 56px;
+  --control-glyph: 44px;
+  --edge: 16px;
+  --type-caption: 12; --lh-caption: 16;
+  --type-label: 13; --lh-label: 18;
+  --type-body: 15; --lh-body: 21;
+  --type-body-large: 17; --lh-body-large: 23;
+  --type-readout-s: 20; --lh-readout-s: 24;
+  --type-readout: 28; --lh-readout: 32;
+  --type-readout-l: 34; --lh-readout-l: 38;
+  --type-band: 46; --lh-band: 52;
+  --type-hero: 54; --lh-hero: 56;
+  /* Float Plan's D11: one type unit that follows the iOS text size, held at 1.25x. */
+  --u: calc(clamp(17px, 1rem, 21.25px) / 17);
+}
+
+/* palette:light */
+:root {
+  color-scheme: light;
+  --background: #ECF5FB;
+  --surface: #FFFFFF;
+  --surface-raised: #F7FBFE;
+  --border: rgba(22,41,90,0.14);
+  --text: #16295A;
+  --text-muted: #4A5C7A;
+  --text-faint: #5A6984;
+  --accent: #1E6FB8;
+  --accent-soft: rgba(30,111,184,0.10);
+  --on-accent: #FFFFFF;
+  --critical: #BA4A33;
+  --warning: #A9701F;
+  --warning-soft: rgba(169,112,31,0.10);
+  --info: #1E6FB8;
+  --info-soft: rgba(30,111,184,0.08);
+  --seabed: #8A6A3C;
+  --pill-on-bg: #16295A;
+  --pill-on-border: #16295A;
+  --pill-on-text: #FFFFFF;
+  --pill-off-bg: #FFFFFF;
+  --pill-off-border: rgba(22,41,90,0.22);
+  --pill-off-text: #4A5C7A;
+  --focus-ring: rgba(30,111,184,0.35);
+}
+@media (prefers-color-scheme: dark) {
+  /* palette:dark */
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #071620;
+    --surface: #0E2532;
+    --surface-raised: #123040;
+    --border: rgba(156,205,232,0.13);
+    --text: #F4FAFD;
+    --text-muted: #8FA6B4;
+    --text-faint: #7FA8BF;
+    --accent: #9CCDE8;
+    --accent-soft: rgba(156,205,232,0.16);
+    --on-accent: #06121A;
+    --critical: #E2765F;
+    --warning: #E8B26A;
+    --warning-soft: rgba(232,178,106,0.12);
+    --info: #9CCDE8;
+    --info-soft: rgba(156,205,232,0.09);
+    --seabed: #C9A97A;
+    --pill-on-bg: rgba(156,205,232,0.16);
+    --pill-on-border: rgba(156,205,232,0.55);
+    --pill-on-text: #EAF4FA;
+    --pill-off-bg: rgba(156,205,232,0.05);
+    --pill-off-border: rgba(156,205,232,0.14);
+    --pill-off-text: #8FA6B4;
+    --focus-ring: rgba(156,205,232,0.40);
+  }
+}
+/* palette:dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #071620;
+  --surface: #0E2532;
+  --surface-raised: #123040;
+  --border: rgba(156,205,232,0.13);
+  --text: #F4FAFD;
+  --text-muted: #8FA6B4;
+  --text-faint: #7FA8BF;
+  --accent: #9CCDE8;
+  --accent-soft: rgba(156,205,232,0.16);
+  --on-accent: #06121A;
+  --critical: #E2765F;
+  --warning: #E8B26A;
+  --warning-soft: rgba(232,178,106,0.12);
+  --info: #9CCDE8;
+  --info-soft: rgba(156,205,232,0.09);
+  --seabed: #C9A97A;
+  --pill-on-bg: rgba(156,205,232,0.16);
+  --pill-on-border: rgba(156,205,232,0.55);
+  --pill-on-text: #EAF4FA;
+  --pill-off-bg: rgba(156,205,232,0.05);
+  --pill-off-border: rgba(156,205,232,0.14);
+  --pill-off-text: #8FA6B4;
+  --focus-ring: rgba(156,205,232,0.40);
+}
+
+/* The page's own names, pointed at the kit's inks so every rule and the chart
+   follow light and dark. Not palette keys; verify:kit skips this block. */
+:root {
+  --paper: var(--background);
+  --card: var(--surface);
+  --field: var(--surface-raised);
+  --ink: var(--text);
+  --muted: var(--text-muted);
+  --navy: var(--accent);
+  --rule: var(--border);
+  --gold: var(--warning);
+  --serif: 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --zone1: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  --zone2: color-mix(in srgb, var(--accent) 11%, var(--surface));
+  --zone3: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  --zone4: color-mix(in srgb, var(--warning) 12%, var(--surface));
+}
+
+* { box-sizing: border-box; }
+html { font-size: 17px; font: -apple-system-body; }
+body {
+  margin: 0; background: var(--background); color: var(--text); font-family: var(--sans);
+  font-size: calc(var(--type-body) * var(--u)); line-height: calc(var(--lh-body) * var(--u));
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+}
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* The masthead, as Float Plan's: a brass serif eyebrow over a serif title. */
+.hero { padding: var(--space-xxl) var(--edge) var(--space-s); }
+.hero-inner, main { max-width: 760px; margin: 0 auto; }
+.seal { width: 64px; height: 64px; border-radius: 50%; margin-bottom: var(--space-m); display: block; }
+.brand { font-family: var(--serif); font-size: calc(var(--type-label) * var(--u)); line-height: calc(var(--lh-label) * var(--u)); letter-spacing: 0.22em; text-transform: uppercase; color: var(--seabed); margin: 0 0 var(--space-xs); }
+h1 { font-family: var(--serif); font-weight: 600; font-size: calc(var(--type-readout-l) * var(--u)); line-height: calc(var(--lh-readout-l) * var(--u)); margin: 0; text-wrap: balance; }
+.scene { font-family: var(--serif); font-size: calc(var(--type-body-large) * var(--u)); line-height: calc(var(--lh-body-large) * var(--u)); color: var(--text); margin: var(--space-m) 0 var(--space-xs); }
+.sub { color: var(--text-muted); max-width: 60ch; margin: 0; }
+
+main { padding: var(--space-l) var(--edge) calc(var(--space-tab-clear) + env(safe-area-inset-bottom)); }
+/* One card per section (the kit's Card). Nothing inside a card is a card. */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--space-l); margin: 0 0 var(--space-l); }
+h2 { font-family: var(--serif); font-weight: 600; font-size: calc(var(--type-readout-s) * var(--u)); line-height: calc(var(--lh-readout-s) * var(--u)); color: var(--text); margin: 0 0 var(--space-m); }
+h3 { font-family: var(--serif); font-size: calc(var(--type-body-large) * var(--u)); margin: 0 0 var(--space-xs); }
+p { margin: 0; }
+.muted { color: var(--text-muted); }
+.small { font-size: calc(var(--type-label) * var(--u)); line-height: calc(var(--lh-label) * var(--u)); }
+
+.proto { border-radius: var(--radius-card); padding: var(--space-m) var(--space-l); margin: 0 0 var(--space-l); color: var(--text-muted); font-size: calc(var(--type-label) * var(--u)); line-height: calc(var(--lh-label) * var(--u)); background: var(--warning-soft); }
+.proto strong { color: var(--ink); }
+.proto ul { margin: 6px 0 0; padding-left: 20px; }
+
+.example { display: flex; flex-wrap: wrap; gap: var(--space-s) var(--space-l); align-items: center; justify-content: space-between; margin: 0 0 var(--space-l); padding: var(--space-m) var(--space-l); border-radius: var(--radius-card); background: var(--info-soft); }
+.example p { flex: 1 1 16rem; min-width: 0; }
+
+/* Controls */
+.row { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: var(--space-m); }
+.f { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; min-width: 0; }
+.f > span { font-size: calc(var(--type-label) * var(--u)); line-height: calc(var(--lh-label) * var(--u)); color: var(--text-muted); display: flex; align-items: center; gap: var(--space-xs); }
+.frame { display: flex; align-items: center; min-height: var(--control-height); border: 1px solid var(--border); border-radius: var(--radius-control); background: var(--surface-raised); padding: 0 var(--space-m); }
+.frame:focus-within { border-color: var(--accent); outline: 2px solid var(--focus-ring); outline-offset: 1px; }
+.frame input { flex: 1; width: 100%; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 16px var(--sans); font-variant-numeric: tabular-nums; padding: 12px 0; outline: none; }
+.frame .u { color: var(--text-muted); padding-left: var(--space-s); white-space: nowrap; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--pill-off-border); border-radius: var(--radius-control); overflow: hidden; background: var(--pill-off-bg); }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.seg span { display: flex; align-items: center; min-height: var(--control-chip); padding: 0 var(--space-l); color: var(--pill-off-text); }
+.seg input:checked + span { background: var(--pill-on-bg); color: var(--pill-on-text); font-weight: 600; }
+.seg input:focus-visible + span { outline: 2px solid var(--navy); outline-offset: -4px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+button { font: inherit; cursor: pointer; }
+.chip { min-height: var(--control-chip); padding: 0 var(--space-l); border-radius: var(--radius-pill); border: 1px solid var(--pill-off-border); background: var(--pill-off-bg); color: var(--pill-off-text); }
+.chip[aria-pressed="true"] { background: var(--pill-on-bg); border-color: var(--pill-on-border); color: var(--pill-on-text); font-weight: 600; }
+.btn { min-height: var(--control-height); padding: 0 var(--space-l); border-radius: var(--radius-control); border: 1px solid var(--border); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.btn:hover { border-color: var(--accent); }
+.check { display: flex; align-items: center; gap: var(--space-s); min-height: var(--control-chip); }
+.check input { width: 20px; height: 20px; accent-color: var(--accent); }
+.group { margin: 0 0 20px; }
+.group > p { margin: 0 0 12px; }
+
+.info { width: 28px; height: 28px; padding: 0; border: 0; background: none; color: var(--navy); display: inline-grid; place-items: center; border-radius: 50%; position: relative; }
+.info::after { content: ""; position: absolute; inset: -8px; } /* 44px target */
+.info svg { width: 18px; height: 18px; }
+.sheet { margin: var(--space-s) 0 0; padding: var(--space-m); border-radius: var(--radius-thumb); background: var(--info-soft); color: var(--text); max-width: 62ch; }
+
+/* The answer */
+.note { color: var(--text-muted); max-width: 62ch; margin: 0 0 var(--space-l); }
+.chart { background: var(--surface-raised); border-radius: var(--radius-control); padding: var(--space-m); margin: 0 0 var(--space-s); }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart-read { margin: 0 0 var(--space-xl); max-width: 62ch; }
+.figs { display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.fig { padding: var(--space-m) 0; border-bottom: 1px solid var(--border); display: grid; gap: var(--space-xs); }
+.fig:last-child { border-bottom: 0; }
+.fig-head { display: flex; align-items: center; gap: var(--space-xs); font-weight: 600; }
+.vals { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.vals.one { grid-template-columns: 1fr; }
+.val { display: grid; }
+.cap { font-size: calc(var(--type-caption) * var(--u)); line-height: calc(var(--lh-caption) * var(--u)); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
+.num { font-family: var(--serif); font-size: calc(var(--type-readout) * var(--u)); line-height: calc(var(--lh-readout) * var(--u)); font-variant-numeric: tabular-nums lining-nums; }
+.num .u { font-family: var(--sans); font-size: calc(var(--type-body) * var(--u)); color: var(--text-muted); margin-left: var(--space-xs); }
+.reading { max-width: 62ch; }
+details.math summary { cursor: pointer; color: var(--navy); font-size: 0.9rem; font-weight: 600; min-height: 32px; display: flex; align-items: center; }
+details.math .lines { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.85rem; color: var(--muted); background: var(--field); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: pre; margin: 4px 0 0; }
+details.math .src { font-size: 0.85rem; color: var(--muted); margin: 6px 0 0; }
+.basis { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--navy); margin-right: 6px; }
+dl.labels { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0 0 20px; font-size: 0.93rem; max-width: 62ch; }
+dl.labels dt { font-weight: 700; color: var(--navy); }
+dl.labels dd { margin: 0; color: var(--muted); }
+
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 0 var(--space-l); margin: 0 0 var(--space-l); }
+.panel > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: var(--space-m); min-height: var(--control-large); padding: var(--space-m) 0; }
+.panel > summary::-webkit-details-marker { display: none; }
+.panel > summary h2 { margin: 0; }
+.panel > summary .chev { width: 20px; height: 20px; color: var(--navy); flex: none; }
+.panel[open] > summary .chev { transform: rotate(180deg); }
+.panel-body { padding: 0 0 var(--space-l); }
+
+.tbl { overflow-x: auto; margin: 12px 0; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+th, td { text-align: right; padding: var(--space-s); border-bottom: 1px solid var(--border); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+th { font-size: calc(var(--type-caption) * var(--u)); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); font-weight: 600; }
+tr.steep td { color: var(--gold); }
+td .tag { display: block; font-size: 0.8rem; color: var(--gold); font-weight: 600; white-space: normal; text-align: left; }
+.answer { max-width: 62ch; margin: var(--space-s) 0 0; }
+
+.foot-actions { display: flex; flex-wrap: wrap; gap: var(--space-m); align-items: center; justify-content: space-between; margin: var(--space-xl) 0; }
+.wont { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; max-width: 62ch; }
+.wont li { padding-left: 20px; position: relative; }
+.wont li::before { content: ""; position: absolute; left: 4px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); }
+.honest { border-radius: var(--radius-card); padding: var(--space-l); margin: var(--space-l) 0 0; background: var(--info-soft); color: var(--text-muted); }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--border); }
+.links li:first-child { border-top: 0; }
+.links a { display: flex; flex-direction: column; justify-content: center; min-height: var(--control-chip); padding: var(--space-m) var(--space-xs); text-decoration: none; color: var(--text); font-weight: 600; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--text-muted); font-size: calc(var(--type-label) * var(--u)); }
+.soon { color: var(--text-muted); font-style: italic; max-width: 62ch; margin: var(--space-xl) 0 0; }
+.wish { color: var(--text-muted); font-style: italic; font-family: var(--serif); font-size: calc(var(--type-body-large) * var(--u)); margin: var(--space-xxl) 0 0; max-width: 58ch; }
+.foot { color: var(--text-muted); font-size: calc(var(--type-label) * var(--u)); margin-top: var(--space-s); }
+
+@media (max-width: 420px) {
+  .num { font-size: calc(var(--type-readout-s) * var(--u)); line-height: calc(var(--lh-readout-s) * var(--u)); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-inner">
+      <img class="seal" src="../brand/mark-512.png" width="64" height="64" alt="">
+      <p class="brand">Rainbow&rsquo;s End Marine</p>
+      <h1>Rainbow&rsquo;s End Boat Calculator</h1>
+      <p class="scene">The brochure weighed her empty. You don&rsquo;t sail her that way.</p>
+      <p class="sub">Rainbow&rsquo;s End Boat Calculator works out her ratios as she&rsquo;s loaded today, and shows the math.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="example" id="example">
+      <p class="small"><strong>These are <em>Rainbow</em>&rsquo;s figures,</strong> a Perry 47 ketch and Rainbow&rsquo;s End Marine&rsquo;s own boat. Enter yours.</p>
+      <button class="btn" id="clear" type="button">Clear her figures</button>
+    </div>
+
+    <section class="card">
+    <h2>Your boat</h2>
+    <div class="controls">
+      <div class="seg" role="radiogroup" aria-label="Hull">
+        <label><input type="radio" name="hull" id="hull-monohull" value="monohull"><span>Monohull</span></label>
+        <label><input type="radio" name="hull" id="hull-catamaran" value="catamaran"><span>Catamaran</span></label>
+        <label><input type="radio" name="hull" id="hull-trimaran" value="trimaran"><span>Trimaran</span></label>
+      </div>
+      <div class="seg" role="radiogroup" aria-label="Units">
+        <label><input type="radio" name="units" id="units-imperial" value="imperial"><span>Imperial</span></label>
+        <label><input type="radio" name="units" id="units-metric" value="metric"><span>Metric</span></label>
+      </div>
+    </div>
+
+    <div class="group">
+      <label class="f" style="margin:0 0 12px; max-width: 24rem"><span>Boat name</span><span class="frame"><input id="boatName" autocomplete="off" spellcheck="false" maxlength="40"></span></label>
+      <div class="row" data-fields="loa lwl beam disp ballast"></div>
+    </div>
+    <div class="group">
+      <p class="muted small">Sail area as published, or the rig measurements. With both, the published figure is used.</p>
+      <div class="row" data-fields="sa I J P E Pm Em"></div>
+    </div>
+    <div class="group" id="multi-inputs" hidden>
+      <div class="row" data-fields="hullBeam bridgedeck hcoe"></div>
+    </div>
+    </section>
+
+    <section class="card">
+    <h2>The load</h2>
+    <div class="chips" role="group" aria-label="Load presets">
+      <button class="chip" type="button" data-preset="day" aria-pressed="false">Day sail</button>
+      <button class="chip" type="button" data-preset="coastal" aria-pressed="false">Coastal</button>
+      <button class="chip" type="button" data-preset="offshore" aria-pressed="false">Offshore</button>
+    </div>
+    <div class="group">
+      <div class="row" data-fields="persons waterTank waterGal fuelTank fuelGal days dinghyLb gearLb"></div>
+    </div>
+    <div class="controls">
+      <label class="check"><input type="checkbox" id="dinghyAboard"> Dinghy aboard</label>
+      <div class="seg" role="radiogroup" aria-label="Fuel">
+        <label><input type="radio" name="fuelType" id="fuel-diesel" value="diesel"><span>Diesel</span></label>
+        <label><input type="radio" name="fuelType" id="fuel-gasoline" value="gasoline"><span>Gasoline</span></label>
+      </div>
+      <div class="seg" role="radiogroup" aria-label="Water she floats in">
+        <label><input type="radio" name="water" id="water-salt" value="salt"><span>Salt water</span></label>
+        <label><input type="radio" name="water" id="water-fresh" value="fresh"><span>Fresh water</span></label>
+      </div>
+    </div>
+    </section>
+
+    <section class="card">
+    <h2>How she compares</h2>
+    <p class="note">Every figure here is an estimate from published formulas. Show the math under any figure to see how it was worked out, and what it rests on. <a href="method.html">How the calculator works it out</a> has every formula and its source.</p>
+    <dl class="labels">
+      <dt>Physics</dt><dd>Standard physics: the weight of water and fuel.</dd>
+      <dt>Geometry</dt><dd>Arithmetic on lengths, areas and weights. Nothing is assumed.</dd>
+      <dt>Published</dt><dd>A published figure, and whose. We name a source only when we have read it.</dd>
+      <dt>Our estimate</dt><dd>A figure we chose. The calculator treats it as an estimate, and so should you.</dd>
+    </dl>
+    <div id="chart-wrap">
+      <div class="chart" id="chart"></div>
+      <p class="chart-read" id="chart-read"></p>
+    </div>
+    <div class="figs" id="figs"></div>
+    </section>
+
+    <details class="panel" id="panel-compare" open>
+      <summary><h2>Compare boats</h2><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
+      <div class="panel-body">
+        <p class="note">Save the boat above, enter another, and save it too. Up to four boats, side by side.</p>
+        <div class="controls">
+          <button class="btn" id="save-boat" type="button">Save this boat</button>
+          <div class="seg" role="radiogroup" aria-label="Compare">
+            <label><input type="radio" name="basis" id="basis-published" value="published"><span>As published</span></label>
+            <label><input type="radio" name="basis" id="basis-loaded" value="loaded"><span>As loaded</span></label>
+          </div>
+        </div>
+        <p class="muted small" id="save-msg" role="status"></p>
+        <div id="fleet"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="panel-multi" hidden open>
+      <summary><h2>The multihull</h2><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
+      <div class="panel-body"><div class="figs" id="figs-multi"></div></div>
+    </details>
+
+    <details class="panel" id="panel-sheets" open>
+      <summary><h2>Sheet and halyard loads</h2><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
+      <div class="panel-body">
+        <div class="row" data-fields="wind lp"></div>
+        <div id="sheets"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="panel-power" open>
+      <summary><h2>Range under power</h2><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
+      <div class="panel-body">
+        <div class="row" data-fields="hp reserve"></div>
+        <div id="power"></div>
+      </div>
+    </details>
+
+    <div class="foot-actions">
+      <p class="muted small">Saved in this browser only. Nothing is sent.</p>
+      <button class="btn" id="reset" type="button">Reset</button>
+    </div>
+
+    <section class="card">
+    <h2>Anchoring works it out the same way</h2>
+    <p class="lede" style="max-width:62ch">Every formula here is published, and every step is shown. The answer is honest; the decision is yours.</p>
+    <p class="lede" style="max-width:62ch;margin-top:12px">Rainbow&rsquo;s End Anchoring holds to the same rule. It works out the rode to pay out and the anchor to use from your own boat and the gear in her locker, and its method page shows each formula, where it comes from, and which figures are its own estimates.</p>
+    <ul class="links">
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring<span>The anchor &amp; rode calculator that knows your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/method.html">How Anchoring works it out<span>Every figure Anchoring gives, what it rests on, and whose it is.</span></a></li>
+    </ul>
+    </section>
+
+    <section class="card">
+    <h2>What it won&rsquo;t do</h2>
+    <ul class="wont">
+      <li>It won&rsquo;t tell you whether she is safe offshore. No ratio can.</li>
+      <li>It won&rsquo;t estimate displacement. Enter the published figure.</li>
+      <li>It won&rsquo;t size a planing powerboat&rsquo;s speed.</li>
+      <li>It won&rsquo;t send anything anywhere. Your figures stay in this browser.</li>
+    </ul>
+    </section>
+
+    <p class="honest">The numbers describe a design and a load. The sea decides the rest.
+      Rainbow&rsquo;s End Boat Calculator is an aid to judgment, not a substitute for it.</p>
+
+    <section class="card">
+    <h2>More</h2>
+    <ul class="links">
+      <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s End Logbook<span>The book of your voyage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+      <!-- family:end -->
+    </ul>
+    </section>
+
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </main>
+
+<script type="module">
+import * as E from './engine.js';
+
+/* ── Units. Everything is stored imperial; metric is a view. ── */
+const DIM = {
+  len:  { imperial: 'ft',  metric: 'm',   f: 0.3048 },
+  area: { imperial: 'ft²', metric: 'm²',  f: 0.09290304 },
+  wt:   { imperial: 'lb',  metric: 'kg',  f: 0.45359237 },
+  vol:  { imperial: 'gal', metric: 'L',   f: 3.785411784 },
+  inch: { imperial: 'in',  metric: 'cm',  f: 2.54 },
+};
+
+/* ── The fields: label (no unit), dimension or fixed unit, ⓘ text. ── */
+const FIELDS = {
+  loa: { label: 'LOA', dim: 'len' },
+  lwl: { label: 'LWL', dim: 'len' },
+  beam: { label: 'Beam', dim: 'len' },
+  disp: { label: 'Displacement', dim: 'wt', info: 'Use the published figure. Builders usually publish light ship: no water, fuel, crew or stores. Fill in the load below for the rest.' },
+  ballast: { label: 'Ballast', dim: 'wt', mono: true },
+  sa: { label: 'Sail area', dim: 'area', info: 'The published figure: main plus 100% fore triangle, and the mizzen on a ketch or yawl.' },
+  I: { label: 'I', dim: 'len', info: 'Height of the forestay on the mast, above the deck.' },
+  J: { label: 'J', dim: 'len', info: 'Mast to the forestay at the deck.' },
+  P: { label: 'P', dim: 'len', info: 'Mainsail luff.' },
+  E: { label: 'E', dim: 'len', info: 'Mainsail foot.' },
+  Pm: { label: 'Mizzen P', dim: 'len' },
+  Em: { label: 'Mizzen E', dim: 'len' },
+  hullBeam: { label: 'Hull beam at the waterline', dim: 'len', info: 'One hull, at the waterline. On a trimaran, the main hull.' },
+  bridgedeck: { label: 'Bridgedeck clearance', dim: 'len', info: 'Waterline to the underside of the bridgedeck, loaded.' },
+  hcoe: { label: 'Center of effort above the waterline', dim: 'len', info: 'The height of the middle of the sail plan above the water. If you don\'t know it, about 45% of the mast\'s height above the water is close for most cruising multihulls.' },
+  persons: { label: 'Persons aboard', unit: '' },
+  waterTank: { label: 'Water tanks', dim: 'vol' },
+  waterGal: { label: 'Water carried', dim: 'vol' },
+  fuelTank: { label: 'Fuel tank, usable', dim: 'vol' },
+  fuelGal: { label: 'Fuel carried', dim: 'vol' },
+  days: { label: 'Stores for', unit: 'days', info: '4 lb per person a day, food and drink.' },
+  dinghyLb: { label: 'Dinghy and outboard', dim: 'wt' },
+  gearLb: { label: 'Gear added since launch', dim: 'wt', info: 'Chain, anchors, solar, a watermaker, spares, tools. Everything the builder didn\'t weigh.' },
+  hp: { label: 'Engine', unit: 'hp', info: 'The rated horsepower.' },
+  reserve: { label: 'Fuel to keep in reserve', unit: '%', info: 'Practical Sailor\'s rule of thirds: use a third going out, a third coming back, and keep a third in reserve.' },
+  wind: { label: 'Apparent wind', unit: 'kt' },
+  lp: { label: 'Headsail LP', unit: '%', info: 'The headsail\'s LP as a share of J. A 135% genoa is 135.' },
+};
+
+const EXAMPLE = {
+  // Rainbow, a Perry 47 ketch, from her published sheet (Jerry, 2026-10-08):
+  // 30,400 lb empty, 14,000 lb encapsulated iron ballast (shoal draft). Her load
+  // as she sails (Jerry): 250 gal fuel, 125 gal water, and 2,000 lb of people,
+  // supplies and gear (2 persons + 3 days of stores + 1,626 lb gear = 2,000).
+  // Fuel: two 125 gal tanks. Engine: 80 hp.
+  hull: 'monohull', units: 'imperial', example: true, name: 'Rainbow', basis: 'published',
+  loa: 46 + 7 / 12, lwl: 36.8, beam: 13.5, disp: 30400, ballast: 14000, sa: 973,
+  I: 52 + 5 / 12, J: 16.75, P: 45.75, E: 15, Pm: 32.75, Em: 11 + 8 / 12, hullBeam: null, bridgedeck: null, hcoe: null,
+  persons: 2, waterTank: 200, waterGal: 125, fuelTank: 250, fuelGal: 250, days: 3,
+  dinghyLb: null, dinghyAboard: true, gearLb: 1626, fuelType: 'diesel', water: 'salt',
+  hp: 80, reserve: 33, wind: 20, lp: 135, preset: null,
+};
+const BLANK = Object.fromEntries(Object.keys(EXAMPLE).map((k) => [k, null]));
+Object.assign(BLANK, { hull: 'monohull', units: 'imperial', example: false, name: '', basis: 'published', dinghyAboard: true, fuelType: 'diesel', water: 'salt', reserve: 33, wind: 20, lp: 135, preset: null });
+
+const KEY = 'rem-sailcalc-v1';
+let S = load();
+function load() {
+  try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && typeof s === 'object') return { ...BLANK, ...s }; } catch {}
+  return { ...EXAMPLE };
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} }
+
+/* ── Formatting ── */
+const nf = (x, d = 1) => Number.isFinite(x) ? x.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }) : '—';
+const metric = () => S.units === 'metric';
+const unitOf = (dim) => DIM[dim][metric() ? 'metric' : 'imperial'];
+const show = (x, dim) => (metric() && Number.isFinite(x) ? x * DIM[dim].f : x);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const INFO_SVG = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10" cy="10" r="8.2"/><path d="M10 9v5" stroke-linecap="round"/><circle cx="10" cy="6.2" r="0.9" fill="currentColor" stroke="none"/></svg>';
+let infoSeq = 0;
+function infoButton(text) {
+  const id = 'sheet-' + (++infoSeq);
+  return { btn: `<button class="info" type="button" aria-expanded="false" aria-controls="${id}" aria-label="What is this?">${INFO_SVG}</button>`, sheet: `<p class="sheet" id="${id}" hidden>${text}</p>` };
+}
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('.info');
+  if (!b) return;
+  const s = document.getElementById(b.getAttribute('aria-controls'));
+  s.hidden = !s.hidden;
+  b.setAttribute('aria-expanded', String(!s.hidden));
+});
+
+/* ── Build the inputs once ── */
+for (const row of document.querySelectorAll('[data-fields]')) {
+  row.innerHTML = row.dataset.fields.split(' ').map((k) => {
+    const f = FIELDS[k];
+    const i = f.info ? infoButton(f.info) : { btn: '', sheet: '' };
+    return `<label class="f" data-key="${k}"><span>${esc(f.label)}${i.btn}</span>
+      <span class="frame"><input id="in-${k}" inputmode="decimal" autocomplete="off" spellcheck="false"><span class="u" data-u="${k}"></span></span>${i.sheet}</label>`;
+  }).join('');
+}
+// The ⓘ sits inside a <label>; a tap on it must not focus the field.
+document.querySelectorAll('label.f .info').forEach((b) => b.addEventListener('click', (e) => e.preventDefault()));
+
+function paintInputs() {
+  for (const [k, f] of Object.entries(FIELDS)) {
+    const el = document.getElementById('in-' + k);
+    if (!el) continue;
+    const v = S[k];
+    const shown = f.dim && Number.isFinite(v) ? +show(v, f.dim).toFixed(f.dim === 'area' || f.dim === 'len' ? 2 : 1) : v;
+    if (document.activeElement !== el) el.value = shown ?? '';
+    document.querySelector(`[data-u="${k}"]`).textContent = f.dim ? unitOf(f.dim) : f.unit;
+  }
+  const nameEl = document.getElementById('boatName');
+  if (document.activeElement !== nameEl) nameEl.value = S.name ?? '';
+  for (const n of ['hull', 'units', 'fuelType', 'water', 'basis']) {
+    const r = document.querySelector(`input[name="${n}"][value="${S[n]}"]`);
+    if (r) r.checked = true;
+  }
+  document.getElementById('dinghyAboard').checked = S.dinghyAboard !== false;
+  document.querySelectorAll('[data-preset]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.preset === S.preset)));
+  document.getElementById('example').hidden = !S.example;
+  const multi = S.hull !== 'monohull';
+  document.getElementById('multi-inputs').hidden = !multi;
+  document.querySelector('[data-key="ballast"]').hidden = multi;
+}
+
+document.addEventListener('input', (e) => {
+  const t = e.target;
+  if (t.id?.startsWith('in-')) {
+    const k = t.id.slice(3), f = FIELDS[k];
+    const raw = parseFloat(t.value.replace(/,/g, ''));
+    S[k] = Number.isFinite(raw) ? (f.dim && metric() ? raw / DIM[f.dim].f : raw) : null;
+    if (['waterGal', 'fuelGal', 'days'].includes(k)) S.preset = null;
+  } else if (t.id === 'boatName') {
+    S.name = t.value;
+  } else if (t.name && t.type === 'radio') {
+    S[t.name] = t.value;
+  } else if (t.id === 'dinghyAboard') {
+    S.dinghyAboard = t.checked; S.preset = null;
+  } else return;
+  S.example = false;
+  save(); paintInputs(); render();
+});
+
+document.querySelectorAll('[data-preset]').forEach((b) => b.addEventListener('click', () => {
+  const p = b.dataset.preset;
+  const share = p === 'day' ? 0.5 : 1;
+  const tank = (x) => (Number.isFinite(x) ? Math.round(x * share) : null);
+  Object.assign(S, { preset: p, waterGal: tank(S.waterTank), fuelGal: tank(S.fuelTank), days: p === 'day' ? 0 : p === 'coastal' ? 3 : 14, dinghyAboard: p !== 'day', example: false });
+  save(); paintInputs(); render();
+}));
+document.getElementById('clear').addEventListener('click', () => { S = { ...BLANK }; save(); paintInputs(); render(); });
+document.getElementById('reset').addEventListener('click', () => { S = { ...BLANK }; try { localStorage.removeItem(KEY); } catch {} paintInputs(); render(); });
+
+/* ── Readings (plain voice; C1) ── */
+const READ = {
+  sad: { under: 'Under-canvassed. She\'ll want wind before she wakes up.', good: 'A cruiser\'s sail plan. She sails well in a moderate breeze.', excellent: 'Plenty of sail for her weight. She moves in light air.', handful: 'A lot of sail for her weight. Expect to reef early.' },
+  dl: { ultralight: 'ultralight', light: 'light', moderate: 'moderate', heavy: 'heavy', ultraheavy: 'very heavy' },
+  sf: { early: 'Below the 22 to 25 kt an offshore cruiser should carry full sail in. Reef early.', edge: 'At the low edge for an offshore cruiser. Reef by 22 kt apparent.', offshore: 'Within the range for an offshore cruiser.' },
+  comfort: { quick: 'A quicker motion than Brewer\'s moderate ocean cruisers.', ocean: 'In the low to mid 30s, where Brewer put moderate, successful ocean cruisers.', calm: 'A slower, calmer motion than Brewer\'s moderate ocean cruisers.' },
+  bruce: { slow: 'Under-powered. She needs a breeze to move.', cruiser: 'A cruiser\'s power. Slow in light air.', quick: 'Quick. She\'ll reef early.' },
+};
+
+const FIG = {
+  sad: { name: 'Sail area to displacement', d: 1, info: 'How much sail she carries for her weight.', src: 'Formula and bands: Ralph Naranjo, Measuring Performance, Practical Sailor (2020).', basis: 'Published',
+    read: (p, l) => two(READ.sad, p, l) },
+  dl: { name: 'Displacement to length', d: 0, info: 'How heavy she is for her waterline length. Lower is lighter.', src: 'Formula and bands: Ralph Naranjo, Measuring Performance, Practical Sailor (2020).', basis: 'Published',
+    read: (p, l) => l && l.band !== p.band ? `Loaded, she moves from ${READ.dl[p.band]} to ${READ.dl[l.band]} for her length.` : `${cap(READ.dl[p.band])} for her length.` },
+  comfort: { name: 'Comfort ratio', d: 1, info: 'Ted Brewer\'s measure of motion comfort: how fast she moves upward in waves. Higher is calmer. It ignores wave direction, hull shape, ballast depth and speed, and it does not measure safety. Use it to compare boats of a similar size and style.', src: 'Jamie Gifford, Hands-on Sailor: Comfort Ratio, Cruising World (2026), quoting Ted Brewer. Exponent 1.333 reproduces Rainbow\'s published 36.6; the article prints 1.33.', basis: 'Published',
+    read: (p, l) => two(READ.comfort, p, l) },
+  capsize: { name: 'Capsize screening', d: 2, info: 'A screen: beam against weight. Under 2.0 is considered fit to sail offshore. It ignores hull shape and ballast, so it is a first look, not a stability test.', src: 'Formula and the 2.0 line: Ray Ville, Freedom 45 CC review, Practical Sailor (2025).', basis: 'Published',
+    read: (p, l) => { const v = (l ?? p).value; return v < 2 ? 'Under 2.0: meets the offshore screen.' : `${v < 2.1 ? 'Just over' : 'Over'} the offshore screen. The screen ignores hull shape and ballast; it is a first look, not a verdict.`; } },
+  bruce: { name: 'Bruce number', d: 2, info: 'Sail area against weight: the multihull\'s power figure. For comparison, a 34-ft cruising trimaran is about 1.1 and a beach catamaran about 1.7.', src: 'Formula: Multihull Capsize Risk Check, Practical Sailor (2021).', basis: 'Published',
+    read: (p, l) => two(READ.bruce, p, l) },
+  ballast: { name: 'Ballast ratio', d: 1, unit: '%', info: 'Ballast as a share of displacement. Keel shape and how deep the ballast sits matter more: two boats with the same ratio can stand up very differently.', src: 'Ballast over displacement.', basis: 'Geometry',
+    read: (p) => `${nf(p.value, 0)}% of her published weight is ballast.` },
+  hull: { name: 'Hull speed', d: 1, unit: 'kt', info: '1.34 × √LWL, the traditional limit for a displacement hull.', src: 'The traditional 1.34 × √LWL, as Practical Sailor gives it (2025).', basis: 'Published', once: true,
+    read: () => 'The old rule of thumb.' },
+  gerr: { name: 'Top speed under sail', d: 1, unit: 'kt', info: 'Dave Gerr\'s maximum speed for a hull that is not planing. Light boats pass 1.34 × √LWL; heavy ones hold at it. It ignores sail area, and long overhangs make it read low.', src: 'Dave Gerr, What Efficiency Means, Part 1 (2011): 8.26 ÷ (D/L)^0.311, never less than 1.34. Worked example: Charles Doane, Crunching Numbers, Wave Train (2010).', basis: 'Published',
+    read: (p, l, f) => ((l ?? p).value > f.hull.value + 0.05 ? 'Light enough to sail past the old 1.34 limit.' : 'Heavy enough that the old 1.34 limit holds.') },
+  ppi: { name: 'Pounds per inch', d: 0, unitDim: 'ppi', info: 'How much load sinks her one inch. An estimate from her waterline length and beam.', src: 'Waterplane estimated as LWL × beam × 0.67; seawater 64 lb/ft³, fresh 62.4.', basis: 'Our estimate', once: true,
+    read: (p) => metric() ? `She sinks about 1 cm for every ${nf(p.value * DIM.wt.f / DIM.inch.f, 0)} kg.` : `She sinks about 1 in for every ${nf(p.value, 0)} lb.` },
+};
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+// One band's reading, or both when the load moves her into another band.
+const two = (table, p, l) => l && l.band !== p.band ? `${table[p.band]} Loaded: ${table[l.band].charAt(0).toLowerCase()}${table[l.band].slice(1)}` : table[p.band];
+
+function figHTML(id, def, pub, lod, all, extraMath) {
+  const i = infoButton(def.info);
+  const unit = def.unitDim === 'ppi' ? (metric() ? 'kg/cm' : 'lb/in') : def.unit ?? '';
+  const conv = (v) => def.unitDim === 'ppi' && metric() ? v * DIM.wt.f / DIM.inch.f : v;
+  const one = !lod || def.once;
+  const cell = (cap, f) => `<div class="val">${cap ? `<span class="cap">${cap}</span>` : ''}<span class="num">${nf(conv(f.value), def.d)}${unit ? `<span class="u">${unit}</span>` : ''}</span></div>`;
+  const math = [...pub.math.map((m) => '  ' + m)];
+  const lines = one ? pub.math.join('\n') : 'As published\n' + pub.math.map((m) => '  ' + m).join('\n') + '\n\nAs loaded\n' + lod.math.map((m) => '  ' + m).join('\n');
+  return `<div class="fig" id="fig-${id}">
+    <div class="fig-head">${esc(def.name)}${i.btn}</div>
+    <div class="vals${one ? ' one' : ''}">${one ? cell(def.once ? '' : 'As published', pub) : cell('As published', pub) + cell('As loaded', lod)}</div>
+    <p class="reading">${esc(def.read(pub, one ? null : lod, all))}</p>
+    ${i.sheet}
+    <details class="math"><summary>Show the math</summary><div class="lines">${esc(lines + (extraMath ? '\n\n' + extraMath : ''))}</div><p class="src"><span class="basis">${def.basis}</span>${esc(def.src)}</p></details>
+  </div>`;
+}
+
+/* ── The chart: D/L across, SA/D up, zones in words (spec 4.5) ── */
+const X0 = 48, X1 = 348, Y0 = 18, Y1 = 214;
+const xs = (v) => X0 + (Math.min(Math.max(v, 0), 450) / 450) * (X1 - X0);
+const ys = (v) => Y1 - ((Math.min(Math.max(v, 10), 35) - 10) / 25) * (Y1 - Y0);
+const ZONES = [
+  { name: 'Under-canvassed', x: [0, 450], y: [10, 15], fill: 'var(--zone4)' },
+  { name: 'Light and powerful', x: [0, 180], y: [15, 35], fill: 'var(--zone1)' },
+  { name: 'Racer-cruiser', x: [180, 270], y: [18, 35], fill: 'var(--zone2)', lines: ['Racer-', 'cruiser'] },
+  { name: 'Cruiser', x: [180, 270], y: [15, 18], fill: 'var(--zone3)' },
+  { name: 'Heavy cruiser', x: [270, 450], y: [15, 35], fill: 'var(--zone2)' },
+];
+const zoneOf = (dlRaw, sadRaw) => { const dlv = Math.round(dlRaw), sadv = Math.round(sadRaw * 10) / 10; return ZONES.find((z) => dlv >= z.x[0] && dlv < (z.x[1] === 450 ? Infinity : z.x[1]) && sadv >= z.y[0] && sadv < (z.y[1] === 35 ? Infinity : z.y[1]))?.name
+  ?? (sadv < 15 ? 'Under-canvassed' : 'Light and powerful'); };
+
+function chartSVG(p, l, others) {
+  const t = (x, y, s, a = 'middle', cls = '') => `<text x="${x}" y="${y}" text-anchor="${a}" font-size="12" fill="var(--muted)" ${cls}>${s}</text>`;
+  let g = '';
+  for (const z of ZONES) {
+    const x = xs(z.x[0]), y = ys(z.y[1]), w = xs(z.x[1]) - x, h = ys(z.y[0]) - y;
+    g += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${z.fill}" stroke="var(--rule)" stroke-width="1"/>`;
+    const lines = z.lines ?? [z.name];
+    lines.forEach((ln, i) => g += `<text x="${x + w / 2}" y="${y + h / 2 + (i - (lines.length - 1) / 2) * 15 + 4}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)" opacity="0.8">${ln}</text>`);
+  }
+  for (const v of [0, 100, 200, 300, 400]) g += t(xs(v), Y1 + 18, v);
+  for (const v of [10, 15, 20, 25, 30, 35]) g += t(X0 - 8, ys(v) + 4, v, 'end');
+  g += t((X0 + X1) / 2, Y1 + 38, 'Displacement to length — heavier →');
+  g += `<text transform="translate(14 ${(Y0 + Y1) / 2}) rotate(-90)" text-anchor="middle" font-size="12" fill="var(--muted)">Sail area to displacement — more sail →</text>`;
+  const pt = (f) => [xs(f.dl), ys(f.sad)];
+  if (others) {
+    // The comparison: one marker per boat, each named beside it.
+    others.forEach((b, i) => {
+      const [x, y] = pt(b);
+      g += `<circle cx="${x}" cy="${y}" r="6" fill="var(--navy)" stroke="var(--card)" stroke-width="2"/>`;
+      const right = x < X1 - 90;
+      g += `<text x="${x + (right ? 10 : -10)}" y="${y + 4 + (i % 2 ? 12 : 0)}" text-anchor="${right ? 'start' : 'end'}" font-size="12" font-weight="650" fill="var(--ink)">${esc(b.label)}</text>`;
+    });
+    return `<svg viewBox="0 0 360 ${Y1 + 48}" role="img" aria-label="Chart comparing the saved boats">${g}</svg>`;
+  }
+  if (p) {
+    const [px, py] = pt(p);
+    g += `<circle cx="${px}" cy="${py}" r="7" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/>`;
+    if (l) {
+      const [lx, ly] = pt(l);
+      const dx = lx - px, dy = ly - py, d = Math.hypot(dx, dy);
+      if (d > 18) {
+        const ux = dx / d, uy = dy / d, sx = px + ux * 10, sy = py + uy * 10, ex = lx - ux * 11, ey = ly - uy * 11;
+        g += `<line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="var(--navy)" stroke-width="2"/>`;
+        g += `<path d="M${ex + ux * 2} ${ey + uy * 2} L${ex - ux * 7 - uy * 5} ${ey - uy * 7 + ux * 5} L${ex - ux * 7 + uy * 5} ${ey - uy * 7 - ux * 5}Z" fill="var(--navy)"/>`;
+      }
+      g += `<circle cx="${lx}" cy="${ly}" r="7" fill="var(--navy)"/>`;
+    }
+  }
+  const legend = `<g font-size="12" fill="var(--ink)"><circle cx="${X0 + 8}" cy="${Y1 + 58}" r="6" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/><text x="${X0 + 20}" y="${Y1 + 62}">As published</text>`
+    + (l ? `<circle cx="${X0 + 128}" cy="${Y1 + 58}" r="6" fill="var(--navy)"/><text x="${X0 + 140}" y="${Y1 + 62}">As loaded</text>` : '') + '</g>';
+  return `<svg viewBox="0 0 360 ${Y1 + 72}" role="img" aria-label="Chart of displacement to length against sail area to displacement">${g}${legend}</svg>`;
+}
+
+/* ── Render the answer ── */
+function render() {
+  const multi = S.hull !== 'monohull';
+  const { sa, from } = E.sailAreaFor(S);
+  const boat = { hull: S.hull, loa: S.loa, lwl: S.lwl, beam: S.beam, ballast: S.ballast, sa, water: S.water, hullBeam: S.hullBeam };
+  const load = E.addedLoad({ ...S });
+  const hasLoad = load.total > 0;
+  const dispL = S.disp + load.total;
+  const pub = E.ratios(boat, S.disp);
+  const lod = hasLoad ? E.ratios(boat, dispL) : null;
+
+  // The chart (monohull only).
+  const chartOk = !multi && Number.isFinite(pub.dl.value) && Number.isFinite(pub.sad.value);
+  document.getElementById('chart-wrap').hidden = !chartOk;
+  if (chartOk) {
+    const p = { dl: pub.dl.value, sad: pub.sad.value }, l = lod ? { dl: lod.dl.value, sad: lod.sad.value } : null;
+    document.getElementById('chart').innerHTML = chartSVG(p, l);
+    const zp = zoneOf(p.dl, p.sad), zl = l && zoneOf(l.dl, l.sad);
+    document.getElementById('chart-read').textContent =
+      `As published: D/L ${nf(p.dl, 0)}, SA/D ${nf(p.sad)}, ${zp.toLowerCase()}.` +
+      (l ? ` As loaded: D/L ${nf(l.dl, 0)}, SA/D ${nf(l.sad)}, ${zl === zp ? 'the same zone' : zl.toLowerCase()}.` : '');
+  }
+
+  // The figures.
+  const order = multi ? ['bruce', 'sad', 'dl', 'gerr', 'hull', 'ppi'] : ['sad', 'dl', 'comfort', 'capsize', 'ballast', 'gerr', 'hull', 'ppi'];
+  let html = '';
+  if (!Number.isFinite(S.disp) || !Number.isFinite(S.lwl)) {
+    html = '<p class="fig muted">Enter her LWL and displacement to see the ratios.</p>';
+  } else {
+    if (hasLoad) {
+      const loadLines = load.parts.filter((x) => x.lb > 0).map((x) => `  ${x.key.padEnd(8)} ${x.math} = ${nf(x.lb, 0)} lb`).join('\n');
+      const ppiV = pub.ppi.value;
+      const sink = load.total / ppiV;
+      const i = infoButton('The added load divided by pounds per inch.');
+      html += `<div class="fig" id="fig-sink"><div class="fig-head">Below her lines${i.btn}</div>
+        <div class="vals"><div class="val"><span class="cap">Load added</span><span class="num">${nf(show(load.total, 'wt'), 0)}<span class="u">${unitOf('wt')}</span></span></div>
+        <div class="val"><span class="cap">She sits lower by</span><span class="num">${nf(show(sink, 'inch'), 1)}<span class="u">${unitOf('inch')}</span></span></div></div>
+        <p class="reading">Loaded, she floats about ${nf(show(sink, 'inch'), 1)} ${unitOf('inch')} below her lines, at ${nf(show(dispL, 'wt'), 0)} ${unitOf('wt')}.</p>${i.sheet}
+        <details class="math"><summary>Show the math</summary><div class="lines">${esc(`Load\n${loadLines}\n  total    ${nf(load.total, 0)} lb\n\nSinkage = load ÷ pounds per inch\n  ${nf(load.total, 0)} ÷ ${nf(ppiV, 0)} = ${nf(sink, 2)} in`)}</div><p class="src"><span class="basis">Physics</span>Water 8.34 lb/gal; diesel 7.1, gasoline 6.1. <span class="basis">Our estimate</span>175 lb a person; 4 lb of stores a person a day; pounds per inch.</p></details></div>`;
+    }
+    for (const id of order) {
+      if (!pub[id] || !Number.isFinite(pub[id].value)) continue;
+      const extra = id === 'sad' && from === 'rig' ? 'Sail area from the rig: ½·I·J + ½·P·E' + (S.Pm && S.Em ? ' + ½·Pm·Em' : '') : '';
+      html += figHTML(id, FIG[id], pub[id], lod && lod[id], pub, extra);
+    }
+  }
+  document.getElementById('figs').innerHTML = html;
+
+  // The multihull panel.
+  const pm = document.getElementById('panel-multi');
+  pm.hidden = !multi;
+  if (multi) {
+    const { sa: saM } = E.sailAreaFor(S);
+    const m = E.multihull({ hull: S.hull, loa: S.loa, lwl: S.lwl, beam: S.beam, hullBeam: S.hullBeam, bridgedeck: S.bridgedeck, disp: Number.isFinite(S.disp) ? S.disp + E.addedLoad(S).total : NaN, sa: saM, hcoe: S.hcoe });
+    let h = '<p class="note">Ballast ratio, comfort ratio and capsize screening are left out. They measure a ballasted monohull; a multihull stands up on her beam, not her keel.</p>';
+    if (Number.isFinite(m.sf.value)) h += simpleFig('Wind to lift a hull', nf(m.sf.value, 1), 'kt', 'The wind on the beam, on flat water, at which she lifts a hull with full sail up, allowing for gusts 40% above it. Waves and the wind under the bridgedeck lower it. Reef well before it.', m.sf.math, READ.sf[m.sf.band], 'Stability factor: Multihull Capsize Risk Check, Practical Sailor (2021). Reproduces all seven boats in its table.', 'Published');
+    else h += '<p class="muted">Enter the hull beam at the waterline and the center of effort for the wind to lift a hull.</p>';
+    if (Number.isFinite(m.lengthBeam.value)) h += simpleFig('Length to beam', nf(m.lengthBeam.value, 2), '', `LOA over overall beam. More beam resists a capsize; too much makes a pitchpole more likely. Practical Sailor puts the best range at ${m.lengthBeam.range[0]} to ${m.lengthBeam.range[1]} for a ${S.hull}.`, m.lengthBeam.math, m.lengthBeam.band === 'within' ? 'Within the usual range.' : m.lengthBeam.band === 'wide' ? 'Wider than usual for her length.' : 'Narrower than usual for her length.', 'Range: Multihull Capsize Risk Check, Practical Sailor (2021).', 'Published');
+    if (Number.isFinite(m.fineness.value)) h += simpleFig('Hull fineness', nf(m.fineness.value, 1), '', 'Hull length against hull beam at the waterline. Finer hulls are faster and carry less load.', m.fineness.math);
+    if (Number.isFinite(m.clearance.value)) h += simpleFig('Bridgedeck clearance', nf(m.clearance.value, 1), '% of beam', 'Higher clearance means less slamming under the bridgedeck in a seaway.', m.clearance.math);
+    if (!Number.isFinite(m.fineness.value) && !Number.isFinite(m.clearance.value)) h += '<p class="muted">Enter the hull beam at the waterline and the bridgedeck clearance.</p>';
+    document.getElementById('figs-multi').innerHTML = h;
+  }
+
+  renderSheets(sa);
+  renderPower(hasLoad ? dispL : S.disp, hasLoad);
+  renderFleet();
+}
+
+/* ── Compare boats (D13). Saved apart from the form, so Reset keeps them. ── */
+const FLEET_KEY = 'rem-sailcalc-fleet-v1';
+const MAX_BOATS = 4;
+let FLEET = [];
+try { FLEET = JSON.parse(localStorage.getItem(FLEET_KEY)) ?? []; if (!Array.isArray(FLEET)) FLEET = []; } catch { FLEET = []; }
+const saveFleet = () => { try { localStorage.setItem(FLEET_KEY, JSON.stringify(FLEET)); } catch {} };
+
+document.getElementById('save-boat').addEventListener('click', () => {
+  const msg = document.getElementById('save-msg');
+  if (!Number.isFinite(S.disp) || !Number.isFinite(S.lwl)) { msg.textContent = 'Enter her LWL and displacement first.'; return; }
+  const name = (S.name ?? '').trim() || `Boat ${FLEET.length + 1}`;
+  const at = FLEET.findIndex((b) => b.name === name);
+  const snap = { ...S, name, example: false };
+  if (at >= 0) { FLEET[at] = { name, data: snap }; msg.textContent = `${name} updated.`; }
+  else if (FLEET.length >= MAX_BOATS) { msg.textContent = 'Four boats saved. Remove one to save another.'; return; }
+  else { FLEET.push({ name, data: snap }); msg.textContent = `${name} saved.`; }
+  saveFleet(); renderFleet();
+});
+
+document.getElementById('fleet').addEventListener('click', (e) => {
+  const b = e.target.closest('button[data-act]');
+  if (!b) return;
+  const i = Number(b.dataset.i);
+  if (b.dataset.act === 'open') { S = { ...BLANK, ...FLEET[i].data, basis: S.basis }; save(); paintInputs(); render(); document.getElementById('boatName').scrollIntoView({ block: 'center' }); }
+  if (b.dataset.act === 'remove') { const n = FLEET[i].name; FLEET.splice(i, 1); saveFleet(); renderFleet(); document.getElementById('save-msg').textContent = `${n} removed.`; }
+});
+
+function figuresFor(d, loaded) {
+  const { sa } = E.sailAreaFor(d);
+  const boat = { hull: d.hull, loa: d.loa, lwl: d.lwl, beam: d.beam, ballast: d.ballast, sa, water: d.water, hullBeam: d.hullBeam };
+  const disp = loaded ? d.disp + E.addedLoad(d).total : d.disp;
+  return { disp, sa, multi: d.hull !== 'monohull', f: E.ratios(boat, disp) };
+}
+
+function renderFleet() {
+  const el = document.getElementById('fleet');
+  const loaded = S.basis === 'loaded';
+  if (!FLEET.length) { el.innerHTML = ''; return; }
+  const rows = FLEET.map((b) => ({ name: b.name, d: b.data, ...figuresFor(b.data, loaded) }));
+  const v = (x, d, unit = '') => (Number.isFinite(x) ? nf(x, d) + (unit === '%' ? '%' : unit ? ' ' + unit : '') : '—');
+  const anyMulti = rows.some((r) => r.multi);
+  const anyMono = rows.some((r) => !r.multi);
+  const LINES = [
+    ['LOA', (r) => v(show(r.d.loa, 'len'), 1, unitOf('len'))],
+    ['LWL', (r) => v(show(r.d.lwl, 'len'), 1, unitOf('len'))],
+    ['Beam', (r) => v(show(r.d.beam, 'len'), 1, unitOf('len'))],
+    [loaded ? 'Displacement, loaded' : 'Displacement', (r) => v(show(r.disp, 'wt'), 0, unitOf('wt'))],
+    ['Sail area', (r) => v(show(r.sa, 'area'), 0, unitOf('area'))],
+    ['SA/D', (r) => v(r.f.sad.value, 1)],
+    ['D/L', (r) => v(r.f.dl.value, 0)],
+    ...(anyMono ? [
+      ['Comfort ratio', (r) => v(r.f.comfort?.value, 1)],
+      ['Capsize screening', (r) => v(r.f.capsize?.value, 2)],
+      ['Ballast ratio', (r) => v(r.f.ballast?.value, 1, '%')],
+    ] : []),
+    ...(anyMulti ? [['Bruce number', (r) => v(r.f.bruce?.value, 2)]] : []),
+    ['Top speed under sail', (r) => v(r.f.gerr.value, 1, 'kt')],
+    ['Hull speed', (r) => v(r.f.hull.value, 1, 'kt')],
+    ['Pounds per inch', (r) => (metric() ? v(r.f.ppi.value * DIM.wt.f / DIM.inch.f, 0, 'kg/cm') : v(r.f.ppi.value, 0, 'lb/in'))],
+  ];
+  const list = `<ul class="links" style="margin:0 0 16px">${rows.map((r, i) => `<li style="display:flex;align-items:center;gap:8px;justify-content:space-between;padding:4px 0">
+      <span style="font-weight:650;min-width:0;overflow-wrap:anywhere">${esc(r.name)}<span class="muted small" style="display:block;font-weight:400">${r.d.hull === 'monohull' ? 'Monohull' : cap(r.d.hull)}${Number.isFinite(r.d.loa) ? `, ${nf(show(r.d.loa, 'len'), 1)} ${unitOf('len')}` : ''}</span></span>
+      <span style="display:flex;gap:8px;flex:none"><button class="btn" type="button" data-act="open" data-i="${i}">Open</button><button class="btn" type="button" data-act="remove" data-i="${i}" aria-label="Remove ${esc(r.name)}">Remove</button></span></li>`).join('')}</ul>`;
+  if (rows.length < 2) { el.innerHTML = list + '<p class="muted">Save one more boat to compare.</p>'; return; }
+  const table = `<div class="tbl"><table><thead><tr><th></th>${rows.map((r) => `<th>${esc(r.name)}</th>`).join('')}</tr></thead>
+    <tbody>${LINES.map(([label, fn]) => `<tr><td>${label}</td>${rows.map((r) => `<td>${fn(r)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const mono = rows.filter((r) => !r.multi && Number.isFinite(r.f.dl.value) && Number.isFinite(r.f.sad.value));
+  const chart = mono.length >= 2
+    ? `<div class="chart" style="margin-top:16px">${chartSVG(null, null, mono.map((r) => ({ dl: r.f.dl.value, sad: r.f.sad.value, label: r.name })))}</div>
+       <p class="chart-read">${mono.map((r) => `${esc(r.name)}: ${zoneOf(r.f.dl.value, r.f.sad.value).toLowerCase()}`).join('. ')}.</p>`
+    : '';
+  const note = loaded ? '<p class="note">As loaded, each boat carries the load saved with her.</p>' : '';
+  el.innerHTML = list + note + table + chart;
+}
+
+function simpleFig(name, v, unit, info, math, reading, src, basis = 'Geometry') {
+  const i = infoButton(info);
+  return `<div class="fig"><div class="fig-head">${esc(name)}${i.btn}</div><div class="vals one"><div class="val"><span class="num">${v}${unit ? `<span class="u">${unit}</span>` : ''}</span></div></div>${reading ? `<p class="reading">${esc(reading)}</p>` : ''}${i.sheet}
+    <details class="math"><summary>Show the math</summary><div class="lines">${esc(math.join('\n'))}</div><p class="src"><span class="basis">${basis}</span>${esc(src ?? '')}</p></details></div>`;
+}
+
+function renderSheets() {
+  const a = E.sailAreas(S);
+  const el = document.getElementById('sheets');
+  const sails = [
+    { name: 'Headsail sheet', area: a.headsail },
+    { name: 'Mainsheet', area: a.main },
+    ...(a.mizzen ? [{ name: 'Mizzen sheet', area: a.mizzen }] : []),
+  ].filter((s) => Number.isFinite(s.area));
+  if (!sails.length || !Number.isFinite(S.wind)) { el.innerHTML = '<p class="muted">Enter I, J, P and E above, and the wind.</p>'; return; }
+  const winds = [...new Set([15, 20, 25, 30, Math.round(S.wind)])].sort((x, y) => x - y);
+  const wu = unitOf('wt');
+  const rows = winds.map((w) => `<tr${w === Math.round(S.wind) ? ' style="font-weight:700"' : ''}><td>${w} kt</td>${sails.map((s) => `<td>${nf(show(E.sheetLoad(s.area, w), 'wt'), 0)} ${wu}</td>`).join('')}</tr>`).join('');
+  const head = sails[0];
+  const load = E.sheetLoad(head.area, S.wind);
+  const line = E.lineFor(load);
+  const pr = E.powerRatio(load);
+  el.innerHTML = `
+    <p class="muted small" style="margin:12px 0 0">Headsail at ${nf(S.lp, 0)}% LP: about ${nf(show(head.area, 'area'), 0)} ${unitOf('area')}. Main ${nf(show(a.main, 'area'), 0)} ${unitOf('area')}.</p>
+    <div class="tbl"><table><thead><tr><th>Wind</th>${sails.map((s) => `<th>${s.name}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="answer">At ${nf(S.wind, 0)} kt the headsail sheet holds about <strong>${nf(show(load, 'wt'), 0)} ${wu}</strong>. The halyard holds about the same.</p>
+    <p class="answer">Choose a sheet with a breaking strength of at least ${nf(show(line.need, 'wt'), 0)} ${wu}, five times the load. Check the maker's figure for your line.</p>
+    <p class="answer">The winch needs a power ratio of about ${nf(pr, 0)}:1 for a 40 lb pull on the handle. Compare it with your winch maker's figures.</p>
+    <p class="note" style="margin-top:12px">The mainsheet load depends on where the sheet meets the boom. Treat that column as rough.</p>
+    <details class="math"><summary>Show the math</summary><div class="lines">${esc(`Load = sail area × wind² × 0.00431\n  ${nf(head.area, 1)} × ${nf(S.wind, 0)}² × 0.00431 = ${nf(load, 0)} lb\n\nHeadsail at LP = ½ × forestay × (J × LP)\n  ½ × ${nf(a.forestay, 2)} × ${nf(a.lpFt, 2)} = ${nf(head.area, 1)} ft²\n\nLine must hold = load × 5 = ${nf(line.need, 0)} lb\nPower ratio = load ÷ 40 lb = ${nf(pr, 1)}`)}</div><p class="src"><span class="basis">Published</span>Load: Win Fowler, Ask Sail, SAIL (2014), coefficient 0.00431. Line: the Cordage Institute puts safe working load at 1/5 to 1/12 of breaking strength, via Practical Sailor (2010); 5 is the low end. <span class="basis">Our estimate</span>Headsail area at LP; the 40 lb pull on the handle.</p></details>`;
+}
+
+function renderPower(disp, loaded) {
+  const el = document.getElementById('power');
+  const g = E.range({ disp, lwl: S.lwl, hp: S.hp, tankGal: S.fuelTank, reserve: Number.isFinite(S.reserve) ? S.reserve / 100 : 1 / 3, fuel: S.fuelType });
+  if (!g) { el.innerHTML = `<p class="muted">${Number.isFinite(S.lwl) && Number.isFinite(S.disp) ? 'Enter her engine horsepower.' : 'Enter her LWL, displacement and engine horsepower.'}</p>`; return; }
+  const m = metric(), vu = m ? 'L/h' : 'gal/h', eu = m ? 'nm/L' : 'nm/gal';
+  const rows = g.rows.map((x, i) => `<tr${i >= g.steep && g.steep >= 0 ? ' class="steep"' : ''}><td>${nf(x.kt, 1)} kt${x.top ? ' <span class="muted small">top</span>' : ''}${i === g.steep ? '<span class="tag">Fuel climbs fast past here.</span>' : ''}</td><td>${nf(show(x.gph, 'vol'), 2)} ${vu}</td><td>${nf(m ? x.nmpg / DIM.vol.f : x.nmpg, 1)} ${eu}</td><td>${Number.isFinite(x.range) ? nf(x.range, 0) + ' nm' : '—'}</td></tr>`).join('');
+  el.innerHTML = `
+    <p class="answer">Top speed under power: <strong>${nf(g.slTop * Math.sqrt(S.lwl), 1)} kt</strong>, ${g.limit === 'power' ? 'limited by the engine' : 'limited by the hull'}${loaded ? ', loaded' : ''}.</p>
+    ${Number.isFinite(S.fuelTank) ? '' : '<p class="muted small">Enter the fuel tank under The load for the range.</p>'}
+    <div class="tbl"><table><thead><tr><th>Speed</th><th>Fuel</th><th>Distance</th><th>Range</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="answer">An efficient cruising speed for her is ${nf(g.efficient[0], 1)} to ${nf(g.efficient[1], 1)} kt, 60 to 70% of hull speed. Past 75%, drag climbs steeply.</p>
+    <p class="note">Range keeps ${nf(Number.isFinite(S.reserve) ? S.reserve : 33, 0)}% of the tank in reserve. Practical Sailor's rule: a third out, a third back, a third kept. Calm water, clean bottom; a head sea or a foul bottom shortens it. Planing boats need a different formula.</p>
+    <details class="math"><summary>Show the math</summary><div class="lines">${esc(g.math.join('\n'))}</div><p class="src"><span class="basis">Published</span>Fuel: 0.054 gal/h per horsepower at the propeller, Dave Gerr, via Determining a Fuel-efficient Engine RPM, Practical Sailor (2025); the efficient speed and the rule of thirds, the same article. Shaft power 95% of rated: Dave Gerr, What Efficiency Means, Part 1 (2011). <span class="basis">Our estimate</span>Speed from power, SL = 10.665 ÷ (displacement ÷ shaft hp)^⅓; gasoline 0.10 gal/h per horsepower.</p></details>
+    <p class="answer" style="margin-top:16px">Keep her tanks and engine hours in <a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest</a>.</p>`;
+}
+
+paintInputs();
+render();
+</script>
+</body>
+</html>

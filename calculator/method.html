@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How the Boat Calculator Works It Out</title>
+  <meta name="description" content="Every formula Rainbow&rsquo;s End Boat Calculator uses, what each rests on, whose it is, and the figures for one boat worked through." />
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+  /* The apps' look (Jerry, 2026-10-08), as calculator.html: Anchoring's
+     tokens.ts and palette.ts; npm run verify:kit compares both. */
+/* kit:numbers */
+:root {
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 12px;
+  --space-l: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-tab-clear: 96px;
+  --radius-control: 12px;
+  --radius-card: 16px;
+  --radius-sheet: 24px;
+  --radius-pill: 999px;
+  --radius-thumb: 8px;
+  --control-height: 48px;
+  --control-chip: 44px;
+  --control-large: 56px;
+  --control-glyph: 44px;
+  --edge: 16px;
+  --type-caption: 12; --lh-caption: 16;
+  --type-label: 13; --lh-label: 18;
+  --type-body: 15; --lh-body: 21;
+  --type-body-large: 17; --lh-body-large: 23;
+  --type-readout-s: 20; --lh-readout-s: 24;
+  --type-readout: 28; --lh-readout: 32;
+  --type-readout-l: 34; --lh-readout-l: 38;
+  --type-band: 46; --lh-band: 52;
+  --type-hero: 54; --lh-hero: 56;
+  /* Float Plan's D11: one type unit that follows the iOS text size, held at 1.25x. */
+  --u: calc(clamp(17px, 1rem, 21.25px) / 17);
+}
+
+/* palette:light */
+:root {
+  color-scheme: light;
+  --background: #ECF5FB;
+  --surface: #FFFFFF;
+  --surface-raised: #F7FBFE;
+  --border: rgba(22,41,90,0.14);
+  --text: #16295A;
+  --text-muted: #4A5C7A;
+  --text-faint: #5A6984;
+  --accent: #1E6FB8;
+  --accent-soft: rgba(30,111,184,0.10);
+  --on-accent: #FFFFFF;
+  --critical: #BA4A33;
+  --warning: #A9701F;
+  --warning-soft: rgba(169,112,31,0.10);
+  --info: #1E6FB8;
+  --info-soft: rgba(30,111,184,0.08);
+  --seabed: #8A6A3C;
+  --pill-on-bg: #16295A;
+  --pill-on-border: #16295A;
+  --pill-on-text: #FFFFFF;
+  --pill-off-bg: #FFFFFF;
+  --pill-off-border: rgba(22,41,90,0.22);
+  --pill-off-text: #4A5C7A;
+  --focus-ring: rgba(30,111,184,0.35);
+}
+@media (prefers-color-scheme: dark) {
+  /* palette:dark */
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --background: #071620;
+    --surface: #0E2532;
+    --surface-raised: #123040;
+    --border: rgba(156,205,232,0.13);
+    --text: #F4FAFD;
+    --text-muted: #8FA6B4;
+    --text-faint: #7FA8BF;
+    --accent: #9CCDE8;
+    --accent-soft: rgba(156,205,232,0.16);
+    --on-accent: #06121A;
+    --critical: #E2765F;
+    --warning: #E8B26A;
+    --warning-soft: rgba(232,178,106,0.12);
+    --info: #9CCDE8;
+    --info-soft: rgba(156,205,232,0.09);
+    --seabed: #C9A97A;
+    --pill-on-bg: rgba(156,205,232,0.16);
+    --pill-on-border: rgba(156,205,232,0.55);
+    --pill-on-text: #EAF4FA;
+    --pill-off-bg: rgba(156,205,232,0.05);
+    --pill-off-border: rgba(156,205,232,0.14);
+    --pill-off-text: #8FA6B4;
+    --focus-ring: rgba(156,205,232,0.40);
+  }
+}
+/* palette:dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #071620;
+  --surface: #0E2532;
+  --surface-raised: #123040;
+  --border: rgba(156,205,232,0.13);
+  --text: #F4FAFD;
+  --text-muted: #8FA6B4;
+  --text-faint: #7FA8BF;
+  --accent: #9CCDE8;
+  --accent-soft: rgba(156,205,232,0.16);
+  --on-accent: #06121A;
+  --critical: #E2765F;
+  --warning: #E8B26A;
+  --warning-soft: rgba(232,178,106,0.12);
+  --info: #9CCDE8;
+  --info-soft: rgba(156,205,232,0.09);
+  --seabed: #C9A97A;
+  --pill-on-bg: rgba(156,205,232,0.16);
+  --pill-on-border: rgba(156,205,232,0.55);
+  --pill-on-text: #EAF4FA;
+  --pill-off-bg: rgba(156,205,232,0.05);
+  --pill-off-border: rgba(156,205,232,0.14);
+  --pill-off-text: #8FA6B4;
+  --focus-ring: rgba(156,205,232,0.40);
+}
+
+/* The page's own names, pointed at the kit's inks so every rule and the chart
+   follow light and dark. Not palette keys; verify:kit skips this block. */
+:root {
+  --paper: var(--background);
+  --card: var(--surface);
+  --field: var(--surface-raised);
+  --ink: var(--text);
+  --muted: var(--text-muted);
+  --navy: var(--accent);
+  --rule: var(--border);
+  --gold: var(--warning);
+  --serif: 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --zone1: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  --zone2: color-mix(in srgb, var(--accent) 11%, var(--surface));
+  --zone3: color-mix(in srgb, var(--accent) 18%, var(--surface));
+  --zone4: color-mix(in srgb, var(--warning) 12%, var(--surface));
+}
+
+  html { font-size: 17px; font: -apple-system-body; }
+  body {
+    background: var(--background); color: var(--text); font-family: var(--sans);
+    font-size: calc(var(--type-body) * var(--u)); line-height: calc(var(--lh-body) * var(--u));
+    margin: 0; padding: 0 var(--edge) var(--space-tab-clear);
+    -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;
+  }
+  main { max-width: 44rem; margin: 0 auto; }
+  h1, h3 {
+    font-family: var(--serif);
+    text-wrap: balance;
+  }
+  h1 { font-weight: 600; font-size: calc(var(--type-readout-l) * var(--u)); line-height: calc(var(--lh-readout-l) * var(--u)); margin: var(--space-xxl) 0 var(--space-s); }
+  .meta { color: var(--muted); font-size: 0.95rem; margin: 0 0 20px; max-width: 64ch; }
+  h2 {
+    font-family: var(--serif); font-size: calc(var(--type-label) * var(--u)); font-weight: 400;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--seabed);
+    margin: var(--space-xxl) 0 var(--space-xs); padding-top: var(--space-l); border-top: 1px solid var(--border);
+  }
+  h3 { font-weight: 600; font-size: calc(var(--type-readout-s) * var(--u)); line-height: calc(var(--lh-readout-s) * var(--u)); margin: var(--space-s) 0 var(--space-s); }
+  p { max-width: 64ch; margin: 6px 0 12px; }
+  .muted { color: var(--muted); }
+  a { color: var(--navy); }
+  .contents { columns: 2; column-gap: 24px; padding: 0; list-style: none; margin: 8px 0 0; }
+  .contents li { padding: 3px 0; break-inside: avoid; }
+  @media (max-width: 480px) { .contents { columns: 1; } }
+  .formula {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: calc(var(--type-body-large) * var(--u)); font-variant-numeric: tabular-nums;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card);
+    padding: var(--space-m) var(--space-l); margin: var(--space-s) 0 var(--space-m); overflow-x: auto;
+  }
+  .formula small { display: block; font-family: system-ui, sans-serif; font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+  .footing { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
+  .footing span {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 2px 10px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted);
+  }
+  .footing span b { color: var(--ink); font-weight: 700; }
+  .source { font-size: 0.9rem; color: var(--muted); }
+  .tbl { overflow-x: auto; }
+  table.work { border-collapse: collapse; width: 100%; max-width: 40rem; font-variant-numeric: tabular-nums; margin: 6px 0 14px; }
+  table.work td, table.work th { padding: 7px 0; border-bottom: 1px solid var(--rule); vertical-align: top; text-align: left; }
+  table.work th { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  table.work td:not(:first-child), table.work th:not(:first-child) { text-align: right; padding-left: 16px; white-space: nowrap; }
+  table.work td:last-child { font-weight: 650; }
+  table.work tr.total td { border-bottom: 0; border-top: 2px solid var(--ink); font-weight: 700; }
+  dl.labels { margin: 8px 0 0; max-width: 64ch; }
+  dl.labels dt { font-weight: 700; margin-top: 8px; }
+  dl.labels dd { margin: 0; color: var(--muted); }
+  .contact {
+    border-radius: var(--radius-card);
+    padding: var(--space-l); margin: var(--space-xxl) 0 0;
+    background: var(--info-soft);
+  }
+  .contact p { margin: 6px 0; }
+  .brand-foot .soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 28px 0 0; }
+  .brand-foot .wish { color: var(--muted); font-style: italic; font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; font-size: 1.02rem; max-width: 58ch; margin: 40px 0 0; }
+  .brand-foot .foot { color: var(--muted); font-size: 0.9rem; margin: 10px 0 0; }
+  .family { margin-top: 44px; }
+  .family ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  .family li { border-top: 1px solid var(--rule); }
+  .family li:last-child { border-bottom: 1px solid var(--rule); }
+  .family a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+  .family a:hover { color: var(--navy); }
+  .family span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+</style>
+<main>
+  <h1>How the Boat Calculator works it out</h1>
+  <p class="meta">Every figure Rainbow&rsquo;s End Boat Calculator gives you, and where it comes from. Each
+  section shows the formula, what it means, what it rests on, whose it is, and the numbers for
+  <em>Rainbow</em>, the ketch the calculator opens on, so you can check them yourself.</p>
+
+  <p><em>Rainbow</em>, a Perry 47 ketch: 46&prime; 7&Prime; long, <span data-v="boat.lwl:1">36.8</span> ft on the
+  waterline, 13&prime; 6&Prime; beam, <span data-v="boat.disp:0">30,400</span> lb empty, with
+  <span data-v="boat.ballast:0">14,000</span> lb of encapsulated iron ballast in a shoal-draft keel. Sail area
+  <span data-v="rig.total:0">973</span> ft²: main, 100% fore triangle and mizzen. As she sails: 250 gal of diesel,
+  125 gal of water, and 2,000 lb of people, stores and gear.</p>
+
+  <h2>What each figure rests on</h2>
+  <dl class="labels">
+    <dt>Physics</dt><dd>Standard physics: the weight of water and fuel.</dd>
+    <dt>Geometry</dt><dd>Arithmetic on lengths, areas and weights. Nothing is assumed.</dd>
+    <dt>Published</dt><dd>A published figure, and whose. We name a source only when we have read it.</dd>
+    <dt>Our estimate</dt><dd>A figure we chose. The calculator treats it as an estimate, and so should you.</dd>
+  </dl>
+
+  <h2>Contents</h2>
+  <ul class="contents">
+    <li><a href="#load">The load</a></li>
+    <li><a href="#ppi">Pounds per inch</a></li>
+    <li><a href="#sad">Sail area to displacement</a></li>
+    <li><a href="#dl">Displacement to length</a></li>
+    <li><a href="#ballast">Ballast ratio</a></li>
+    <li><a href="#comfort">Comfort ratio</a></li>
+    <li><a href="#capsize">Capsize screening</a></li>
+    <li><a href="#speed">Hull speed and top speed</a></li>
+    <li><a href="#multihull">Multihulls</a></li>
+    <li><a href="#sheets">Sheet and halyard loads</a></li>
+    <li><a href="#power">Range under power</a></li>
+  </ul>
+
+  <!-- ===================================================================== -->
+  <h2 id="load">The load</h2>
+  <h3>What she carries that the brochure left out</h3>
+  <p>A builder&rsquo;s displacement is usually the boat empty. Every ratio below is worked twice: on the
+  published figure, and on the boat as she sails. Compare boats in the same state of load.</p>
+  <div class="formula">Load = water + fuel + people + stores + dinghy + gear
+    <small>water 8.34 lb/gal · diesel 7.1 lb/gal · gasoline 6.1 lb/gal · a person 175 lb · stores 4 lb a person a day</small></div>
+  <div class="footing"><span><b>Physics</b> water and fuel</span><span><b>Our estimate</b> people and stores</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Water: 125 gal × 8.34</td><td><span data-v="load.water:0">1,043</span> lb</td></tr>
+    <tr><td>Diesel: 250 gal × 7.1</td><td><span data-v="load.fuel:0">1,775</span> lb</td></tr>
+    <tr><td>People, stores and gear</td><td><span data-v="load.people:0">2,000</span> lb</td></tr>
+    <tr class="total"><td>Load</td><td><span data-v="load.total:0">4,818</span> lb</td></tr>
+    <tr><td>As she sails: 30,400 + load</td><td><span data-v="load.disp:0">35,218</span> lb</td></tr>
+  </table></div>
+  <p class="source">Brochure figures and comparing in the same trim: Ralph Naranjo, &ldquo;Measuring
+  Performance,&rdquo; <cite>Practical Sailor</cite>, 2020.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="ppi">Pounds per inch</h2>
+  <h3>How far the load sinks her</h3>
+  <p>The weight that sinks her one inch, from the area of her waterplane. The waterplane is estimated from
+  her waterline length and beam.</p>
+  <div class="formula">Pounds per inch = LWL × beam × 0.67 × 64 ÷ 12
+    <small>0.67: the share of the LWL × beam rectangle her waterplane fills · 64 lb/ft³ seawater, 62.4 fresh</small></div>
+  <div class="footing"><span><b>Physics</b> the weight of seawater</span><span><b>Our estimate</b> the 0.67</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>36.8 × 13.5 × 0.67 × 64 ÷ 12</td><td><span data-v="ppi:0">1,775</span> lb/in</td></tr>
+    <tr class="total"><td>She sits lower by 4,818 ÷ 1,775</td><td><span data-v="sink:1">2.7</span> in</td></tr>
+  </table></div>
+  <p class="muted">Her published sheet gives 1,770 lb/in. The calculator&rsquo;s figure is within 0.3% of it.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="sad">Sail area to displacement</h2>
+  <h3>How much sail she carries for her weight</h3>
+  <p>A sailor&rsquo;s power-to-weight ratio. It says nothing about how well the hull uses the power.</p>
+  <div class="formula">SA/D = sail area ÷ (displacement ÷ 64)^⅔
+    <small>under 15 under-canvassed · 15–18 good performance · 18–20 excellent performance · over 20 a handful</small></div>
+  <div class="footing"><span><b>Published</b> the formula and the bands</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty: 973 ÷ (30,400 ÷ 64)^⅔</td><td><span data-v="sad.pub:1">16.0</span></td></tr>
+    <tr><td>As she sails: 973 ÷ (35,218 ÷ 64)^⅔</td><td><span data-v="sad.lod:1">14.5</span></td></tr>
+  </table></div>
+  <p>Empty, she is in the good-performance band. Loaded, she drops just under 15. Her published sheet gives 16.</p>
+  <p class="source">Ralph Naranjo, &ldquo;Measuring Performance,&rdquo; <cite>Practical Sailor</cite>, 2020.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="dl">Displacement to length</h2>
+  <h3>How heavy she is for her waterline</h3>
+  <div class="formula">D/L = (displacement ÷ 2,240) ÷ (0.01 × LWL)³
+    <small>under 90 ultralight · 90–180 light · 180–270 moderate · 270–360 heavy · over 360 ultraheavy</small></div>
+  <div class="footing"><span><b>Published</b> the formula and the bands</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty: (30,400 ÷ 2,240) ÷ 0.368³</td><td><span data-v="dl.pub:0">272</span></td></tr>
+    <tr><td>As she sails</td><td><span data-v="dl.lod:0">315</span></td></tr>
+  </table></div>
+  <p class="source">Ralph Naranjo, &ldquo;Measuring Performance,&rdquo; <cite>Practical Sailor</cite>, 2020.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="ballast">Ballast ratio</h2>
+  <h3>How much of her weight is ballast</h3>
+  <p>How much the ballast helps her stand up depends on how deep it sits. Two boats with the same ratio
+  can stand up very differently. Iron is bulkier than lead, so the same weight sits higher in the keel.</p>
+  <div class="formula">Ballast ratio = ballast ÷ displacement × 100</div>
+  <div class="footing"><span><b>Geometry</b> the ratio</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty: 14,000 ÷ 30,400</td><td><span data-v="ballast.pub:1">46.1</span>%</td></tr>
+    <tr><td>As she sails: 14,000 ÷ 35,218</td><td><span data-v="ballast.lod:1">39.8</span>%</td></tr>
+  </table></div>
+  <p class="source">Depth of ballast: Ralph Naranjo, &ldquo;Measuring Performance,&rdquo; <cite>Practical Sailor</cite>, 2020.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="comfort">Comfort ratio</h2>
+  <h3>How quickly she moves upward in a seaway</h3>
+  <p>Ted Brewer devised it as a measure of motion comfort: how fast a boat moves upward in waves. Lower
+  is quicker and less comfortable; higher is calmer. Brewer put moderate, successful ocean cruisers in
+  the low to mid 30s.</p>
+  <p>It ignores wave direction, hull shape, bow buoyancy, ballast depth and speed. It does not measure
+  safety. Use it to compare boats of a similar size and style.</p>
+  <div class="formula">Comfort = displacement ÷ (0.65 × (0.7 LWL + 0.3 LOA) × beam^1.333)</div>
+  <div class="footing"><span><b>Published</b> the formula and Brewer&rsquo;s range</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty</td><td><span data-v="comfort.pub:1">36.6</span></td></tr>
+    <tr><td>As she sails</td><td><span data-v="comfort.lod:1">42.4</span></td></tr>
+  </table></div>
+  <p class="source">Jamie Gifford, &ldquo;Hands-on Sailor: Comfort Ratio,&rdquo; <cite>Cruising World</cite>,
+  2026, quoting Ted Brewer. The exponent 1.333 reproduces <em>Rainbow</em>&rsquo;s published 36.6; the
+  article prints 1.33, which gives 36.9.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="capsize">Capsize screening</h2>
+  <h3>Beam against weight</h3>
+  <p>A first look, not a stability test. It ignores hull shape and where the ballast sits.</p>
+  <div class="formula">Capsize screening = beam ÷ (displacement ÷ 64)^⅓
+    <small>under 2.0 is considered fit to sail offshore</small></div>
+  <div class="footing"><span><b>Published</b> the formula and the 2.0 line</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty: 13.5 ÷ (30,400 ÷ 64)^⅓</td><td><span data-v="capsize.pub:2">1.73</span></td></tr>
+    <tr><td>As she sails</td><td><span data-v="capsize.lod:2">1.65</span></td></tr>
+  </table></div>
+  <p class="source">Ray Ville, Freedom 45 CC review, <cite>Practical Sailor</cite>, 2025. The calculator
+  reproduces that review&rsquo;s 1.90.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="speed">Hull speed and top speed</h2>
+  <h3>How fast a displacement hull goes</h3>
+  <div class="formula">Hull speed = 1.34 × √LWL</div>
+  <div class="footing"><span><b>Published</b> the traditional rule</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>1.34 × √36.8</td><td><span data-v="hull:2">8.13</span> kt</td></tr>
+  </table></div>
+  <p>The traditional rule ignores weight. Dave Gerr&rsquo;s formula allows for it: light boats can be
+  driven past 1.34 × √LWL without planing; heavy ones hold at it. It ignores sail area, and long
+  overhangs make a boat&rsquo;s D/L read high and her top speed low.</p>
+  <div class="formula">Top speed = 8.26 ÷ (D/L)^0.311 × √LWL
+    <small>never less than 1.34 × √LWL</small></div>
+  <div class="footing"><span><b>Published</b> Dave Gerr</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Empty: 8.26 ÷ 272^0.311 × √36.8</td><td><span data-v="gerr.pub:1">8.8</span> kt</td></tr>
+    <tr><td>As she sails</td><td><span data-v="gerr.lod:1">8.4</span> kt</td></tr>
+  </table></div>
+  <p class="source">Hull speed: Darrell Nicholson, &ldquo;Determining a Fuel-efficient Engine RPM,&rdquo;
+  <cite>Practical Sailor</cite>, 2025. Top speed: Dave Gerr, &ldquo;What Efficiency Means, How It Can
+  Save Money and How It Makes for Better Boats,&rdquo; Part 1, 2011 (gerrmarine.com). The calculator
+  reproduces the worked example in Charles Doane, &ldquo;Crunching Numbers: A Better Way to Estimate Hull
+  Speed,&rdquo; <cite>Wave Train</cite>, 2010: 7.9 kt for 12,000 lb on a 28 ft waterline.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="multihull">Multihulls</h2>
+  <h3>Power, and the wind that lifts a hull</h3>
+  <p>A multihull stands up on her beam, not her keel, so the ballast ratio, comfort ratio and capsize
+  screening are left out. Three figures take their place. The worked figures are for a Lagoon 42, from
+  the table in the source.</p>
+  <div class="formula">Bruce number = √sail area ÷ displacement^⅓</div>
+  <div class="formula">Wind to lift a hull = 9.8 × √(0.5 × BCL × displacement ÷ (sail area × HCOE))
+    <small>BCL: beam between the hulls&rsquo; centerlines (overall beam less one hull&rsquo;s beam) · HCOE:
+    height of the sail plan&rsquo;s center above the water · includes a 40% gust factor · flat water</small></div>
+  <div class="formula">Length to beam = LOA ÷ overall beam
+    <small>best range: 1.7 to 2.2 for a catamaran, 1.2 to 1.8 for a trimaran</small></div>
+  <div class="footing"><span><b>Published</b> all three</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>Bruce: √1,150 ÷ 16,550^⅓</td><td><span data-v="lagoon.bruce:2">1.33</span></td></tr>
+    <tr><td>Wind to lift a hull: BCL 17.4 ft, HCOE 22.1 ft</td><td><span data-v="lagoon.sf:1">23.3</span> kt</td></tr>
+    <tr><td>Length to beam: 42 ÷ 22</td><td><span data-v="lagoon.lb:2">1.91</span></td></tr>
+  </table></div>
+  <p>An offshore cruising multihull should not need a reef below 22 to 25 kt apparent. Waves, and the
+  wind getting under the bridgedeck once she heels, lower the real figure.</p>
+  <p class="source">&ldquo;Multihull Capsize Risk Check,&rdquo; <cite>Practical Sailor</cite>, 2021. The
+  calculator reproduces all seven boats in its table.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="sheets">Sheet and halyard loads</h2>
+  <h3>What the sheet is holding</h3>
+  <p>The load climbs with the square of the wind: twice the wind, four times the load. The halyard carries
+  about the same. The mainsheet depends on where it meets the boom, so its figure is rough.</p>
+  <div class="formula">Load (lb) = sail area (ft²) × wind (kt)² × 0.00431
+    <small>headsail area at LP: ½ × forestay × (J × LP) · line: breaking strength at least 5 × the load · winch: load ÷ a 40 lb pull</small></div>
+  <div class="footing"><span><b>Published</b> the load and the line</span><span><b>Our estimate</b> the headsail area and the 40 lb pull</span></div>
+  <div class="tbl"><table class="work">
+    <tr><td>135% genoa: ½ × 55.0 × 22.6</td><td><span data-v="sheet.head:0">622</span> ft²</td></tr>
+    <tr><td>At 20 kt: 622 × 20² × 0.00431</td><td><span data-v="sheet.load:0">1,073</span> lb</td></tr>
+    <tr><td>The sheet&rsquo;s breaking strength, at least</td><td><span data-v="sheet.need:0">5,363</span> lb</td></tr>
+    <tr><td>Winch power ratio for a 40 lb pull</td><td><span data-v="sheet.winch:0">27</span>:1</td></tr>
+  </table></div>
+  <p class="source">Load: Win Fowler, &ldquo;Ask Sail,&rdquo; <cite>SAIL</cite>, 2014. Line: the Cordage
+  Institute puts a line&rsquo;s safe working load at 1/5 to 1/12 of its breaking strength, as reported in
+  <cite>Practical Sailor</cite>, November 2010. Five is the low end.</p>
+
+  <!-- ===================================================================== -->
+  <h2 id="power">Range under power</h2>
+  <h3>How far the tanks take her</h3>
+  <p>The power a displacement hull needs climbs steeply with speed. An efficient cruising speed is 60 to
+  70% of hull speed; past 75%, the fuel per mile climbs fast.</p>
+  <div class="formula">Speed-length ratio from power = 10.665 ÷ (displacement ÷ shaft hp)^⅓
+    <small>shaft hp = 95% of rated · power at a speed: displacement × SL³ ÷ 1,213 · fuel: 0.054 gal/h per
+    horsepower at the propeller · reserve: one-third</small></div>
+  <div class="footing"><span><b>Published</b> the fuel figure, the 95%, the efficient speed and the reserve</span><span><b>Our estimate</b> speed from power</span></div>
+  <div class="tbl"><table class="work">
+    <tr><th>Speed</th><th>Power</th><th>Fuel</th><th>Range</th></tr>
+    <tr><td><span data-v="pw.kt0:1">5.5</span> kt</td><td><span data-v="pw.hp0:0">21</span> hp</td><td><span data-v="pw.gph0:2">1.14</span> gal/h</td><td><span data-v="pw.nm0:0">796</span> nm</td></tr>
+    <tr><td><span data-v="pw.kt1:1">6.1</span> kt</td><td><span data-v="pw.hp1:0">29</span> hp</td><td><span data-v="pw.gph1:2">1.57</span> gal/h</td><td><span data-v="pw.nm1:0">645</span> nm</td></tr>
+    <tr><td><span data-v="pw.kt2:1">6.7</span> kt</td><td><span data-v="pw.hp2:0">39</span> hp</td><td><span data-v="pw.gph2:2">2.09</span> gal/h</td><td><span data-v="pw.nm2:0">533</span> nm</td></tr>
+    <tr><td><span data-v="pw.top:1">8.4</span> kt, top</td><td><span data-v="pw.shp:0">76</span> hp</td><td><span data-v="pw.gphTop:2">4.10</span> gal/h</td><td><span data-v="pw.nmTop:0">340</span> nm</td></tr>
+  </table></div>
+  <p>As she sails, 80 hp, 250 gal, a third kept in reserve. Her efficient speed is
+  <span data-v="pw.eff0:1">4.9</span> to <span data-v="pw.eff1:1">5.7</span> kt. These figures assume calm
+  water and a clean bottom.</p>
+  <p class="muted">The speed-from-power formula is widely attributed to Gerr, but we have not read it at
+  its source, so it is our estimate here. Practical Sailor&rsquo;s worked example uses Gerr&rsquo;s propeller
+  table, which needs the engine&rsquo;s RPM. The formula here needs only horsepower and asks for about a
+  third more power at cruising speed, so its ranges are on the short side.</p>
+  <p class="source">Fuel, efficient speed and the rule of thirds: Darrell Nicholson, &ldquo;Determining a
+  Fuel-efficient Engine RPM,&rdquo; <cite>Practical Sailor</cite>, 2025, quoting Dave Gerr. Shaft power:
+  Dave Gerr, &ldquo;What Efficiency Means,&rdquo; Part 1, 2011: a direct shaft delivers 95 to 96% of the
+  engine&rsquo;s horsepower to the propeller.</p>
+
+  <div class="contact">
+    <p><strong>Found a figure you think is wrong?</strong> Write to
+    <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> with the figure and
+    your working.</p>
+    <p class="muted">Every figure on this page is checked against the calculator&rsquo;s own calculations
+    before the page is published. The figures are aids to judgment, not a substitute for it.</p>
+    <p>Rainbow&rsquo;s End Anchoring works the same way. <a href="https://jwsimoneaux-dev.github.io/rainbows-end/method.html">How Anchoring works it
+    out</a> shows every figure the app gives, what it rests on, and whose it is.</p>
+  </div>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s End Logbook<span>The book of your voyage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC · <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
