@@ -62,19 +62,44 @@ export function band(key, v) {
 
 /* ── The rig ── */
 
-export function sailAreas({ I, J, P, E, Pm, Em, lp } = {}) {
-  const fore = ok(I, J) ? 0.5 * I * J : NaN;
-  const main = ok(P, E) ? 0.5 * P * E : NaN;
-  const mizzen = ok(Pm, Em) ? 0.5 * Pm * Em : 0;
-  const forestay = ok(I, J) ? Math.hypot(I, J) : NaN;
-  const total = Number.isFinite(fore) && Number.isFinite(main) ? fore + main + mizzen : NaN;
+/**
+ * The rigs, and which sails each carries (D22). A cat rig has no headsail;
+ * a ketch or yawl adds a mizzen; a schooner adds a foresail on its own mast.
+ */
+export const RIGS = {
+  sloop: { headsail: true },
+  cutter: { headsail: true },
+  ketch: { headsail: true, mizzen: true },
+  cutterketch: { headsail: true, mizzen: true }, // uncommon (Jerry, 2026-10-08); its staysail counts in the sails set
+  yawl: { headsail: true, mizzen: true },
+  schooner: { headsail: true, foresail: true },
+  cat: { headsail: false },
+};
+
+/**
+ * The rig's sail areas. `total` is the standard: the 100% fore triangle, the
+ * main, and the mizzen or foresail the rig carries. The main is the
+ * sailmaker's area when given (mainArea), as Naranjo measures it, else P × E ÷ 2.
+ * `flown` is the sails actually set: the headsail at its LP, the same main,
+ * mizzen or foresail, and any staysail (D22; our estimate).
+ */
+export function sailAreas({ rig = 'sloop', I, J, P, E, Pm, Em, Pf, Ef, lp, mainArea, staysail } = {}) {
+  const has = RIGS[rig] ?? RIGS.sloop;
+  const fore = has.headsail ? (ok(I, J) ? 0.5 * I * J : NaN) : 0;
+  const main = ok(mainArea) ? mainArea : ok(P, E) ? 0.5 * P * E : NaN;
+  const mizzen = has.mizzen && ok(Pm, Em) ? 0.5 * Pm * Em : 0;
+  const foresail = has.foresail && ok(Pf, Ef) ? 0.5 * Pf * Ef : 0;
+  const stay = has.headsail && ok(staysail) ? staysail : 0;
+  const forestay = has.headsail && ok(I, J) ? Math.hypot(I, J) : NaN;
+  const total = Number.isFinite(fore) && Number.isFinite(main) ? fore + main + mizzen + foresail : NaN;
   // Headsail at LP%: a triangle on the forestay with height LP (spec 4.3; estimate).
   const lpFt = ok(J, lp) ? (J * lp) / 100 : NaN;
-  const headsail = Number.isFinite(forestay) && Number.isFinite(lpFt) ? 0.5 * forestay * lpFt : NaN;
-  return { fore, main, mizzen, total, forestay, headsail, lpFt };
+  const headsail = !has.headsail ? 0 : Number.isFinite(forestay) && Number.isFinite(lpFt) ? 0.5 * forestay * lpFt : NaN;
+  const flown = Number.isFinite(headsail) && Number.isFinite(main) ? headsail + main + mizzen + foresail + stay : NaN;
+  return { fore, main, mizzen, foresail, staysail: stay, total, forestay, headsail, lpFt, flown };
 }
 
-/** The sail area every ratio uses: the published figure, or the rig's 100% total. */
+/** The sail area every ratio uses: the published figure, or the rig's standard total. */
 export function sailAreaFor(boat) {
   if (ok(boat.sa)) return { sa: boat.sa, from: 'published' };
   const t = sailAreas(boat).total;
@@ -138,6 +163,15 @@ export function ratios(boat, disp) {
     `${fmt(sa, 1)} ÷ (${fmt(disp, 0)} ÷ 64)^(2/3)`,
     `${fmt(sa, 1)} ÷ ${fmt(Math.pow(disp / 64, 2 / 3))} = ${fmt(vSad)}`,
   ]);
+  // SA/D with the sails she sets (D22): no band, since the bands were drawn
+  // for the standard figure.
+  if (ok(boat.saFlown)) {
+    const vF = sad(boat.saFlown, disp);
+    put('sadf', vF, null, [
+      'Sails set ÷ (Disp ÷ 64)^(2/3)',
+      `${fmt(boat.saFlown, 1)} ÷ (${fmt(disp, 0)} ÷ 64)^(2/3) = ${fmt(vF)}`,
+    ]);
+  }
   const vDl = dl(disp, lwl);
   put('dl', vDl, 'dl', [
     '(Disp ÷ 2240) ÷ (0.01 × LWL)³',

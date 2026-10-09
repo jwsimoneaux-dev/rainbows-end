@@ -283,7 +283,7 @@ td .tag { display: block; font-size: 0.8rem; color: var(--gold); font-weight: 60
       <p class="brand">Rainbow&rsquo;s End Marine</p>
       <h1>Rainbow&rsquo;s End Boat Calculator</h1>
       <p class="scene">The brochure weighed her empty. You don&rsquo;t sail her that way.</p>
-      <p class="sub">Rainbow&rsquo;s End Boat Calculator works out her ratios as she&rsquo;s loaded today, and shows the math.</p>
+      <p class="sub">Rainbow&rsquo;s End Boat Calculator works out her numbers the way you sail her: loaded, with the sails you set. And it shows the math.</p>
     </div>
   </div>
 
@@ -305,6 +305,15 @@ td .tag { display: block; font-size: 0.8rem; color: var(--gold); font-weight: 60
         <label><input type="radio" name="units" id="units-imperial" value="imperial"><span>Imperial</span></label>
         <label><input type="radio" name="units" id="units-metric" value="metric"><span>Metric</span></label>
       </div>
+      <div class="seg" role="radiogroup" aria-label="Rig">
+        <label><input type="radio" name="rig" id="rig-sloop" value="sloop"><span>Sloop</span></label>
+        <label><input type="radio" name="rig" id="rig-cutter" value="cutter"><span>Cutter</span></label>
+        <label><input type="radio" name="rig" id="rig-ketch" value="ketch"><span>Ketch</span></label>
+        <label><input type="radio" name="rig" id="rig-cutterketch" value="cutterketch"><span>Cutter-ketch</span></label>
+        <label><input type="radio" name="rig" id="rig-yawl" value="yawl"><span>Yawl</span></label>
+        <label><input type="radio" name="rig" id="rig-schooner" value="schooner"><span>Schooner</span></label>
+        <label><input type="radio" name="rig" id="rig-cat" value="cat"><span>Cat</span></label>
+      </div>
     </div>
 
     <div class="group">
@@ -313,7 +322,11 @@ td .tag { display: block; font-size: 0.8rem; color: var(--gold); font-weight: 60
     </div>
     <div class="group">
       <p class="muted small">Sail area as published, or the rig measurements. With both, the published figure is used.</p>
-      <div class="row" data-fields="sa I J P E Pm Em"></div>
+      <div class="row" data-fields="sa I J P E Pm Em Pf Ef"></div>
+    </div>
+    <div class="group">
+      <p class="muted small">The sails she sets. These give a second SA/D beside the standard one.</p>
+      <div class="row" data-fields="lp mainArea staysail"></div>
     </div>
     <div class="group" id="multi-inputs" hidden>
       <div class="row" data-fields="hullBeam bridgedeck hcoe"></div>
@@ -383,7 +396,7 @@ td .tag { display: block; font-size: 0.8rem; color: var(--gold); font-weight: 60
     <details class="panel" id="panel-sheets" open>
       <summary><h2>Sheet and halyard loads</h2><svg class="chev" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg></summary>
       <div class="panel-body">
-        <div class="row" data-fields="wind lp"></div>
+        <div class="row" data-fields="wind"></div>
         <div id="sheets"></div>
       </div>
     </details>
@@ -464,12 +477,16 @@ const FIELDS = {
   disp: { label: 'Displacement', dim: 'wt', info: 'Use the published figure. Builders usually publish light ship: no water, fuel, crew or stores. Fill in the load below for the rest.' },
   ballast: { label: 'Ballast', dim: 'wt', mono: true },
   sa: { label: 'Sail area', dim: 'area', info: 'The published figure: main plus 100% fore triangle, and the mizzen on a ketch or yawl.' },
-  I: { label: 'I', dim: 'len', info: 'Height of the forestay on the mast, above the deck.' },
-  J: { label: 'J', dim: 'len', info: 'Mast to the forestay at the deck.' },
+  I: { label: 'I', dim: 'len', rig: 'headsail', info: 'Height of the forestay on the mast, above the deck.' },
+  J: { label: 'J', dim: 'len', rig: 'headsail', info: 'Mast to the forestay at the deck.' },
   P: { label: 'P', dim: 'len', info: 'Mainsail luff.' },
   E: { label: 'E', dim: 'len', info: 'Mainsail foot.' },
-  Pm: { label: 'Mizzen P', dim: 'len' },
-  Em: { label: 'Mizzen E', dim: 'len' },
+  Pm: { label: 'Mizzen P', dim: 'len', rig: 'mizzen' },
+  Em: { label: 'Mizzen E', dim: 'len', rig: 'mizzen' },
+  Pf: { label: 'Foresail P', dim: 'len', rig: 'foresail', info: 'The luff of the sail on the foremast.' },
+  Ef: { label: 'Foresail E', dim: 'len', rig: 'foresail', info: 'The foot of the sail on the foremast.' },
+  mainArea: { label: 'Mainsail area', dim: 'area', info: 'The sailmaker\'s figure, if you have it. A big roach or in-mast furling makes P × E ÷ 2 wrong.' },
+  staysail: { label: 'Staysail area', dim: 'area', rig: 'headsail', info: 'A cutter\'s staysail, or a staysail you set with the main or between the masts. It counts in the sails she sets, not in the standard SA/D.' },
   hullBeam: { label: 'Hull beam at the waterline', dim: 'len', info: 'One hull, at the waterline. On a trimaran, the main hull.' },
   bridgedeck: { label: 'Bridgedeck clearance', dim: 'len', info: 'Waterline to the underside of the bridgedeck, loaded.' },
   hcoe: { label: 'Center of effort above the waterline', dim: 'len', info: 'The height of the middle of the sail plan above the water. If you don\'t know it, about 45% of the mast\'s height above the water is close for most cruising multihulls.' },
@@ -484,7 +501,7 @@ const FIELDS = {
   hp: { label: 'Engine', unit: 'hp', info: 'The rated horsepower.' },
   reserve: { label: 'Fuel to keep in reserve', unit: '%', info: 'Practical Sailor\'s rule of thirds: use a third going out, a third coming back, and keep a third in reserve.' },
   wind: { label: 'Apparent wind', unit: 'kt' },
-  lp: { label: 'Headsail LP', unit: '%', info: 'The headsail\'s LP as a share of J. A 135% genoa is 135.' },
+  lp: { label: 'Headsail size', unit: '% LP', rig: 'headsail', info: 'The headsail you carry, as LP over J. A 135% genoa is 135; a working jib about 100.' },
 };
 
 const EXAMPLE = {
@@ -493,7 +510,7 @@ const EXAMPLE = {
   // as she sails (Jerry): 250 gal fuel, 125 gal water, and 2,000 lb of people,
   // supplies and gear (2 persons + 3 days of stores + 1,626 lb gear = 2,000).
   // Fuel: two 125 gal tanks. Engine: 80 hp.
-  hull: 'monohull', units: 'imperial', example: true, name: 'Rainbow', basis: 'published',
+  hull: 'monohull', units: 'imperial', example: true, name: 'Rainbow', basis: 'published', rig: 'ketch', Pf: null, Ef: null, mainArea: null, staysail: null,
   loa: 46 + 7 / 12, lwl: 36.8, beam: 13.5, disp: 30400, ballast: 14000, sa: 973,
   I: 52 + 5 / 12, J: 16.75, P: 45.75, E: 15, Pm: 32.75, Em: 11 + 8 / 12, hullBeam: null, bridgedeck: null, hcoe: null,
   persons: 2, waterTank: 200, waterGal: 125, fuelTank: 250, fuelGal: 250, days: 3,
@@ -501,7 +518,7 @@ const EXAMPLE = {
   hp: 80, reserve: 33, wind: 20, lp: 135, preset: null,
 };
 const BLANK = Object.fromEntries(Object.keys(EXAMPLE).map((k) => [k, null]));
-Object.assign(BLANK, { hull: 'monohull', units: 'imperial', example: false, name: '', basis: 'published', dinghyAboard: true, fuelType: 'diesel', water: 'salt', reserve: 33, wind: 20, lp: 135, preset: null });
+Object.assign(BLANK, { hull: 'monohull', units: 'imperial', example: false, rig: 'sloop', name: '', basis: 'published', dinghyAboard: true, fuelType: 'diesel', water: 'salt', reserve: 33, wind: 20, lp: 135, preset: null });
 
 const KEY = 'rem-sailcalc-v1';
 let S = load();
@@ -555,7 +572,7 @@ function paintInputs() {
   }
   const nameEl = document.getElementById('boatName');
   if (document.activeElement !== nameEl) nameEl.value = S.name ?? '';
-  for (const n of ['hull', 'units', 'fuelType', 'water', 'basis']) {
+  for (const n of ['hull', 'units', 'fuelType', 'water', 'basis', 'rig']) {
     const r = document.querySelector(`input[name="${n}"][value="${S[n]}"]`);
     if (r) r.checked = true;
   }
@@ -565,6 +582,13 @@ function paintInputs() {
   const multi = S.hull !== 'monohull';
   document.getElementById('multi-inputs').hidden = !multi;
   document.querySelector('[data-key="ballast"]').hidden = multi;
+  // Show only the sail fields this rig has (D22).
+  const has = E.RIGS[S.rig] ?? E.RIGS.sloop;
+  for (const [k, f] of Object.entries(FIELDS)) {
+    if (!f.rig) continue;
+    const el = document.querySelector(`[data-key="${k}"]`);
+    if (el) el.hidden = !has[f.rig];
+  }
 }
 
 document.addEventListener('input', (e) => {
@@ -605,7 +629,9 @@ const READ = {
 };
 
 const FIG = {
-  sad: { name: 'Sail area to displacement', d: 1, info: 'How much sail she carries for her weight.', src: 'Formula and bands: Ralph Naranjo, Measuring Performance, Practical Sailor (2020).', basis: 'Published',
+  sadf: { name: 'SA/D with the sails she sets', d: 1, info: 'The standard SA/D counts the 100% fore triangle, so boats compare fairly. This one counts the sails you set: the headsail at its LP, the main, the mizzen or foresail, and any staysail. It has no bands; they were drawn for the standard figure.', src: 'The headsail\'s area from its LP and the forestay: our estimate.', basis: 'Our estimate',
+    read: () => SAILREAD },
+  sad: { name: 'Sail area to displacement', d: 1, info: 'How much sail she carries for her weight, counted the standard way: the main, the 100% fore triangle, and the mizzen or foresail. Use it to compare boats.', src: 'Formula and bands: Ralph Naranjo, Measuring Performance, Practical Sailor (2020).', basis: 'Published',
     read: (p, l) => two(READ.sad, p, l) },
   dl: { name: 'Displacement to length', d: 0, info: 'How heavy she is for her waterline length. Lower is lighter.', src: 'Formula and bands: Ralph Naranjo, Measuring Performance, Practical Sailor (2020).', basis: 'Published',
     read: (p, l) => l && l.band !== p.band ? `Loaded, she moves from ${READ.dl[p.band]} to ${READ.dl[l.band]} for her length.` : `${cap(READ.dl[p.band])} for her length.` },
@@ -706,7 +732,10 @@ function chartSVG(p, l, others) {
 function render() {
   const multi = S.hull !== 'monohull';
   const { sa, from } = E.sailAreaFor(S);
-  const boat = { hull: S.hull, loa: S.loa, lwl: S.lwl, beam: S.beam, ballast: S.ballast, sa, water: S.water, hullBeam: S.hullBeam };
+  const rigA = E.sailAreas(S);
+  const boat = { hull: S.hull, loa: S.loa, lwl: S.lwl, beam: S.beam, ballast: S.ballast, sa, water: S.water, hullBeam: S.hullBeam, saFlown: rigA.flown };
+  // Compare like with like: the sails set against the same rig's standard total.
+  SAILREAD = sailReading(rigA, Number.isFinite(rigA.total) ? rigA.total : sa);
   const load = E.addedLoad({ ...S });
   const hasLoad = load.total > 0;
   const dispL = S.disp + load.total;
@@ -726,7 +755,7 @@ function render() {
   }
 
   // The figures.
-  const order = multi ? ['bruce', 'sad', 'dl', 'gerr', 'hull', 'ppi'] : ['sad', 'dl', 'comfort', 'capsize', 'ballast', 'gerr', 'hull', 'ppi'];
+  const order = multi ? ['bruce', 'sad', 'sadf', 'dl', 'gerr', 'hull', 'ppi'] : ['sad', 'sadf', 'dl', 'comfort', 'capsize', 'ballast', 'gerr', 'hull', 'ppi'];
   let html = '';
   if (!Number.isFinite(S.disp) || !Number.isFinite(S.lwl)) {
     html = '<p class="fig muted">Enter her LWL and displacement to see the ratios.</p>';
@@ -744,7 +773,8 @@ function render() {
     }
     for (const id of order) {
       if (!pub[id] || !Number.isFinite(pub[id].value)) continue;
-      const extra = id === 'sad' && from === 'rig' ? 'Sail area from the rig: ½·I·J + ½·P·E' + (S.Pm && S.Em ? ' + ½·Pm·Em' : '') : '';
+      const extra = id === 'sad' && from === 'rig' ? 'Sail area from the rig: the 100% fore triangle + the main' + (rigA.mizzen ? ' + the mizzen' : '') + (rigA.foresail ? ' + the foresail' : '')
+        : id === 'sadf' ? sailMath(rigA) : '';
       html += figHTML(id, FIG[id], pub[id], lod && lod[id], pub, extra);
     }
   }
@@ -800,7 +830,7 @@ document.getElementById('fleet').addEventListener('click', (e) => {
 
 function figuresFor(d, loaded) {
   const { sa } = E.sailAreaFor(d);
-  const boat = { hull: d.hull, loa: d.loa, lwl: d.lwl, beam: d.beam, ballast: d.ballast, sa, water: d.water, hullBeam: d.hullBeam };
+  const boat = { hull: d.hull, loa: d.loa, lwl: d.lwl, beam: d.beam, ballast: d.ballast, sa, water: d.water, hullBeam: d.hullBeam, saFlown: E.sailAreas({ rig: 'sloop', lp: 135, ...d }).flown };
   const disp = loaded ? d.disp + E.addedLoad(d).total : d.disp;
   return { disp, sa, multi: d.hull !== 'monohull', f: E.ratios(boat, disp) };
 }
@@ -820,6 +850,7 @@ function renderFleet() {
     [loaded ? 'Displacement, loaded' : 'Displacement', (r) => v(show(r.disp, 'wt'), 0, unitOf('wt'))],
     ['Sail area', (r) => v(show(r.sa, 'area'), 0, unitOf('area'))],
     ['SA/D', (r) => v(r.f.sad.value, 1)],
+    ['SA/D with her sails', (r) => v(r.f.sadf?.value, 1)],
     ['D/L', (r) => v(r.f.dl.value, 0)],
     ...(anyMono ? [
       ['Comfort ratio', (r) => v(r.f.comfort?.value, 1)],
@@ -846,6 +877,26 @@ function renderFleet() {
   el.innerHTML = list + note + table + chart;
 }
 
+// The reading for "SA/D with the sails she sets": how far it is from the standard.
+let SAILREAD = '';
+function sailReading(a, standard) {
+  if (!Number.isFinite(a.flown) || !Number.isFinite(standard)) return '';
+  const pct = Math.round((a.flown / standard - 1) * 100);
+  const what = (E.RIGS[S.rig] ?? E.RIGS.sloop).headsail ? `her ${nf(S.lp, 0)}% headsail${a.staysail ? ' and staysail' : ''}` : 'the sails she sets';
+  if (Math.abs(pct) < 1) return `With ${what} she carries about the standard figure\'s sail.`;
+  if (pct > 0) return `With ${what} she carries ${pct}% more sail than the standard figure. Most of the extra is light-air power, and it\'s the first sail you reef.`;
+  return `With ${what} she carries ${-pct}% less sail than the standard figure.`;
+}
+function sailMath(a) {
+  const parts = [];
+  if (a.headsail) parts.push(`headsail at ${nf(S.lp, 0)}% ${nf(a.headsail, 1)}`);
+  parts.push(`main ${nf(a.main, 1)}`);
+  if (a.mizzen) parts.push(`mizzen ${nf(a.mizzen, 1)}`);
+  if (a.foresail) parts.push(`foresail ${nf(a.foresail, 1)}`);
+  if (a.staysail) parts.push(`staysail ${nf(a.staysail, 1)}`);
+  return `Sails set: ${parts.join(' + ')} = ${nf(a.flown, 1)} ft²`;
+}
+
 function simpleFig(name, v, unit, info, math, reading, src, basis = 'Geometry') {
   const i = infoButton(info);
   return `<div class="fig"><div class="fig-head">${esc(name)}${i.btn}</div><div class="vals one"><div class="val"><span class="num">${v}${unit ? `<span class="u">${unit}</span>` : ''}</span></div></div>${reading ? `<p class="reading">${esc(reading)}</p>` : ''}${i.sheet}
@@ -856,10 +907,12 @@ function renderSheets() {
   const a = E.sailAreas(S);
   const el = document.getElementById('sheets');
   const sails = [
-    { name: 'Headsail sheet', area: a.headsail },
+    ...(a.headsail ? [{ name: 'Headsail sheet', area: a.headsail }] : []),
+    ...(a.staysail ? [{ name: 'Staysail sheet', area: a.staysail }] : []),
+    ...(a.foresail ? [{ name: 'Foresail sheet', area: a.foresail }] : []),
     { name: 'Mainsheet', area: a.main },
     ...(a.mizzen ? [{ name: 'Mizzen sheet', area: a.mizzen }] : []),
-  ].filter((s) => Number.isFinite(s.area));
+  ].filter((s) => Number.isFinite(s.area) && s.area > 0);
   if (!sails.length || !Number.isFinite(S.wind)) { el.innerHTML = '<p class="muted">Enter I, J, P and E above, and the wind.</p>'; return; }
   const winds = [...new Set([15, 20, 25, 30, Math.round(S.wind)])].sort((x, y) => x - y);
   const wu = unitOf('wt');
@@ -869,9 +922,9 @@ function renderSheets() {
   const line = E.lineFor(load);
   const pr = E.powerRatio(load);
   el.innerHTML = `
-    <p class="muted small" style="margin:12px 0 0">Headsail at ${nf(S.lp, 0)}% LP: about ${nf(show(head.area, 'area'), 0)} ${unitOf('area')}. Main ${nf(show(a.main, 'area'), 0)} ${unitOf('area')}.</p>
+    <p class="muted small" style="margin:12px 0 0">${a.headsail ? `Headsail at ${nf(S.lp, 0)}% LP: about ${nf(show(a.headsail, 'area'), 0)} ${unitOf('area')}. ` : ''}Main ${nf(show(a.main, 'area'), 0)} ${unitOf('area')}.</p>
     <div class="tbl"><table><thead><tr><th>Wind</th>${sails.map((s) => `<th>${s.name}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
-    <p class="answer">At ${nf(S.wind, 0)} kt the headsail sheet holds about <strong>${nf(show(load, 'wt'), 0)} ${wu}</strong>. The halyard holds about the same.</p>
+    <p class="answer">At ${nf(S.wind, 0)} kt the ${head.name.toLowerCase()} holds about <strong>${nf(show(load, 'wt'), 0)} ${wu}</strong>. The halyard holds about the same.</p>
     <p class="answer">Choose a sheet with a breaking strength of at least ${nf(show(line.need, 'wt'), 0)} ${wu}, five times the load. Check the maker's figure for your line.</p>
     <p class="answer">The winch needs a power ratio of about ${nf(pr, 0)}:1 for a 40 lb pull on the handle. Compare it with your winch maker's figures.</p>
     <p class="note" style="margin-top:12px">The mainsheet load depends on where the sheet meets the boom. Treat that column as rough.</p>
