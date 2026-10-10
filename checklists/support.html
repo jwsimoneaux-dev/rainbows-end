@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rainbow&rsquo;s End Checklists &mdash; Support</title>
+  <link rel="icon" type="image/png" sizes="64x64" href="../favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+</head>
+<body>
+<style>
+/* Rainbow's End Marine, LLC — the family tokens for any web page (site,
+   marketing, support, privacy, docs). Copy this block into a page's <style>.
+   Light is "sea glass" (the same sea in daylight); dark is "sea at dusk".
+   Three states: bare :root = light; the media query covers the un-stamped
+   system-dark viewer; [data-theme] wins in both directions. */
+
+:root {
+  --paper: #F6F8FA;  /* page ground */
+  --card:  #FFFFFF;  /* feature cards */
+  --ink:   #131A20;  /* body text */
+  --muted: #55636E;  /* secondary text */
+  --navy:  #0B5C8A;  /* links, section eyebrows, accent rules */
+  --sea1:  #12557F;  /* hero gradient, top */
+  --sea2:  #062232;  /* hero gradient, bottom */
+  --rule:  #D8E0E7;  /* hairlines */
+  --gold:  #8A6A1F;  /* the one warning accent (Arc's "never look at the sun") */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+    --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1116; --card: #131B22; --ink: #E8EEF3; --muted: #A5B2BC;
+  --navy: #6FB6DF; --rule: #24303A; --gold: #D9B04C;
+}
+
+/* Hero text sits on the sea gradient in every theme, so these are literals. */
+:root {
+  --hero-ink:  #F4F8FA;  /* h1 on the hero */
+  --hero-sky:  #9CCDE8;  /* eyebrow, tagline, badge border */
+  --hero-sub:  #C9DCE9;  /* the hero paragraph */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans:  system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 16px/1.65 var(--sans); margin: 0; }
+
+.hero { background: linear-gradient(180deg, var(--sea1), var(--sea2)); color: var(--hero-ink); padding: 56px 20px 44px; }
+.hero-inner, main { max-width: 46rem; margin: 0 auto; }
+.seal { width: 132px; height: 132px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,0.35); margin-bottom: 18px; display: block; }
+.brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.16em; color: var(--hero-sky); margin: 0 0 6px; }
+h1 { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+.tagline { font-style: italic; color: var(--hero-sky); margin: 0 0 14px; font-size: 1.05rem; }
+.sub { color: var(--hero-sub); max-width: 58ch; margin: 0; }
+.badge { display: inline-block; margin-top: 22px; padding: 9px 16px; border: 1px solid var(--hero-sky); border-radius: 10px; color: var(--hero-ink); font-weight: 650; font-size: 0.95rem; text-decoration: none; }
+a.badge:hover { background: var(--hero-sky); color: var(--sea2); }
+
+main { padding: 8px 20px 80px; }
+h2 { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin: 40px 0 12px; }
+.lede { max-width: 62ch; margin: 0 0 16px; }
+/* The Designed-by line on the web: sans italic, muted (Decision 7, 2026-09-10). */
+.soon { color: var(--muted); font-style: italic; max-width: 62ch; margin: 14px 0 0; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 12px; padding: 0; margin: 0; list-style: none; }
+.features li { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 14px 16px; }
+.features strong { display: block; margin-bottom: 3px; }
+.features span { color: var(--muted); font-size: 0.94rem; }
+.honest { border-left: 4px solid var(--navy); border-radius: 4px; padding: 10px 16px; margin: 36px 0 0; background: color-mix(in srgb, var(--navy) 7%, transparent); color: var(--muted); max-width: 62ch; }
+/* "What it won’t do" on marketing pages (How we write to sell, 2026-09-12). */
+.wont { max-width: 62ch; margin: 0; padding-left: 20px; }
+.wont li { margin: 6px 0; }
+.warn { border-left: 4px solid var(--gold); border-radius: 4px; padding: 10px 16px; margin: 14px 0 0; background: color-mix(in srgb, var(--gold) 9%, transparent); color: var(--muted); max-width: 62ch; }
+.links { list-style: none; padding: 0; margin: 16px 0 0; }
+.links li { border-top: 1px solid var(--rule); }
+.links li:last-child { border-bottom: 1px solid var(--rule); }
+.links a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+.links a:hover { color: var(--navy); }
+.links span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+.wish { color: var(--muted); font-style: italic; font-family: var(--serif); font-size: 1.02rem; margin: 40px 0 0; max-width: 58ch; }
+.foot { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+a { color: var(--navy); }
+  .family { margin-top: 44px; }
+  .family ul { list-style: none; padding: 0; margin: 12px 0 0; }
+  .family li { border-top: 1px solid var(--rule); }
+  .family li:last-child { border-bottom: 1px solid var(--rule); }
+  .family a { display: block; padding: 13px 4px; text-decoration: none; color: var(--ink); font-weight: 650; }
+  .family a:hover { color: var(--navy); }
+  .family span { display: block; font-weight: 400; color: var(--muted); font-size: 0.92rem; }
+</style>
+<main>
+  <h1>Rainbow&rsquo;s End Checklists &mdash; Support</h1>
+  <p class="meta">Answers to the questions that come up.
+  Anything not covered here: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>.</p>
+
+  <h2>Getting started</h2>
+
+  <details>
+    <summary>What does Checklists do?</summary>
+    <p>It gives you the checklists a skipper runs, worked out from your boat: pre-departure, engine
+    start, casting off and docking, the passenger and crew briefings, the fuel dock, arrival, leaving the
+    boat, returning to the boat, hurricane prep, the documents aboard, and getting ready for the Coast
+    Guard Auxiliary&rsquo;s Vessel Safety Check. It keeps a record of each list you finish, and the
+    emergency cards are always one tap away. It works offline.</p>
+  </details>
+
+  <details>
+    <summary>How do I set up my boat?</summary>
+    <p>On the <strong>Boat</strong> tab, give the boat a name and answer the questions: sail, power or
+    paddle; the fuel; the engines; her length; her registration and waters; and what is aboard (heads,
+    a generator, a propane stove, shore power, a dinghy with an outboard). Tap <strong>Save the
+    boat</strong>. Every list is built from these answers, so change them any time and the lists
+    follow.</p>
+  </details>
+
+  <details>
+    <summary>Why doesn&rsquo;t my list show a line I expected?</summary>
+    <p>Because it doesn&rsquo;t apply to your boat as she is set up. A diesel never sees the gasoline lines,
+    and a boat without a generator never sees its checks. Check her answers on the <strong>Boat</strong>
+    tab. To add a line of your own, change the list (below).</p>
+  </details>
+
+  <details>
+    <summary>Can I keep more than one boat?</summary>
+    <p>Yes. On the <strong>Boat</strong> tab, tap <strong>Add another boat</strong>. The lists follow the boat you choose there, and the
+    <strong>Records</strong> tab shows her records or every boat&rsquo;s.</p>
+  </details>
+
+  <h2>Running a list</h2>
+
+  <details>
+    <summary>How do I run a list?</summary>
+    <p>Open it and tap <strong>Start</strong>. Some lists ask one thing first: the pre-departure asks
+    the persons aboard, and hurricane prep asks where the boat will ride it out. Tick each line as you do it.
+    Tap <strong>Finish</strong> when you are done.</p>
+  </details>
+
+  <details>
+    <summary>What if a line doesn&rsquo;t apply today?</summary>
+    <p>Tap <strong>Skip</strong> beside it and, if you like, say why. The record shows it as skipped,
+    with your reason.</p>
+  </details>
+
+  <details>
+    <summary>I left a list half done. Can I come back to it?</summary>
+    <p>Yes. Open the list and tap <strong>Continue</strong>. If it was started long ago, the app asks
+    whether to keep going or start fresh; <strong>Start fresh</strong> asks twice before it clears the
+    ticks.</p>
+  </details>
+
+  <details>
+    <summary>Can I finish with lines not checked?</summary>
+    <p>Yes. The record names each line that was skipped or not checked, so whoever reads it can
+    see.</p>
+  </details>
+
+  <h2>Records</h2>
+
+  <details>
+    <summary>Where are my finished lists?</summary>
+    <p>On the <strong>Records</strong> tab. Each record shows the boat, the date and time, who completed
+    it, and every line: done, skipped with its reason, or not checked.</p>
+  </details>
+
+  <details>
+    <summary>How do I share a record?</summary>
+    <p>Open it and tap <strong>Share as PDF</strong> or <strong>Share as text</strong>. The
+    system&rsquo;s share sheet sends it where you choose: Mail, Messages, AirDrop, Files or a
+    printer.</p>
+  </details>
+
+  <details>
+    <summary>How do I delete a record?</summary>
+    <p>Open it and tap <strong>Delete this record</strong>, then tap again to confirm.</p>
+  </details>
+
+  <h2>Changing a list</h2>
+
+  <details>
+    <summary>Can I change a list for my boat?</summary>
+    <p>Yes. Open the list and tap <strong>Change this list for her</strong>. You can hide a line, reword
+    it, add a line of your own, and move lines up or down. <strong>Restore the whole list</strong> puts
+    it back as it came.</p>
+  </details>
+
+  <details>
+    <summary>Can I make a list of my own?</summary>
+    <p>Yes. On the <strong>Checklists</strong> tab, tap <strong>New list</strong>. Start from nothing, or
+    from a copy of one of the built-in lists.</p>
+  </details>
+
+
+  <h2>The emergency cards</h2>
+
+  <details>
+    <summary>What are the emergency cards?</summary>
+    <p>Numbered steps in large type, to read aloud: the Mayday call, the Pan-Pan call, man overboard,
+    fire, flooding, abandon ship, collision, grounding, medical, carbon monoxide, lightning and engine
+    failure. With an MMSI on the <strong>Boat</strong> tab, there is also a card for a distress alert
+    sent by mistake. Each card names its source.</p>
+  </details>
+
+  <details>
+    <summary>How do I get to them fast?</summary>
+    <p>Three ways: the <strong>Emergency</strong> strip at the foot of every screen; pressing and holding
+    the app&rsquo;s icon on the Home Screen, then <strong>Mayday call</strong> or <strong>Emergency
+    cards</strong>; or the Checklists widget on your Lock Screen.</p>
+  </details>
+
+  <details>
+    <summary>What does the Mayday card fill in?</summary>
+    <p>The boat&rsquo;s name, her call sign or registration number if you entered one, her description, the persons aboard from your
+    latest pre-departure (change the number on the card if it is different), and your position from the
+    phone&rsquo;s GPS once you allow it. With an MMSI, it starts with the radio&rsquo;s red DISTRESS
+    button.</p>
+  </details>
+
+  <details>
+    <summary>Why does the card ask me to tap Use the GPS?</summary>
+    <p>So the location question appears when you choose, not over the script the first time you need it.
+    Tap <strong>Use the GPS</strong> once and allow it, and from then on the card reads the position each
+    time it opens. If you said no, the card says so and offers <strong>Open Settings</strong>; until you
+    turn it on, read your position from the chart plotter.</p>
+  </details>
+
+  <details>
+    <summary>Does the app send the Mayday?</summary>
+    <p>No. The card is the script you read into your VHF, and the app sends nothing. Follow your training
+    and the instructions of the Coast Guard.</p>
+  </details>
+
+  <details>
+    <summary>Can I change a card?</summary>
+    <p>Yes, except the Mayday call, the Pan-Pan call and the false-alert card, which keep the Coast
+    Guard&rsquo;s order and words. Open a card and tap <strong>Change this card</strong>. A step you
+    changed says <strong>EDITED</strong>, and <strong>Show the original</strong> shows the source&rsquo;s
+    words.</p>
+  </details>
+
+  <details>
+    <summary>Is there a night view?</summary>
+    <p>Yes. Switch on <strong>Night view</strong> at the foot of the <strong>Emergency</strong> tab. The
+    whole app turns red on black.</p>
+  </details>
+
+  <h2>The Vessel Safety Check</h2>
+
+  <details>
+    <summary>What is the Vessel Safety Check list for?</summary>
+    <p>Getting your boat ready for a free check by a Coast Guard Auxiliary examiner, about 15 to 30 minutes at
+    the dock. The list follows the examiner&rsquo;s form and the federal requirements for her size and
+    type. The examiner decides; the list only gets her ready.</p>
+  </details>
+
+  <details>
+    <summary>How do I ask for a check?</summary>
+    <p>The last line of the list, <strong>Find an examiner and request a check</strong>, opens
+    cgaux.org/vsc.</p>
+  </details>
+
+  <h2>Our other apps</h2>
+
+  <details>
+    <summary>Why do some lines open another app?</summary>
+    <p>Where one of our apps goes deeper, the line points to it: the float plan, the provisions, the
+    anchor, the fuel cost, the day&rsquo;s log. If you have the app, the line opens it; if not, its App
+    Store page opens inside Checklists.</p>
+  </details>
+
+  <details>
+    <summary>I have Manifest. Which app should I use for the pre-departure and the passenger briefing?</summary>
+    <p>Manifest, if you keep a log there: it records them with the day&rsquo;s entry. For those two lists Checklists offers
+    <strong>Open Manifest</strong>, or <strong>Use this list anyway</strong> to run them here.</p>
+  </details>
+
+  <details>
+    <summary>Where do I keep expiration dates and maintenance?</summary>
+    <p>In Rainbow&rsquo;s End Manifest. Checklists keeps no maintenance, expiration dates or
+    inventory.</p>
+  </details>
+
+  <h2>What it is and is not</h2>
+
+  <details>
+    <summary>Does it work without a signal?</summary>
+    <p>Yes, all of it except the links that open a web page or another app&rsquo;s App Store page. The GPS needs no signal.</p>
+  </details>
+
+  <details>
+    <summary>Does it work on the iPad?</summary>
+    <p>Yes. Turned on its side, the list and the run sit side by side.</p>
+  </details>
+
+  <details>
+    <summary>Is it a substitute for training?</summary>
+    <p>No. Rainbow&rsquo;s End Checklists is an aid to preparation, not a substitute for the
+    skipper&rsquo;s judgment.</p>
+  </details>
+
+  <h2>Contact</h2>
+  <p>Anything else: <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a>. Say which
+  device and version (the About page names the version) and what you expected to see.</p>
+
+  <!-- family:start · stamped from rainbows-dashboard/brand/siblings.json by scripts/stamp-siblings.mjs; edit the list there, not here -->
+  <section class="family">
+    <h2>Also from Rainbow&rsquo;s End Marine</h2>
+    <ul>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/manifest/">Rainbow&rsquo;s End Manifest<span>The book of your boat.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/floatplan/">Rainbow&rsquo;s End Float Plan<span>Leave word ashore before you leave the dock.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/">Rainbow&rsquo;s End Anchoring, with the free Monitor<span>The anchor &amp; rode calculator that knows your boat &mdash; and a free companion for the people who sail with you.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/provisioning/">Rainbow&rsquo;s End Provisioning<span>Provisioning for sailors, from a day sail to an ocean passage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/purse/">Rainbow&rsquo;s End Ship&rsquo;s Purse, with the free Guest<span>The charter kitty, kept honest &mdash; and the crew&rsquo;s view of it on their own phones.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/logbook/">Rainbow&rsquo;s End Logbook<span>The book of your voyage.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/calculator/">Rainbow&rsquo;s End Boat Calculator<span>Your boat&rsquo;s numbers the way you sail her, with every step shown.</span></a></li>
+      <li><a href="https://jwsimoneaux-dev.github.io/rainbows-end/arc/">Rainbow&rsquo;s Arc Positioning<span>A camera sextant, for the fun of it.</span></a></li>
+    </ul>
+  </section>
+  <!-- family:end -->
+  <footer class="brand-foot">
+    <p class="soon">Designed by Rainbow&rsquo;s End Marine. Apps for sailors, by sailors.</p>
+    <p class="wish">May you find a rainbow&rsquo;s end and treasure found wherever you sail or set your anchor.</p>
+    <p class="foot">&copy; 2026 Rainbow&rsquo;s End Marine, LLC &middot; <a href="mailto:support@RainbowsEndMarine.com">support@RainbowsEndMarine.com</a> &middot; <a href="https://www.RainbowsEndMarine.com">www.RainbowsEndMarine.com</a></p>
+  </footer>
+</main>
+</body>
+</html>
