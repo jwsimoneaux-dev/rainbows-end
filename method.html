@@ -143,13 +143,13 @@
   doubtful ground and for boats that range at anchor, and lowered for a short stop with someone
   aboard.</p>
   <div class="formula">Scope = base + wind + stop + ground + boat + shallow
-    <small>base: 4:1 all chain, 5.5:1 chain and rope, 7:1 mostly rope · wind: +0.5 from 15 kt, +1 from
+    <small>base: <span data-v="scope.baseChain">4</span>:1 all chain, <span data-v="scope.baseMixed">7</span>:1 chain and rope, <span data-v="scope.baseRope">10</span>:1 mostly rope · wind: +0.5 from 15 kt, +1 from
     20, +1.5 from 25, +2.5 from 30, +4 from 40, sized halfway to the gusts, and in a current on the wind that
     pulls as hard as wind and current together (see Current) · stop: −1 a short stop, +0.5
     unsettled, +1 unattended, +2 storm · ground: +0.5 soft mud, grass or unknown · boat: +0.5 a
     catamaran, +0.5 a high-windage motor boat · shallow: +0.5 under 15 ft to reach · never under 4:1
     (3:1 a short stop), never over 12:1, and 10:1 at least in a storm</small></div>
-  <div class="footing"><span><b>Our estimate</b> every step</span></div>
+  <div class="footing"><span><b>Published</b> the three bases: all chain at 4:1, chain and nylon at 7:1 and all nylon at 10:1 pull at about the same angle at the anchor, Practical Sailor, <i>Anchors</i>, vol. 5, &ldquo;Short Scope Anchor Test&rdquo;</span><span><b>Our estimate</b> every other step</span></div>
   <p class="muted">Pay out = scope × depth to reach. The chain&rsquo;s curve is checked separately
   below; it adds advice, never a longer pay-out.</p>
   <table class="work">
@@ -191,7 +191,9 @@
     40 kt or in a current of a knot or more — style 1.3 Med moored, 2.0 lines ashore · the peak load uses the gusts</small></div>
   <div class="footing"><span><b>Our estimate</b> every factor</span></div>
   <p class="muted">The yaw allowance assumes a boat that lies fairly quietly. One that sails back
-  and forth through 60° or more pulls harder, and her anchor holds less. The style factors for a boat
+  and forth through 60° or more pulls harder, and her anchor holds less: in Practical Sailor&rsquo;s
+  tests a 60° yaw took a fifth to two-thirds off the margin. From 20 knots, with no riding sail or
+  bridle set, the app says so under What to watch. The style factors for a boat
   held across the wind (Med moored, lines ashore) are our judgment from her side-on area, which is more
   than twice what she shows bow-on, not a measured figure.</p>
   <p class="muted">The four surge factors are our estimate, chosen when the app was built; no
@@ -204,8 +206,9 @@
   The app warns when an all-chain rode has no snubber.</p>
   <p class="muted">The surge allowance is the same whatever the rode is made of. Nylon stretches and
   takes up some of each surge, so on a rode with rope beyond the chain, or with a snubber, the real
-  load is likely lower than this figure. The app does not count that stretch yet, so its figures err
-  on the high side for a nylon rode.</p>
+  load is likely lower than this figure. The app does not count that stretch, or a rubber
+  absorber&rsquo;s: no published test measures it on a boat at anchor well enough to count. So its
+  figures err on the high side for a nylon rode.</p>
   <table class="work">
     <tr><td>107 lb × <span data-v="load.surge">1.6</span> (short chop) × <span data-v="load.yaw">1.15</span> (a monohull&rsquo;s yaw)</td><td><span data-v="load.design">198</span> lb</td></tr>
   </table>
@@ -245,8 +248,24 @@
   <table class="work">
     <tr><td>k: 198 lb ÷ 12²</td><td><span data-v="current.k">1.372</span></td></tr>
     <tr><td>12 kt with a 2 kt tidal stream: √(12² + 421 ÷ 1.372)</td><td><span data-v="current.eqWind">21.2</span> kt</td></tr>
-    <tr><td>Scope: 4 + 1 (from 20 kt)</td><td><span data-v="current.scope">5</span>:1</td></tr>
-    <tr class="total"><td>Pay out: 17.5 ft × 5</td><td><span data-v="current.out">87.5</span> ft</td></tr>
+    <tr><td>Scope from the table: 4 + 1 (from 20 kt)</td><td><span data-v="current.table">5</span>:1</td></tr>
+  </table>
+  <p>A current&rsquo;s pull is steady, so on all chain it can lift the whole chain off the bottom by
+  itself, leaving nothing to soften a surge or to let the anchor pivot when the tide turns. Then the
+  app pays out what keeps chain on the bottom at the steady pull, up to 7:1 and no more, and past
+  7:1 it says the chain still lifts.</p>
+  <p class="muted">This rule is ours: no published test measures the benefit of chain on the bottom
+  in a current. The current&rsquo;s pull it works from is our estimate too, not yet checked against
+  a test, which is why the rule stops at 7:1. Where it lands, about 5 to 7:1, is within published
+  advice for a night at anchor: Practical Sailor recommends 7:1 or more overnight in shallow to
+  moderate depths, and finds no practical gain from less than 6:1.</p>
+  <div class="formula">Chain on the bottom: L = √(d² + 2 · d · H ÷ w)
+    <small>d the depth to reach · H the steady pull · w the chain&rsquo;s weight in water · all chain, in a current, never past 7:1</small></div>
+  <div class="footing"><span><b>Physics</b> the catenary just touching down at the anchor</span><span><b>Our estimate</b> the rule itself, the current&rsquo;s pull, and the 7:1 ceiling</span><span><b>Published</b> overnight scope of 6 to 7:1 or more, Practical Sailor, <i>Anchors</i>, vol. 5</span></div>
+  <table class="work">
+    <tr><td>√(17.5² + 2 × 17.5 × <span data-v="current.pull">619</span> ÷ 1.286)</td><td><span data-v="current.keep">131</span> ft</td></tr>
+    <tr><td>That is more than 7:1, so the app stops at</td><td><span data-v="current.scope">7</span>:1</td></tr>
+    <tr class="total"><td>Pay out: 17.5 ft × 7</td><td><span data-v="current.out">122.5</span> ft</td></tr>
   </table>
 
   <!-- ===================================================================== -->
@@ -277,21 +296,28 @@
   <!-- ===================================================================== -->
   <h2 id="holding">Holding and the margin</h2>
   <h3>How hard the anchor holds, and how much to spare</h3>
-  <p>Once set, an anchor holds roughly in proportion to its weight, by a factor that depends on its
-  design and the bottom. Whether it sets at all is a separate question, which the app asks
-  separately.</p>
-  <div class="formula">Holding = anchor weight × holding factor
-    <small>the factor by design and bottom: a scoop anchor 45 in hard sand, 14 in soft mud; a fluke
-    anchor 50 in hard sand, 4 in grass; and so on for seven designs and ten bottoms</small></div>
+  <p>Once set, an anchor holds by its weight times a factor that depends on its design and the
+  bottom. A bigger anchor gains a little less than its weight: tested across sizes, tripling the
+  weight about doubled the hold. So past the size the factors were measured at, the app counts the
+  weight at a lower rate. Small claws hold far less per pound than big ones, and are cut further.
+  Whether an anchor sets at all is a separate question, which the app asks separately.</p>
+  <div class="formula">Holding = holding weight × holding factor
+    <small>holding weight: the anchor&rsquo;s weight up to <span data-v="hold.ref">45</span> lb
+    (21 lb for an aluminum fluke anchor), and past it <span data-v="hold.ref">45</span> ×
+    (weight ÷ <span data-v="hold.ref">45</span>)<sup><span data-v="hold.exp">0.8</span></sup> · a claw
+    under 44 lb, × √(weight ÷ 44) · the factor by design and bottom: a scoop anchor 45 in hard sand,
+    14 in soft mud; a steel fluke anchor <span data-v="hold.flukeSand">30</span> in hard sand, 4 in
+    grass; and so on for seven designs and ten bottoms</small></div>
   <div class="formula">Margin = holding ÷ design load
     <small>wanted: 1.5 a short stop · 2 overnight, settled · 2.5 unsettled · 3 unattended · 4 a storm</small></div>
   <p>The margin is figured on the steady pull, with waves and yawing allowed for. The gusts are
   checked separately: if their peak load could exceed what the anchor holds, the app warns under
   What to watch.</p>
-  <div class="footing"><span><b>Our estimate</b> every factor, from the pattern of independent tests, not makers&rsquo; claims</span><span><b>Published</b> the soft-mud factors and set ratings are checked against Practical Sailor, &ldquo;Anchoring in Squishy Bottoms&rdquo;, 20 January 2015. The scoop factor is its mean, <span data-v="soft.scoopMean">13.8</span> lb per lb, rounded to <span data-v="soft.scoop">14</span>; the claw and steel fluke factors are below what it measured; the aluminum fluke&rsquo;s <span data-v="fluke.c32">50</span> is close to its 32° figure, <span data-v="fluke.t32">47.4</span>.</span></div>
+  <div class="footing"><span><b>Our estimate</b> every factor, from the pattern of independent tests, not makers&rsquo; claims</span><span><b>Published</b> the soft-mud factors and set ratings are checked against Practical Sailor, &ldquo;Anchoring in Squishy Bottoms&rdquo;, 20 January 2015. The scoop factor is its mean, <span data-v="soft.scoopMean">13.8</span> lb per lb, rounded to <span data-v="soft.scoop">14</span>; the claw and steel fluke factors are below what it measured; the aluminum fluke&rsquo;s <span data-v="fluke.c32">50</span> is close to its 32° figure, <span data-v="fluke.t32">47.4</span>. The weight rate, the steel fluke&rsquo;s sand factors, the mushroom and the grapnel are checked against Practical Sailor, <i>Anchors</i>, vols. 1 and 2: holding across sizes, the 1999 sand test (about 18 lb per lb for a steel fluke anchor, a floor, capped at 1,000 lb) and small anchors tested in a dinghy.</span></div>
   <table class="work">
-    <tr><td><span data-v="hold.weight">65</span> lb scoop anchor × <span data-v="hold.coef">26</span> in firm mud</td><td><span data-v="hold.lb">1,690</span> lb</td></tr>
-    <tr><td>Margin: 1,690 ÷ 197.5</td><td><span data-v="hold.margin">8.6</span>×</td></tr>
+    <tr><td><span data-v="hold.weight">65</span> lb scoop anchor: holding weight 45 × (65 ÷ 45)<sup>0.8</sup></td><td><span data-v="hold.wEff">60.4</span> lb</td></tr>
+    <tr><td><span data-v="hold.wEff">60.4</span> × <span data-v="hold.coef">26</span> in firm mud</td><td><span data-v="hold.lb">1,570</span> lb</td></tr>
+    <tr><td>Margin: 1,570 ÷ 197.5</td><td><span data-v="hold.margin">7.9</span>×</td></tr>
     <tr><td>Wanted overnight in settled weather</td><td><span data-v="hold.wanted">2</span>×</td></tr>
   </table>
   <p>An adjustable aluminum fluke anchor, the Fortress FX, ships with its flukes at 32°, the setting
@@ -333,26 +359,28 @@
   <table class="work">
     <tr><td><span data-v="angle.paid">55</span> ft of chain out in 17.5 ft: the angle at the anchor</td><td><span data-v="angle.deg">9.2</span>°</td></tr>
     <tr><td>Angle factor for a scoop anchor at that angle</td><td><span data-v="angle.factor">0.91</span></td></tr>
-    <tr><td>Margin: 8.6 × 0.91</td><td><span data-v="angle.margin">7.8</span>×</td></tr>
+    <tr><td>Margin: 7.9 × 0.91</td><td><span data-v="angle.margin">7.3</span>×</td></tr>
     <tr><td>At the app&rsquo;s <span data-v="angle.own">70</span> ft the angle is</td><td><span data-v="angle.ownDeg">2.1</span>°</td></tr>
     <tr><td>The same <span data-v="angle.nyPaid">55</span> ft on 15 ft of 1/4&Prime; chain and 1/2&Prime; nylon: the angle at the anchor</td><td><span data-v="angle.nyDeg">16.4</span>°</td></tr>
     <tr><td>Angle factor for a scoop anchor at that angle</td><td><span data-v="angle.nyFactor">0.59</span></td></tr>
-    <tr><td>Margin: 8.6 × 0.59</td><td><span data-v="angle.nyMargin">5.0</span>×</td></tr>
+    <tr><td>Margin: 7.9 × 0.59</td><td><span data-v="angle.nyMargin">4.7</span>×</td></tr>
   </table>
   <h3>Big enough for the boat</h3>
   <p>A light night makes any anchor&rsquo;s margin look large, so the app also sizes the anchor against
   the boat. For a night aboard, a storm or a boat left unattended, the pick must hold, in good sand,
   the load ABYC gives for a boat of her length in 30 knots of wind. A smaller anchor is never the pick
-  while a bigger one is aboard; it is marked as fine for a lunch stop. Good sand is the bottom makers
+  while a bigger one aboard holds as much tonight; it is marked as fine for a lunch stop. If it holds
+  more than every bigger anchor in tonight&rsquo;s bottom, it can still be the pick, marked as small
+  for her. Good sand is the bottom makers
   size their anchors for; a poorer bottom tonight is the margin&rsquo;s business, above.</p>
   <p>This is a minimum, not a recommended size: makers&rsquo; charts, which allow for poorer bottoms
   and harder weather, usually call for a bigger anchor.</p>
-  <div class="formula">Big enough = anchor weight × holding factor in good sand ≥ the 30-knot load for her length
+  <div class="formula">Big enough = holding weight × holding factor in good sand ≥ the 30-knot load for her length
     <small>30 knots: 360 lb at 20 ft · 490 at 25 · 700 at 30 · 900 at 35 · 1,200 at 40 · 1,600 at 50 ·
     2,000 at 60, interpolated between</small></div>
   <div class="footing"><span><b>Published</b> the working loads, ABYC H-40</span><span><b>Our estimate</b> the holding factor</span></div>
   <table class="work">
-    <tr><td>65 lb scoop anchor × <span data-v="size.coefSand">45</span> in good sand</td><td><span data-v="size.sand">2,925</span> lb</td></tr>
+    <tr><td>65 lb scoop anchor: <span data-v="hold.wEff">60.4</span> × <span data-v="size.coefSand">45</span> in good sand</td><td><span data-v="size.sand">2,718</span> lb</td></tr>
     <tr><td>A 46.7 ft boat in 30 knots: 1,200 + 6.7 × 40</td><td><span data-v="size.working">1,468</span> lb</td></tr>
   </table>
 
@@ -363,12 +391,15 @@
   strength. The app keeps the two apart and checks the peak load against the weaker of the chain
   and the rope. Shackles and swivels are not counted: each should be rated at least as high as the
   chain.</p>
-  <div class="formula">Safe load: chain = its working load limit · rope = breaking strength ÷ 5</div>
-  <div class="footing"><span><b>Published</b> chain working load limits, ACCO chain catalog and DIN 766</span><span><b>Our estimate</b> the rope&rsquo;s 5 to 1</span></div>
-  <p class="muted">A chain&rsquo;s working load limit already carries the maker&rsquo;s own margin. Rope
+  <div class="formula">Safe load: chain = breaking load ÷ <span data-v="str.chainFactor">4</span> · rope = breaking strength ÷ 5</div>
+  <div class="footing"><span><b>Published</b> chain working load limits, ACCO chain catalog and DIN 766; the margins makers publish them at, and European G40&rsquo;s figures, Practical Sailor, <i>Anchors</i>, vol. 3, &ldquo;Navigating the Grades of Anchor Chain&rdquo;</span><span><b>Our estimate</b> the 4 to 1 and the rope&rsquo;s 5 to 1</span></div>
+  <p class="muted">Makers publish chain working load limits at different margins: in the US, G30 at a
+  quarter of the breaking load and G43 at a third. So the app puts every chain on one footing, a
+  quarter of its breaking load. European G40 is its own grade: it breaks lower than US G43. Rope
   gets five to one because anchor rode is rarely new and rarely inspected end to end.</p>
   <table class="work">
-    <tr><td>3/8&Prime; G43 chain, working load limit</td><td><span data-v="str.wll">5,400</span> lb</td></tr>
+    <tr><td>3/8&Prime; G43 chain, working load limit <span data-v="str.wll">5,400</span> lb × 3: breaking load</td><td><span data-v="str.break">16,200</span> lb</td></tr>
+    <tr><td>Safe load: <span data-v="str.break">16,200</span> ÷ <span data-v="str.chainFactor">4</span></td><td><span data-v="str.chainSafe">4,050</span> lb</td></tr>
     <tr><td>Peak load tonight</td><td><span data-v="str.peak">198</span> lb</td></tr>
     <tr><td>5/8&Prime; nylon three-strand: <span data-v="str.ropeBreak">10,400</span> lb ÷ <span data-v="str.ropeFactor">5</span></td><td><span data-v="str.ropeSafe">2,080</span> lb</td></tr>
   </table>
